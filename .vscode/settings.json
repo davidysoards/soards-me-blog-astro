@@ -1,0 +1,8 @@
+{
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#020B9D",
+		"titleBar.activeBackground": "#030FDB",
+		"titleBar.activeForeground": "#F9FAFF"
+	}
+	// "tailwindCSS.rootFontSize": 18
+}
