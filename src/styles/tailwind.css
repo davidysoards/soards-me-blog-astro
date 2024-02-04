@@ -13,7 +13,7 @@
 	h4,
 	h5,
 	h6 {
-		@apply my-3 font-sans font-bold text-gray-900;
+		@apply font-cond my-3 font-bold text-gray-900;
 		font-stretch: condensed;
 	}
 

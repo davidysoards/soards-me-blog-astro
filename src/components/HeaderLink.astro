@@ -11,7 +11,7 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, '');
 
 <a
 	href={href}
-	class:list={[className, 'inline-block font-sans text-xl', { 'font-bold': isActive }]}
+	class:list={[className, 'inline-block font-cond text-xl', { 'font-bold': isActive }]}
 	{...props}
 >
 	<slot />
