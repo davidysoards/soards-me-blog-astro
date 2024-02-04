@@ -20,7 +20,7 @@ canonicalLink: https://dev.to/ninjasoards/easy-headless-wordpress-with-nuxt-netl
 
 Now that the JSON API endpoints are setup, the data from our Wordpress posts and media files can be **queried, manipulated and rendered to static HTML files** using Vue and Nuxt.
 
-### Create Nuxt App
+## Create Nuxt App
 
 Start a **brand new nuxt project** from the command line with
 
@@ -43,7 +43,7 @@ For purposes of this demo **use the following settings:**
 
 With this configuration, and if you are using VS Code, I recommend **placing the following in your workspaces's** `.vscode/settings.json` to avoid conflicts between prettier, eslint, and Vetur and to correctly **enable auto formatting of code on save.**
 
-#### settings.json
+### settings.json
 
 ```json
 {
@@ -65,7 +65,7 @@ With this configuration, and if you are using VS Code, I recommend **placing the
 
 Nuxt gives you **access to Vuex** (Vue's state management library) **out-of-the-box**. Navigate to the `store/` directory and create a new file `index.js`. Most of our data fetching and manipulation will take place in this file.
 
-#### store/index.js
+### store/index.js
 
 ```js
 export const state = () => ({
@@ -79,7 +79,7 @@ export const mutations = {};
 export const actions = {};
 ```
 
-### Custom Fields
+## Custom Fields
 
 Before we can query the data we need to generate it in Wordpress. **Add a few of the new custom post types** we created in Part 1 and **add some ACF fields** to them. To do that, go to `Custom Fields -> Field Groups -> Add New` in the Wordpress dashboard. If you're new to ACF the [documentation](https://www.advancedcustomfields.com/resources/) is actually pretty good.
 
@@ -116,11 +116,11 @@ Add several Events and **fill in the required fields** as well as **add some tex
 
 Navigate to `http://headless.local/wp-json/wp/v2/events?page=1&per_page=100&_embed=1` and you should see your **data being returned**, including an `acf` object with keys that match the `Name` you entered in your custom fields.
 
-### Fetching Data
+## Fetching Data
 
 Back in your Nuxt repo in the Vuex store **add a mutation** for updating the `events` array, **and an async action** for fetching the events data.
 
-#### store/index.js
+### store/index.js
 
 ```js
 export const mutations = {
@@ -157,7 +157,7 @@ Using `$get` gives immediate access to the data and **doesn't require** the usua
 
 Before this will work as is though, we have to **add our `baseURL` to the `axios` object** in the nuxt config file.
 
-#### nuxt.config.js
+### nuxt.config.js
 
 ```js
 axios: {
@@ -167,7 +167,7 @@ axios: {
 
 Now we **call the action in the created hook** of a component.
 
-#### index.vue
+### index.vue
 
 ```js
 <script>
@@ -190,11 +190,11 @@ export default {
 
 Alternatively, you could access the Vuex state and actions with `this.$store.state.events` and `this.$store.dispatch('getEvents')`, but I **prefer to use the Vuex map helpers** because it looks cleaner and shows in one place all of the global state and actions that are being used in a particular component.
 
-### Run Server Side
+## Run Server Side
 
 In order to **make sure our fetch request runs on the server** when we are generating our static HTML, we can add a Nuxt plugin. Create a file called `data.server.js` inside the `plugins/` directory.
 
-#### plugins/data.server.js
+### plugins/data.server.js
 
 ```js
 export default async ({ store }) => {
@@ -204,17 +204,17 @@ export default async ({ store }) => {
 
 And **add the plugin** to your nuxt config.
 
-#### nuxt.config.js
+### nuxt.config.js
 
 ```js
 plugins: ['~/plugins/data.server.js'],
 ```
 
-### Render to the page
+## Render to the page
 
 Now we can use the data in the **component's template.**
 
-#### index.vue
+### index.vue
 
 ```js
 <template>
@@ -258,7 +258,7 @@ If you've **followed along** until this point you should have **something that r
 
 But what if we need to **show the events in order by date.** For that we can use a **getter**, which I think of as a computed property for Vuex state.
 
-#### store/index.js
+### store/index.js
 
 ```js
 export const getters = {
@@ -274,7 +274,7 @@ Because the `sort` method **mutates the original array**, unlike `map`, `filter`
 
 Now add the following to your component:
 
-#### index.vue
+### index.vue
 
 ```diff
 - import { mapState, mapActions } from 'vuex';
@@ -305,7 +305,7 @@ For a little more **control over the format** of our start and end **times**, in
 
 Then add `@nuxtjs/date-fns` to the build modules in your nuxt config, and **import the methods you will be using**. Being able to **import only the functions you require** is a huge performance advantage of date-fns over something like moment.js. This example only requires 1 method - `format`. For more info on date-fns check out the [docs](https://date-fns.org/docs/Getting-Started).
 
-#### nuxt.config.js
+### nuxt.config.js
 
 ```diff
 buildModules: [
@@ -319,7 +319,7 @@ dateFns: {
 
 Now we can use `$dateFns` methods directly in our templates like so:
 
-#### index.vue
+### index.vue
 
 ```diff
 - {{ event.acf.start_time }} - {{ event.acf.end_time }}

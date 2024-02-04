@@ -26,19 +26,19 @@ This year, however, members from 4 different city chapters were involved and nee
 
 The company I work for, [Relay Design Co.](https://relaydesign.co/) also got involved as the Creative Sponsor. Because the stacks we use at Relay include both **Vue JS and Wordpress**, I opted to try using Wordpress as a **headless CMS** and build the front-end with **Vue's Static Site Generator** Nuxt.
 
-### Local Wordpress
+## Local Wordpress
 
 The very first step is of course to **spin up a Wordpress site locally** so you can work on it. For this process I like to use [local by flywheel](https://localwp.com/). If you haven't tried it I highly recommend you do, because the entire process is literally **3 clicks and 3 text input fields**.
 
 For this demo I'm assigning the site domain to `headless` and it will available at `headless.local`. Depending on what you use it may be `localhost:####`.
 
-### Headless theme
+## Headless theme
 
 Once your Wordpress site is up and running, navigate to `/wp-content/themes/` and **create a new folder** named `headlesstheme` (or whatever you'd like).
 
 Inside of that folder **create the following files**:
 
-#### functions.php
+### functions.php
 
 ```php
 <?php
@@ -48,7 +48,7 @@ if (!defined('ABSPATH')) {
 } // Exit if accessed directly
 ```
 
-#### style.css
+### style.css
 
 ```css
 /*
@@ -66,7 +66,7 @@ Text Domain: headlesstheme
 */
 ```
 
-#### index.php
+### index.php
 
 ```php
 <script type="text/javascript">
@@ -82,19 +82,19 @@ At this point you are ready to **Activate your new theme**.
 
 ![Active theme in dashboard](./images/theme.jpg)
 
-### 3rd party plugins
+## 3rd party plugins
 
 Next, we need to **install a few plugins** to make using Wordpress as a CMS a little more convenient.
 
-#### Classic Editor
+### Classic Editor
 
 Disables the new Gutenberg block editor.
 
-#### Advanced Custom Fields
+### Advanced Custom Fields
 
 How this plugin is not part of core Wordpress at this point is beyond me, but as the name implies it adds the ability to **add customized fields to posts, and pages**. Without it, we would be limited to the default title, text content and feature image fields.
 
-#### SVG Support
+### SVG Support
 
 By default, the Wordpress Media Library doesn't allow SVG images because, since they are XML based, they could potentially pose a **security risk**. Just make sure anyone you give **editing privileges** to is someone **trustworthy** and it shouldn't be a problem.
 
@@ -130,7 +130,7 @@ add_filter('wp_check_filetype_and_ext', 'fix_mime_type_svg', 75, 4);
 
 I usually try to **avoid using plugins and dependencies whenever possible**, but in this case I found that by using this snippet the SVGs would upload and display nicely on the front-end, but would **not display correctly in the Wordpress Dashboard**, and getting them to do so consistently was **more effort than it was worth**. For this reason, I choose to use the SVG Support plugin.
 
-### JSON API
+## JSON API
 
 Out of the box, Wordpress gives you **2 default content types** - posts and pages. And the Wordpress JSON API gives you **endpoints** to easily access both of these content types.
 `http://headless.local/wp-json/wp/v2/posts`
@@ -139,7 +139,7 @@ and
 
 Adding `?page=1&per_page=100&_embed=1` will return **all the available data**.
 
-### Custom API plugin
+## Custom API plugin
 
 **Additional content types** can be created and also queried using similar endpoints. The best place to **put your code** for creating these new post types is **in a plugin**.
 
@@ -147,7 +147,7 @@ To **create a custom plugin**, make a new folder inside `/wp-content/plugins/` a
 
 Inside that folder create a php file with the **same name as your folder**:
 
-#### headless-plugin.php
+### headless-plugin.php
 
 ```php
 <?php
@@ -248,7 +248,7 @@ add_action('rest_api_init', function () {
 
 Personally, I prefer to just work with the **default endpoints**.
 
-### ACF
+## ACF
 
 Since we will be using Advanced Custom Fields to add content we need to **add those fields to the data that is returned by the API**. We can write a function to add the endpoints and then call that function on the `rest_prepare_post_type` hook for each post type using `add_filter`.
 

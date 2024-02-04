@@ -24,7 +24,7 @@ I also believe that the best method is often the simplest method and using CSS v
 
 Alright, now onto the fun stuff.
 
-### The CSS Variables
+## The CSS Variables
 
 Step one is to set the CSS variables on the root in the global CSS file so they can be accessed anywhere in the DOM (or in this case the virtual DOM).
 
@@ -68,7 +68,7 @@ a {
 }
 ```
 
-### The JavaScript
+## The JavaScript
 
 With the variables set globally in the CSS, new values can be assigned as needed using JavaScript. I started by creating two color theme objects -- lightTheme & darkTheme -- inside my main layout.js component.
 
@@ -193,7 +193,7 @@ export default function ToggleSwitch({ toggleTheme, isChecked, ariaLabel, id }) 
 }
 ```
 
-### Styling the Toggle Switch
+## Styling the Toggle Switch
 
 As you can see I'm using CSS-in-JS 🙀 via the @emotion/styled library. If you are familiar with styled-components, it works almost exactly the same but the package is slightly smaller and apparently more performant (I haven't actually tested it, so what do I know?). Emotion also gives you the option of using css props to style components, which can be useful in certain situations.
 

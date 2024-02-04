@@ -17,7 +17,7 @@ tags:
 
 I've been leveling-up on my **Django and Python** skills lately, and I ran into a fairly common situation, that I could’t find a definitive solution for.
 
-### The Dilema
+## The Dilema
 
 I have a **users** app with a simple **Profile model**, and I’m using **django-storages** to manage uploading my **images** and other **static assets** to **Amazon S3**.
 
@@ -44,13 +44,13 @@ But it become a bit more complicated when using S3 buckets. I get a
 
 `Exception Value: This backend doesn't support absolute paths.`
 
-### The Solution
+## The Solution
 
 Most of what I found online suggested **removing the Pillow resize and writing an AWS Lambda function** to handle the resize on upload. I initially tried that approach, but according to the AWS docs you shouldn’t use the same bucket for input and output, meaning I had to create a second S3 bucket just for resized images. I couldn’t figure out how to get that setup working with django-storages.
 
 A second approach I found mentioned **using a buffer to save the resized image into**, and then saving that to AWS. The examples of this that I found were either incomplete or used old versions of python. Here is what actually worked for me using **Python 3.8, Django 3.1.3 and Pillow 8.0.1**:
 
-#### user/models.py
+### user/models.py
 
 ```python
 from app.utils import image_resize
@@ -67,7 +67,7 @@ class Profile(models.Model):
         super().save(*args, **kwargs)
 ```
 
-#### app/utils.py
+### app/utils.py
 
 ```python
 from django.core.files import File

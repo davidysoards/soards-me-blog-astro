@@ -4,7 +4,7 @@
 
 @layer base {
 	body {
-		@apply bg-gray-50 text-left font-serif text-lg text-gray-900 sm:text-xl;
+		@apply bg-gray-50 text-left font-serif text-lg text-gray-700 sm:text-xl;
 	}
 
 	h1,
@@ -13,43 +13,47 @@
 	h4,
 	h5,
 	h6 {
-		@apply mb-4 font-sans font-bold;
+		@apply my-3 font-sans font-bold text-gray-900;
 		font-stretch: condensed;
 	}
 
 	h1 {
-		@apply text-5xl;
+		@apply text-4xl sm:text-5xl;
 	}
 	h2 {
-		@apply text-4xl;
+		@apply mt-12 text-3xl;
 	}
 	h3 {
-		@apply text-3xl;
-	}
-	h4 {
 		@apply text-2xl;
 	}
-	h5 {
+	h4 {
 		@apply text-xl;
 	}
-	h6 {
+	h5 {
 		@apply text-lg;
+	}
+	h6 {
+		@apply text-base;
 	}
 
 	p {
-		@apply mb-8 mt-4;
+		@apply mb-6 mt-2;
 	}
 
-	pa {
+	p a {
 		@apply font-bold text-blue-500 hover:underline;
 	}
 
+	strong {
+		@apply text-gray-900;
+	}
+
 	code {
-		@apply rounded-sm bg-gray-200 p-1 font-mono;
+		@apply rounded-sm bg-gray-200 p-1 font-mono text-base;
 	}
 
 	pre {
-		@apply my-4 rounded-lg bg-gray-200 p-6 text-base;
+		@apply mb-8 mt-4 rounded-lg bg-gray-200 p-6 text-base;
 	}
 
 	pre > code {
@@ -66,6 +70,10 @@
 
 	table {
 		@apply w-full;
+	}
+
+	hr {
+		@apply my-4;
 	}
 
 	ul,

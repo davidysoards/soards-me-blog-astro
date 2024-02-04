@@ -21,7 +21,7 @@ Peep my [source code](https://github.com/davidysoards/louisville-design-week) ðŸ
 
 [Part 1: Night Mode Toggle](/posts/make-a-custom-night-mode-toggle-w-react-css-variables)
 
-### Create & Export the SVG
+## Create & Export the SVG
 
 I started in **Adobe Illustrator** by tracing one of our promotional images for Design Week using the **pen tool** and added a few rounded rectangles for the brackets.
 
@@ -106,7 +106,7 @@ const SvgAlwaysOpen = (props) => (
 export default SvgAlwaysOpen;
 ```
 
-### Customizing the SVG Component
+## Customizing the SVG Component
 
 This effect uses two **SVG filters**. One is the **drop shadow** for the **light mode** and the other is the **glow** for the **dark mode**. Filters need to be defined inside the **\<defs\> element**.
 
@@ -203,7 +203,7 @@ const SvgAlwaysOpen = ({ width, intensity, blur }) => (
 <SvgAlwaysOpen width="100%" intensity={4} blur={20} />
 ```
 
-### Making it Flicker
+## Making it Flicker
 
 The flicker animation is a simple **CSS keyframes** animation on the opacity value. The same set of keyframes is used for both **flicker1** and **flicker2**. The difference between the two is their **duration** and that flicker2 is **delayed by 3s** before it starts. Both are set to **linear** (no easing) and **infinte**, which means the animation will play on a **loop continuously**. I used the **keyframes** helper from **@emotion/core** to set the CSS keyframes from inside my JS file.
 
@@ -310,7 +310,7 @@ export default function SvgAlwaysOpen({ width, intensity, blur }) {
 
 Context is fairly new to React and **replaces the need for Redux** in most cases. You can read more about it in the [React docs](https://reactjs.org/docs/context.html)
 
-### WTF iOS?!
+## WTF iOS?!
 
 The final issue I had to deal with was that the animations applied inside the SVG **don't seem to work on iOS**. They work on all modern desktop browsers and even on Android phones but not iPhones.
 

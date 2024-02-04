@@ -31,10 +31,10 @@ const posts = (await getCollection('posts')).sort(
 									<img
 										src={`/img/${post.data.heroImage}`}
 										alt=""
-										class="mb-2 rounded-xl group-hover:shadow-lg transition-shadow"
+										class="mb-2 rounded-xl group-hover:shadow-lg transition-shadow ring-1 ring-gray-200"
 									/>
 									<h4 class="m-0">{post.data.title}</h4>
-									<p class="m-0">
+									<p class="m-0 text-gray-500">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
 								</a>

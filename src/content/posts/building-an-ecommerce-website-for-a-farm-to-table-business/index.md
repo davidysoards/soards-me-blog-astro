@@ -16,7 +16,7 @@ heroImage: farm-to-table.jpeg
 
 Jared Wilkinson has a very unique business. He is a trained chef with 18 years experience. Several years ago, he fell in love with farming as well. Instead of just selling his homegrown produce, he began turning his harvest into fully prepared meals.
 
-### Goals, Needs & Design Requirements
+## Goals, Needs & Design Requirements
 
 ![The old website had too many pages, but not enough content.](./images/asset-2.jpeg)
 
@@ -26,13 +26,13 @@ I met with Jared in order to learn more about his business, customers, competito
 
 ![](./images/asset-3.png)![](./images/asset-4.png)![](./images/asset-5.png)
 
-### Content Inventory
+## Content Inventory
 
 In addition to the Goals, Needs, and Requirements, I created a short Content Inventory in Excel. The spreadsheet lists the Pages and Core Assets of the website along with a short description and the items required for each one.
 
 ![](./images/asset-6.png)
 
-### Wireframe
+## Wireframe
 
 Next I drew a basic wireframe of my idea for the home page. **One of our goals for the website was to attract new customers.** I was searching for a way to explain Jared’s business to someone new in the most simple and direct way possible. My solution was to create three illustrations that represented his business model in three simple steps.
 
@@ -42,7 +42,7 @@ Next I drew a basic wireframe of my idea for the home page. **One of our goals f
 
 ![My wireframe shows the 1–2–3 concept for desktop and mobile with several Calls To Action and a basic navigation menu.](./images/asset-7.jpeg)
 
-### Illustrations
+## Illustrations
 
 **I knew that the illustrations, if done right, would be something that would catch people’s attention and hopefully peak their interest in Duck Duck Beet.** My first attempts were in more of a Comic Book art style. They were fairly simple line drawings, but still a bit too detailed for the purpose of this home page. Eventually I settled on a more cartoony vector art style that is just abstract enough to make it extremely relatable but still obviously a caricature of Jared himself.
 
@@ -50,7 +50,7 @@ Next I drew a basic wireframe of my idea for the home page. **One of our goals f
 
 > I was searching for a way to explain Jared’s business to someone new in the most simple and direct way possible. My solution was to create three illustrations that represented his business model in three simple steps. We Farm, We Cook, We Deliver.
 
-### From Analog to Digital
+## From Analog to Digital
 
 My initial sketches were done on newsprint paper with a **Conte Sketching Pencil**. I then scanned in my sketches and traced them in **Adobe Illustrator** using shapes, the pathfinder palette, and the pen tool. I incorporated the green and magenta colors from the Duck Duck Beet logo where appropriate and complimented them with subtle shades of violet in the background.
 
@@ -60,13 +60,13 @@ My initial sketches were done on newsprint paper with a **Conte Sketching Pencil
 
 ![](./images/asset-15.jpeg)![](./images/asset-16.jpeg)![Ironically, my illustrations for the Duck Duck Beet website were influenced by Jon Hick’s recent work for Duck Duck Go.](./images/asset-17.jpeg)
 
-### Iconography
+## Iconography
 
 After speaking with Jared and several of his customers, **I determined that there were essentially four main reasons why people loved Duck Duck Beet.** It is healthy. It is locally grown and sourced. It is convenient, and most importantly the food is delicious! In order to showcase these qualities I created four icons to represent the top four reasons customers love Jared’s business.
 
 ![](./images/asset-18.png)
 
-### Pages and Content
+## Pages and Content
 
 ![](./images/asset-19.jpeg)
 

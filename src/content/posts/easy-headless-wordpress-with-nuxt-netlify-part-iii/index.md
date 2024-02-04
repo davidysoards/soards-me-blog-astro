@@ -23,15 +23,15 @@ Moving the **local Wordpress install** that we worked on in Part 1 **to a live U
 
 Once your CMS is live you will need to **change the axios** `baseURL` in the Nuxt config.
 
-#### nuxt.config.js
-
 ```js
+// nuxt.config.js
+
 axios: {
   baseURL: 'http://yourlivesite.com',
 },
 ```
 
-### Add site in Netlify
+## Add site in Netlify
 
 Obviously you are also going to need a **Netlify account** for this, so if you don't have one, you will need to [create one](https://app.netlify.com/signup). **Sign up using your Github account** and you will be able to access your repos.
 
@@ -49,7 +49,7 @@ Netlify will deploy your site to a randomly generated URL that will end in `.net
 
 Any time you **push to this repo's master branch**, Netlify will **re-deploy the site for you**. But the whole point of **setting up a CMS** was so non-developers could **make changes and add content**. So we also want to **trigger a deploy** anytime new posts are **published** or existing published posts are **updated**.
 
-### Generate Build Hook
+## Generate Build Hook
 
 Navigate to your new site in the Netlify dashboard and then to `Site Settings -> Build & deploy -> Build hooks` and click **Add build hook**. Give your build hook and name, and click **Save**.
 
@@ -57,7 +57,7 @@ Now we have access to a **unique URL** that we can use to **trigger a build**. I
 
 ![build hook in netlify](./images/bulld-hook.png)
 
-### Trigger Build Hook in Wordpress
+## Trigger Build Hook in Wordpress
 
 Back in Wordpress, we can **hook into certain events** and **call the build hook**. I initially tried to set this up myself following the instructions outlined in this [article](https://dimitr.im/updating-gatsby-wordpress-published). It hooks into the `publish_post`, `publish_page` and `post_update` Wordpress hooks, and uses PHP's built in cURL library to trigger the build hook.
 

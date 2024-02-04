@@ -16,17 +16,17 @@ heroImage: comic-creator.png
 
 ![I drew a comic to help explain the idea behind Comic Creator. Totally meta.](./images/asset-3.jpeg)
 
-### Introducing the Problem
+## Introducing the Problem
 
 The first step in creating a page of sequential art is to draw what is called a thumbnail. A thumbnail is a small image that shows the basic panel layout of a page and the general placements of the characters, backgrounds and other important objects within each panel. From there the artist will create a slightly more detailed rough layout, and from the rough layout they will create the finished pencils and eventually the inks.
 
 Determining the panel layout begins at the thumbnail stage and can be a somewhat daunting task. Every creative knows the dreaded feeling of staring at a blank page. The thumbnailing process usually begins in this way. If working from a full script from a writer, the number of panels on a page and their contents will be predetermined. This can be a good starting point. Often though, the artist _is_ the writer or they may be working from the “Marvel method.” In which case the artist will only have a general plot to work from and the layout of the pages will be completely up to them.
 
-### My Solution
+## My Solution
 
 Comic Creator is a mobile application that allows users to create page layouts either from scratch or from an existing hand drawn thumbnail or rough layout. Images can be imported from the user’s photo library or directly from Google Images. Creators can choose from various standard panel layouts or they can draw their own panel borders on top of the placed image or images. The opacity of the placed images can be lowered and users can draw or trace as they like on a new layer. The entire file can then be exported as a PSD, JPG, TIFF, or PDF and sent to the cloud or emailed. The exported file can be opened in the creator’s drawing software of choice and finished according to the artist’s preferred workflow using digital tools, traditional tools, or both.
 
-### User Research
+## User Research
 
 Once an idea has been established, the first step in the User Centered Design (UCD) process is to conduct user research. I conducted several interviews and also surveyed potential users. The potential users in this case were professional and amateur cartoonists.
 
@@ -44,7 +44,7 @@ Something that everyone I interviewed agreed on was that the overriding factor i
 
 > Something that everyone I interviewed agreed on was that the overriding factor in all of their creative work is TIME.
 
-### Competitor Analysis
+## Competitor Analysis
 
 I identified three competitors to my product idea: Strip Designer, Photoshop Sketch, and Clip Studio Paint. Strip Designer and Photoshop Sketch are both mobile applications, while Clip Studio Paint is a desktop application. **These three products have very different capabilities and are targeted at different audiences.**
 
@@ -60,7 +60,7 @@ Additionally, I took a closer look at the Strip Designer App and evaluated it us
 
 ![Competitor apps were evaluated using the Nielson’s Usability Heuristics.](./images/asset-6.png)
 
-### Empathy Maps & Personas
+## Empathy Maps & Personas
 
 In order to gain a deeper understanding of my users, I created three distinct personas using the information I gathered during interviews and from my survey. Although each persona was eventually depicted as a single person they were created by combining the characteristics and behaviors of many people.
 
@@ -70,7 +70,7 @@ To help bridge the gap between the personas and my design concepts, I also creat
 
 ![I created three distinct personas and empathy maps in order to gain a better understanding of my users.](./images/asset-7.png)
 
-### Lean UX and MVP
+## Lean UX and MVP
 
 Embracing the Lean UX process, my next step was to create an MVP (Minimum Viable Product). Lean UX is less focused on deliverables than traditional UX, and **the core idea is to get feedback from users as soon as possible.** I chose 6 key features that my product needed in order to satisfy my users and provide valuable feedback.
 
@@ -83,13 +83,13 @@ Embracing the Lean UX process, my next step was to create an MVP (Minimum Viable
 - Add a panel layout
 - Export as a PSD file
 
-### User Stories
+## User Stories
 
 With these key features in mind I created 28 different User Stories in the form of, “As a user I want to \_\_\_\_, so that I can \_\_\_\_. “
 
 ![The user stories helped me to keep my design user focused. They were also very effective at preventing the dreaded feature creep.](./images/asset-8.png)
 
-### Content Strategy
+## Content Strategy
 
 Using the same 28 actions from the “As a user I want to \_\_\_” column of my user stories I conducted a card sort. I chose to conduct my card sort in person using actual printed cards instead of using an online tool. I attended one of the weekly Drink and Draws hosted by the Louisville Cartoonist Society and quickly found three qualified volunteers to participate in the card sort. By conducting the card sort in person I was able to converse with them after they completed the initial task and some of the most valuable information that I took from this activity came through those conversations.
 
@@ -103,7 +103,7 @@ Zach, who I had interviewed during my initial research phase was happy to see th
 
 ![Examining the results of a card sort is more of an art than a science.](./images/asset-10.jpeg)
 
-### User Flows
+## User Flows
 
 At this point I was eager to jump into Sketch and start designing some screens, but first I needed to give some thought to the structure and flow of the pages. **Taking the time to consider my user’s objectives before I began the visual design process, ultimately helped me to create a better product.** I sketched out my user flows first by hand on notebook paper and then created a more polished version in Illustrator.
 
@@ -111,7 +111,7 @@ At this point I was eager to jump into Sketch and start designing some screens, 
 
 ![_Spending the time up front designing user flows helps to create meaningful user experiences by solving actual user needs._](./images/asset-13.png)
 
-### Wireframes
+## Wireframes
 
 If you look closely at my first user flow sketch you can see that I drew some very rough wireframes of the screens for my app, which I was now officially calling Comic Creator. The name had at first only been a placeholder, but since the double use of the letter C looked and sounded good, and the name also described the application well, I decided to use it.
 
@@ -121,7 +121,7 @@ Using graph paper, grayscale Copic markers, and black ink pens I created detaile
 
 ![Sketching on paper helped keep me focused on optimizing the navigation and defining the hierarchy of elements.](./images/asset-15.jpeg)
 
-### Prototype
+## Prototype
 
 Next I created a clickable prototype from my sketches and Post-Its using Marvel App (not in any way associated with Marvel Comics). I created some additional screens by copy-pasting parts of different sketches together and adding details in Photoshop. For example, all of the images of boats were added to the Google search page by lassoing the hand drawn empty boxes and filling them with images from Pixabay and the panel borders and gutters were added to another screenshot by drawing thin white boxes with a black stroke.
 
@@ -133,7 +133,7 @@ Once the changes and alterations were made I created the interactions in Marvel 
 
 Take a look at my rough prototype <a href="https://marvelapp.com/976hh79/screen/30642282" target="_blank">here</a>.
 
-### Usability Testing
+## Usability Testing
 
 I made the decision to test Comic Creator as a lofi wireframe because as Steve Krug says in his highly regarded book _Don’t Make Me Think_, **“Testing one user early on in the project is better than testing 50 near the end.”**
 
@@ -162,7 +162,7 @@ Page sizes for comics are fairly standardized, especially in the U.S., yet they 
 
 Referring to a group of panels on a page as a panel layout instead of a panel grid keeps this feature from being confused with the composition and perspective grids.
 
-### Visual Design
+## Visual Design
 
 Now that I had a realistic understanding of the needs of my users and had tested my interface with real potential users, it was finally time to open Sketch and do some visual designing.
 
@@ -172,11 +172,11 @@ In order to keep the focus on the art being created, I chose a very subdued and 
 
 The font family I chose for the Comic Creator interface is **Trade Gothic Next.** I mostly used the Light weight, but some of the menu titles use Regular Condensed. Trade Gothic is a classic grotesque sans-serif. Like many of the older Gothic style typefaces it has a number of irregularities that give it a slightly more playful feel than later grotesques, such as Helvetica. These qualities made it an appropriate choice for the UI of a comic layout app.
 
-#### Style Sheet
+### Style Sheet
 
 ![The Comic Creator UI uses a subtle color scheme and Trade Gothic Next.](./images/asset-17.png)
 
-#### Logo
+### Logo
 
 For the Comic Creator logo, I chose a hand-lettered comic style font with bold primary colors. **The same primary color scheme is traditionally used for superheroes in comic books, so it seemed quite appropriate.** The blue used in the drop shadow of the logo is the same blue used throughout the interface.
 
