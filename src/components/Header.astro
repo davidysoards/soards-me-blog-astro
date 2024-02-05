@@ -2,9 +2,10 @@
 // import IconSun from '~icons/lucide/sun';
 import HeaderLink from './HeaderLink.astro';
 
-import IconGithub from '~icons/fa-brands/github';
-import IconTwitter from '~icons/fa-brands/twitter';
-import IconLinkedIn from '~icons/fa-brands/linkedin-in';
+import IconGithub from '~icons/fa6-brands/github';
+import IconXTwitter from '~icons/fa6-brands/x-twitter';
+import IconTwitter from '~icons/fa6-brands/twitter';
+import IconLinkedIn from '~icons/fa6-brands/linkedin-in';
 ---
 
 <header class="m-0 px-4 py-2 bg-white shadow-sm text-gray-500">
@@ -22,9 +23,10 @@ import IconLinkedIn from '~icons/fa-brands/linkedin-in';
 				<span class="sr-only">Go to my GitHub repo</span>
 				<IconGithub aria-hidden="true" class="size-8" />
 			</a>
-			<a href="https://twitter.com/ninjasoards" target="_blank">
+			<a href="https://twitter.com/ninjasoards" target="_blank" class="group">
 				<span class="sr-only">Follow me on Twitter</span>
-				<IconTwitter aria-hidden="true" class="size-8" />
+				<IconXTwitter aria-hidden="true" class="size-8 group-hover:hidden group-focus:hidden" />
+				<IconTwitter aria-hidden="true" class="size-8 hidden group-hover:block group-focus:block" />
 			</a>
 			<a href="https://www.linkedin.com/in/davidysoards/" target="_blank">
 				<span class="sr-only">Follow me on Linked In</span>
