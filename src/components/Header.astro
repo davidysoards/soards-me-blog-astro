@@ -1,36 +1,52 @@
 ---
-// import IconSun from '~icons/lucide/sun';
 import HeaderLink from './HeaderLink.astro';
 
 import IconGithub from '~icons/fa6-brands/github';
 import IconXTwitter from '~icons/fa6-brands/x-twitter';
 import IconTwitter from '~icons/fa6-brands/twitter';
 import IconLinkedIn from '~icons/fa6-brands/linkedin-in';
+// import IconSun from '~icons/lucide/sun';
+// import IconMoon from '~icons/lucide/moon';
+import IconLaptop from '~icons/lucide/laptop';
+import IconChevronDown from '~icons/lucide/chevron-down';
 ---
 
-<header class="m-0 px-4 py-2 bg-white shadow-sm text-gray-500">
+<header class="m-0 px-4 py-2 text-gray-500">
 	<nav class="flex items-center justify-between">
 		<div class="flex gap-4 sm:gap-8 items-center">
 			<a href="/">
-				<img src="/DYS-logo-150.gif" alt="Astro logo" class="size-16 shadow" />
+				<img src="/DYS-logo-150.gif" alt="Astro logo" class="size-14 shadow" />
 			</a>
-			<HeaderLink href="/">Blog</HeaderLink>
-			<HeaderLink href="https://design.soards.me/">Design</HeaderLink>
+			<HeaderLink href="/">blog</HeaderLink>
+			<HeaderLink href="https://design.soards.me/">design</HeaderLink>
 		</div>
 
 		<div class="flex gap-4 sm:gap-8">
+			<label class="relative flex">
+				<span class="sr-only">Select theme</span>
+				<IconLaptop aria-hidden="true" class="size-5 absolute top-1/2 -translate-y-1/2" />
+				<select class="font-sans text-base appearance-none px-7" aria-label="Select theme">
+					<option value="os">OS</option>
+					<option value="dark">Dark</option>
+					<option value="light">Light</option>
+				</select>
+				<IconChevronDown
+					aria-hidden="true"
+					class="size-5 absolute top-1/2 -translate-y-1/2 right-0"
+				/>
+			</label>
 			<a href="https://github.com/davidysoards" target="_blank">
 				<span class="sr-only">Go to my GitHub repo</span>
-				<IconGithub aria-hidden="true" class="size-8" />
+				<IconGithub aria-hidden="true" class="size-7" />
 			</a>
 			<a href="https://twitter.com/ninjasoards" target="_blank" class="group">
 				<span class="sr-only">Follow me on Twitter</span>
-				<IconXTwitter aria-hidden="true" class="size-8 group-hover:hidden group-focus:hidden" />
-				<IconTwitter aria-hidden="true" class="size-8 hidden group-hover:block group-focus:block" />
+				<IconXTwitter aria-hidden="true" class="size-7 group-hover:hidden group-focus:hidden" />
+				<IconTwitter aria-hidden="true" class="size-7 hidden group-hover:block group-focus:block" />
 			</a>
 			<a href="https://www.linkedin.com/in/davidysoards/" target="_blank">
 				<span class="sr-only">Follow me on Linked In</span>
-				<IconLinkedIn aria-hidden="true" class="size-8" />
+				<IconLinkedIn aria-hidden="true" class="size-7" />
 			</a>
 		</div>
 	</nav>
