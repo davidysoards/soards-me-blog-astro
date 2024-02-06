@@ -1,0 +1,22 @@
+---
+import IconSun from '~icons/lucide/sun';
+import IconMoon from '~icons/lucide/moon';
+---
+
+<button id="themeToggle">
+	<span class="sr-only">Toggle theme</span>
+	<IconMoon aria-hidden="true" class="size-6 hidden dark:block" />
+	<IconSun aria-hidden="true" class="size-6 block dark:hidden" />
+</button>
+
+<script is:inline>
+	const handleToggleClick = () => {
+		const el = document.documentElement;
+		el.classList.toggle('dark');
+
+		const isDark = el.classList.contains('dark');
+		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+	};
+
+	document.getElementById('themeToggle').addEventListener('click', handleToggleClick);
+</script>

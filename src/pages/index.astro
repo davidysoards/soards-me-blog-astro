@@ -2,16 +2,31 @@
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Badge from '../components/Badge.astro';
 
 const posts = (await getCollection('posts')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const allPosts = await Astro.glob('../content/posts/**/*.md');
+const tags = [...new Set(allPosts.flatMap((post) => post.frontmatter.tags || []))];
+console.log(tags);
 ---
 
 <BaseLayout>
 	<main class="max-w-[960px] p-4 mx-auto">
 		<section>
-			<ul class="md:grid md:grid-cols-2 gap-4 md:gap-8 list-none m-0 p-0">
+			<ul class="mb-8 flex flex-wrap gap-2">
+				{
+					tags.map((tag) => {
+						return (
+							<li>
+								<Badge>{tag}</Badge>
+							</li>
+						);
+					})
+				}
+			</ul>
+			<ul class="md:grid md:grid-cols-2 gap-4 md:gap-8">
 				{
 					posts.map((post) => (
 						<li class="first:col-span-2 mb-4 text-center">

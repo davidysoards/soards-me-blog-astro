@@ -84,8 +84,8 @@
 		@apply my-4;
 	}
 
-	ul,
-	ol {
+	article ul,
+	article ol {
 		list-style: revert;
 		margin: revert;
 		padding: revert;
