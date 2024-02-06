@@ -11,7 +11,7 @@
 
 @layer base {
 	body {
-		@apply text-gray-11 bg-gray-1 text-left font-serif text-lg sm:text-xl;
+		@apply bg-gray-1 text-left font-serif text-lg text-gray-11 transition-colors sm:text-xl;
 	}
 
 	h1,
@@ -20,7 +20,7 @@
 	h4,
 	h5,
 	h6 {
-		@apply font-cond text-gray-12 my-3 font-bold;
+		@apply my-3 font-cond font-bold text-gray-12;
 		font-stretch: condensed;
 	}
 
@@ -49,7 +49,7 @@
 	}
 
 	p a {
-		@apply text-accent-10 font-bold hover:underline;
+		@apply font-bold text-accent-10 hover:underline;
 	}
 
 	strong {
@@ -57,11 +57,11 @@
 	}
 
 	code {
-		@apply bg-gray-2 rounded-sm p-1 font-mono text-base;
+		@apply rounded-sm bg-gray-2 p-1 font-mono text-base;
 	}
 
 	pre {
-		@apply bg-gray-2 mb-8 mt-4 rounded-lg p-6 text-base;
+		@apply mb-8 mt-4 rounded-lg bg-gray-2 p-6 text-base;
 	}
 
 	pre > code {
@@ -73,7 +73,7 @@
 	}
 
 	blockquote {
-		@apply border-gray-3 mb-8 mt-4 border-l-4 pl-4 text-2xl leading-relaxed;
+		@apply mb-8 mt-4 border-l-4 border-gray-3 pl-4 text-2xl leading-relaxed;
 	}
 
 	table {

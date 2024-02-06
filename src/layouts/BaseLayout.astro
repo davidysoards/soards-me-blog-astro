@@ -10,15 +10,31 @@ const { pageTitle } = Astro.props;
 <!doctype html>
 <html
 	lang="en"
-	x-data="{darkMode: localStorage.getItem('darkMode')}"
-	x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
-	:class="{ 'dark': darkMode === 'dark' }"
+	x-data="{ theme: localStorage.getItem('theme') }"
+	:class="{ 'dark': theme === 'dark' || theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches }"
 >
 	<head>
 		<BaseHead
 			title={pageTitle ? `${SITE_TITLE} | ${pageTitle}` : SITE_TITLE}
 			description={SITE_DESCRIPTION}
 		/>
+		<script is:inline>
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark';
+				}
+				return 'light';
+			})();
+
+			if (theme === 'light') {
+				document.documentElement.classList.remove('dark');
+			} else {
+				document.documentElement.classList.add('dark');
+			}
+		</script>
 	</head>
 	<body>
 		<Header />

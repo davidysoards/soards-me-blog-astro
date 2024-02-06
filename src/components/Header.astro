@@ -5,8 +5,8 @@ import IconGithub from '~icons/fa6-brands/github';
 import IconXTwitter from '~icons/fa6-brands/x-twitter';
 import IconTwitter from '~icons/fa6-brands/twitter';
 import IconLinkedIn from '~icons/fa6-brands/linkedin-in';
-// import IconSun from '~icons/lucide/sun';
-// import IconMoon from '~icons/lucide/moon';
+import IconSun from '~icons/lucide/sun';
+import IconMoon from '~icons/lucide/moon';
 import IconLaptop from '~icons/lucide/laptop';
 import IconChevronDown from '~icons/lucide/chevron-down';
 ---
@@ -44,11 +44,26 @@ import IconChevronDown from '~icons/lucide/chevron-down';
 		<div class="flex gap-4 sm:gap-8">
 			<label class="relative flex hover:text-gray-12">
 				<span class="sr-only">Select theme</span>
-				<IconLaptop aria-hidden="true" class="size-5 absolute top-1/2 -translate-y-1/2" />
+				<IconLaptop
+					x-show="theme === 'os'"
+					aria-hidden="true"
+					class="size-5 absolute top-1/2 -translate-y-1/2 pointer-events-none"
+				/>
+				<IconSun
+					x-show="theme === 'light'"
+					aria-hidden="true"
+					class="size-5 absolute top-1/2 -translate-y-1/2 pointer-events-none"
+				/>
+				<IconMoon
+					x-show="theme === 'dark'"
+					aria-hidden="true"
+					class="size-5 absolute top-1/2 -translate-y-1/2 pointer-events-none"
+				/>
 				<select
 					class="font-sans text-base appearance-none px-7 bg-transparent"
 					aria-label="Select theme"
-					x-on:change="darkMode = $event.target.value"
+					x-model="theme"
+					@change="localStorage.setItem('theme', $event.target.value)"
 				>
 					<option value="os">OS</option>
 					<option value="dark">Dark</option>
@@ -56,7 +71,7 @@ import IconChevronDown from '~icons/lucide/chevron-down';
 				</select>
 				<IconChevronDown
 					aria-hidden="true"
-					class="size-5 absolute top-1/2 -translate-y-1/2 right-0"
+					class="size-5 absolute top-1/2 -translate-y-1/2 right-0 pointer-events-none"
 				/>
 			</label>
 			<a href="https://github.com/davidysoards" target="_blank">
