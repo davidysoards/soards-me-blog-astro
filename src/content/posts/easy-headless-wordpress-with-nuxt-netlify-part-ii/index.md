@@ -5,7 +5,6 @@ description: Vue, Nuxt and Tailwind
 pubDate: 2020-09-15T13:56:31.279Z
 heroImage: wp-nuxt-netlify.png
 tags:
-  - post
   - wordpress
   - vue
   - javascript

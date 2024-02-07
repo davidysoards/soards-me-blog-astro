@@ -6,7 +6,7 @@ export default {
 		extend: {
 			fontFamily: {
 				cond: '"HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial Narrow", "Arial", sans-serif',
-				sans: '"HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif',
+				sans: '"Helvetica Neue", Helvetica, Arial, sans-serif',
 				serif: 'Charter, Georgia, serif',
 			},
 			colors: {

@@ -5,7 +5,6 @@ description: Deploying with Netlify and adding a build hook to our CMS
 pubDate: 2020-09-16T21:50:30.483Z
 heroImage: wp-nuxt-netlify.png
 tags:
-  - post
   - wordpress
   - vue
   - nuxt

@@ -23,7 +23,6 @@
 		@apply my-3 font-cond font-bold text-gray-12;
 		font-stretch: condensed;
 	}
-
 	h1 {
 		@apply text-4xl sm:text-5xl;
 		text-shadow: 1px 2px 0.5px rgba(0, 0, 0, 0.07);

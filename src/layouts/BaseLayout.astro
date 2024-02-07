@@ -8,7 +8,7 @@ const { pageTitle } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
 	<head>
 		<BaseHead
 			title={pageTitle ? `${SITE_TITLE} | ${pageTitle}` : SITE_TITLE}
@@ -29,9 +29,11 @@ const { pageTitle } = Astro.props;
 			window.localStorage.setItem('theme', theme);
 		</script>
 	</head>
-	<body>
+	<body class="flex flex-col h-full">
 		<Header />
-		<slot />
+		<div class="flex-grow">
+			<slot />
+		</div>
 		<Footer />
 	</body>
 </html>

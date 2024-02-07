@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Badge from '../components/Badge.astro';
+import { SITE_TITLE } from '../consts';
 
 const posts = (await getCollection('posts')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -13,37 +14,61 @@ console.log(tags);
 ---
 
 <BaseLayout>
-	<main class="max-w-[960px] p-4 mx-auto">
+	<main class="max-w-screen-md p-4 mx-auto">
+		<div class="flex flex-col md:flex-row gap-8 mt-4 mb-8 md:mt-8 items-center">
+			<img
+				src="/img/david-soards.jpg"
+				alt="David Soards"
+				class="self-start md:self-auto rounded-full size-20"
+			/>
+			<div>
+				<h1 class="text-3xl mt-0">{SITE_TITLE}</h1>
+				<p class="text-lg mb-0">
+					A blog by me, David Soards, mostly about Front-End Development and UI Design.
+				</p>
+			</div>
+		</div>
 		<section>
-			<ul class="mb-8 flex flex-wrap gap-2">
+			<ul class="mb-8 md:mb-12 mt-4 flex flex-wrap gap-2">
 				{
 					tags.map((tag) => {
 						return (
 							<li>
-								<Badge>{tag}</Badge>
+								<a href={`/tags/${tag}`}>
+									<Badge>{tag}</Badge>
+								</a>
 							</li>
 						);
 					})
 				}
 			</ul>
-			<ul class="md:grid md:grid-cols-2 gap-4 md:gap-8">
+			<ul class="grid gap-8 md:gap-8">
 				{
 					posts.map((post) => (
-						<li class="first:col-span-2 mb-4 text-center">
-							<a
-								href={`/posts/${post.slug}/`}
-								class="block hover:no-underline group transition-colors"
-							>
-								<img
-									src={`/img/${post.data.heroImage}`}
-									alt=""
-									class="mb-2 rounded-xl group-hover:shadow-lg transition-shadow ring-1 ring-gray-4"
-								/>
-								<h4 class="m-0 group-hover:opacity-80">{post.data.title}</h4>
-								<p class="m-0 text-gray-11 font-sans text-base">
-									<FormattedDate date={post.data.pubDate} />
-								</p>
-							</a>
+						<li class="mb-4">
+							<div class="md:flex gap-6">
+								<a href={`/posts/${post.slug}/`} class="block hover:no-underline shrink-0">
+									<img
+										src={`/img/${post.data.heroImage}`}
+										alt=""
+										class="rounded-lg md:h-28 md:w-40 object-cover"
+									/>
+								</a>
+								<div>
+									<h2 class="m-0 group-hover:opacity-80 text-xl">
+										<a
+											href={`/posts/${post.slug}/`}
+											class="block hover:no-underline hover:text-accent-11 font-sans transition-colors"
+										>
+											{post.data.title}
+										</a>
+									</h2>
+									<div class="font-sans text-base font-light">{post.data.subtitle}</div>
+									<p class="m-0 text-gray-11 font-sans text-sm">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+								</div>
+							</div>
 						</li>
 					))
 				}

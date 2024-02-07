@@ -4,7 +4,6 @@ subtitle: My User Centered Research & Design Process
 description: The first step in creating a page of sequential art is to draw what is called a thumbnail. A thumbnail is a small image that shows the basic panel layout of a page and the general placements of the…
 pubDate: 2017-08-14T19:01:00.974Z
 tags:
-  - post
   - ux
   - design
   - comics

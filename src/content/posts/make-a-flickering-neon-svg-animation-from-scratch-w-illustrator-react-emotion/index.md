@@ -4,7 +4,6 @@ description: This is Part 2 in a short series where I am detailing the things I 
 pubDate: 2019-09-03T12:06:05.309Z
 heroImage: always-open-night.png
 tags:
-  - post
   - react
   - javascript
   - css

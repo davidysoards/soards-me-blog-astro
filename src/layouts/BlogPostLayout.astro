@@ -2,10 +2,11 @@
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 import BaseLayout from './BaseLayout.astro';
+import Badge from '../components/Badge.astro';
 
 type Props = CollectionEntry<'posts'>['data'];
 
-const { title, subtitle, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, subtitle, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 ---
 
 <BaseLayout description={description} pageTitle={title}>
@@ -14,18 +15,31 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage } = Astro.
 			<div class="hero-image">
 				{heroImage && <img width={1020} height={510} src={`/img/${heroImage}`} alt="" />}
 			</div>
-			<div class="text-gray-11 mt-6 mb-1 font-sans text-base">
+			<h1 class="mt-6">{title}</h1>
+			{subtitle && <div class="text-2xl font-sans font-light">{subtitle}</div>}
+			<div class="text-gray-11 mt-4 font-sans text-base">
 				<FormattedDate date={pubDate} />
 				{
 					updatedDate && (
-						<div class="last-updated-on">
+						<div>
 							Last updated on <FormattedDate date={updatedDate} />
 						</div>
 					)
 				}
 			</div>
-			<h1>{title}</h1>
-			{subtitle && <div class="text-2xl font-sans">{subtitle}</div>}
+			<ul class="flex flex-wrap gap-2 list-none mx-0 my-4 p-0">
+				{
+					tags?.map((tag) => {
+						return (
+							<li>
+								<a href={`/tags/${tag}`}>
+									<Badge>{tag}</Badge>
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
 			<hr />
 			<slot />
 		</article>

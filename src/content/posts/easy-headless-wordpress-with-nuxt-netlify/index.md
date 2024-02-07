@@ -5,7 +5,6 @@ description: Setting up Wordpress as a Headless CMS for use with Nuxt and Netlif
 pubDate: 2020-09-12T18:06:53.883Z
 heroImage: wp-nuxt-netlify.png
 tags:
-  - post
   - wordpress
   - php
   - vue

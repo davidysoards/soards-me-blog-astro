@@ -4,7 +4,6 @@ description: This post is the first in a short series where I will detail the th
 pubDate: 2019-08-25T19:48:09.455Z
 heroImage: always-open-night-and-day.png
 tags:
-  - post
   - react
   - css
   - javascript

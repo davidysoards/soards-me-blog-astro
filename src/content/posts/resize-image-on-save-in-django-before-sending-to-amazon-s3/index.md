@@ -5,7 +5,6 @@ description: How to dynamically resize an image on save before uploading it to y
 pubDate: 2020-12-26T02:50:00.000Z
 heroImage: django-aws.png
 tags:
-  - post
   - django
   - python
   - pillow

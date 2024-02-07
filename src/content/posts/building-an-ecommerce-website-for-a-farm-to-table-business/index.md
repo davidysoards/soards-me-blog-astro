@@ -4,7 +4,6 @@ subtitle: Representing a Unique Business Model Using Illustrations
 description: Duck Duck Beet needed a way for their customers to order online and a homepage that would clearly explain their unique business to new customers. Woocommerce and Vector Art to the rescue.
 pubDate: 2017-11-01T18:21:39.438Z
 tags:
-  - post
   - design
   - illustration
   - ux
