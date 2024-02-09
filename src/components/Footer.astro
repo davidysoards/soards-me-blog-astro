@@ -7,6 +7,21 @@ import IconLinkedIn from '~icons/fa6-brands/linkedin-in';
 const today = new Date();
 ---
 
-<footer class="pb-4 pt-8 text-base w-full text-center font-sans font-light">
-	All rights reserved &copy; David Soards {today.getFullYear()}
+<footer class="pb-4 pt-16 text-sm w-full text-center font-sans font-light">
+	<div class="flex justify-center gap-4 mb-2">
+		<a href="https://github.com/davidysoards" target="_blank">
+			<span class="sr-only">Go to my GitHub repo</span>
+			<IconGithub aria-hidden="true" class="size-5 hover:text-gray-12" />
+		</a>
+		<a href="https://twitter.com/ninjasoards" target="_blank" class="group hover:text-gray-12">
+			<span class="sr-only">Follow me on Twitter</span>
+			<IconXTwitter aria-hidden="true" class="size-5 group-hover:hidden group-focus:hidden" />
+			<IconTwitter aria-hidden="true" class="size-5 hidden group-hover:block group-focus:block" />
+		</a>
+		<a href="https://www.linkedin.com/in/davidysoards/" target="_blank">
+			<span class="sr-only">Follow me on Linked In</span>
+			<IconLinkedIn aria-hidden="true" class="size-5 hover:text-gray-12" />
+		</a>
+	</div>
+	<div>&copy; {today.getFullYear()} David Soards. All Rights Reserved.</div>
 </footer>

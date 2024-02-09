@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Badge from '../../components/Badge.astro';
+const pageTitle = 'Tags';
+const allPosts = await Astro.glob('../../content/posts/**/*.md');
+const tags = [...new Set(allPosts.flatMap((post) => post.frontmatter.tags || []))];
+---
+
+<BaseLayout pageTitle={pageTitle}>
+	<main class="max-w-screen-md p-4 mx-auto">
+		<ul class="mb-8 md:mb-12 mt-4 flex flex-wrap gap-2">
+			{
+				tags.map((tag) => {
+					return (
+						<li>
+							<a href={`/tags/${tag}`}>
+								<Badge>{tag}</Badge>
+							</a>
+						</li>
+					);
+				})
+			}
+		</ul>
+	</main>
+</BaseLayout>

@@ -1,13 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Badge from '../../components/Badge.astro';
 
 export async function getStaticPaths() {
-	const allPosts = await Astro.glob('../../content/posts/**/*.md');
-	const uniqueTags = [...new Set(allPosts.flatMap((post) => post.frontmatter.tags || []))];
+	const posts = await getCollection('posts');
+	const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
+	const sortedPosts = posts.toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-	return uniqueTags.map((tag) => {
-		const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag));
+	return tags.map((tag) => {
+		const filteredPosts = sortedPosts.filter((post) => post.data.tags?.includes(tag));
 		return {
 			params: { tag },
 			props: { posts: filteredPosts },
@@ -21,9 +25,12 @@ const { posts } = Astro.props;
 
 <BaseLayout pageTitle={tag}>
 	<main class="max-w-[960px] p-4 mx-auto">
-		<h1><span class="text-4xl font-sans font-light">Posts tagged with</span> {tag}</h1>
-		<ul>
-			{posts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
+		<h1 class="mb-16">
+			<span class="text-4xl font-sans font-light">Posts tagged with</span>
+			{tag}
+		</h1>
+		<ul class="grid gap-8 md:gap-8">
+			{posts.map((post) => <BlogPost post={post} />)}
 		</ul>
 	</main>
 </BaseLayout>

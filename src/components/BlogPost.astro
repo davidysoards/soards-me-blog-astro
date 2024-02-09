@@ -1,7 +1,45 @@
 ---
-const { title, url } = Astro.props;
+import Badge from './Badge.astro';
+import FormattedDate from './FormattedDate.astro';
+
+const { post } = Astro.props;
 ---
 
-<li>
-	<a href={url} class="hover:text-blue-500 font-bold">{title}</a>
+<li class="mb-4">
+	<div class="md:flex gap-6">
+		<a href={`/posts/${post.slug}/`} class="block hover:no-underline shrink-0">
+			<img
+				src={`/img/${post.data.heroImage}`}
+				alt=""
+				class="rounded-lg md:h-28 md:w-40 object-contain"
+			/>
+		</a>
+		<div>
+			<h2 class="m-0 group-hover:opacity-80 text-xl">
+				<a
+					href={`/posts/${post.slug}/`}
+					class="block hover:no-underline hover:text-accent-11 font-sans transition-colors"
+				>
+					{post.data.title}
+				</a>
+			</h2>
+			<div class="font-sans text-base font-light">{post.data.subtitle}</div>
+			<p class="m-0 text-gray-11 font-sans text-sm">
+				<FormattedDate date={post.data.pubDate} />
+			</p>
+			{
+				post.data.tags && (
+					<ul class="flex flex-wrap gap-2 mt-2">
+						{post.data.tags.map((tag) => (
+							<li>
+								<a href={`/tags/${tag}`}>
+									<Badge>{tag}</Badge>
+								</a>
+							</li>
+						))}
+					</ul>
+				)
+			}
+		</div>
+	</div>
 </li>

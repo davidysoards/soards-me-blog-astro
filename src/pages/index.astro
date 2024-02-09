@@ -4,18 +4,15 @@ import FormattedDate from '../components/FormattedDate.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Badge from '../components/Badge.astro';
 import { SITE_TITLE } from '../consts';
+import BlogPost from '../components/BlogPost.astro';
 
-const posts = (await getCollection('posts')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
-const allPosts = await Astro.glob('../content/posts/**/*.md');
-const tags = [...new Set(allPosts.flatMap((post) => post.frontmatter.tags || []))];
-console.log(tags);
+const posts = await getCollection('posts');
+const sortedPosts = posts.toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <BaseLayout>
 	<main class="max-w-screen-md p-4 mx-auto">
-		<div class="flex flex-col md:flex-row gap-8 mt-4 mb-8 md:mt-8 items-center">
+		<div class="flex flex-col md:flex-row gap-8 mt-4 mb-16 md:mt-8 items-center">
 			<img
 				src="/img/david-soards.jpg"
 				alt="David Soards"
@@ -29,49 +26,8 @@ console.log(tags);
 			</div>
 		</div>
 		<section>
-			<ul class="mb-8 md:mb-12 mt-4 flex flex-wrap gap-2">
-				{
-					tags.map((tag) => {
-						return (
-							<li>
-								<a href={`/tags/${tag}`}>
-									<Badge>{tag}</Badge>
-								</a>
-							</li>
-						);
-					})
-				}
-			</ul>
 			<ul class="grid gap-8 md:gap-8">
-				{
-					posts.map((post) => (
-						<li class="mb-4">
-							<div class="md:flex gap-6">
-								<a href={`/posts/${post.slug}/`} class="block hover:no-underline shrink-0">
-									<img
-										src={`/img/${post.data.heroImage}`}
-										alt=""
-										class="rounded-lg md:h-28 md:w-40 object-cover"
-									/>
-								</a>
-								<div>
-									<h2 class="m-0 group-hover:opacity-80 text-xl">
-										<a
-											href={`/posts/${post.slug}/`}
-											class="block hover:no-underline hover:text-accent-11 font-sans transition-colors"
-										>
-											{post.data.title}
-										</a>
-									</h2>
-									<div class="font-sans text-base font-light">{post.data.subtitle}</div>
-									<p class="m-0 text-gray-11 font-sans text-sm">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</div>
-							</div>
-						</li>
-					))
-				}
+				{sortedPosts.map((post) => <BlogPost post={post} />)}
 			</ul>
 		</section>
 	</main>
