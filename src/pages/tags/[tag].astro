@@ -2,8 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Badge from '../../components/Badge.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts');
@@ -24,8 +22,8 @@ const { posts } = Astro.props;
 ---
 
 <BaseLayout pageTitle={tag}>
-	<main class="max-w-[960px] p-4 mx-auto">
-		<h1 class="mb-16">
+	<main class="max-w-screen-md mx-auto">
+		<h1 class="mb-16 mt-0">
 			<span class="text-4xl font-sans font-light">Posts tagged with</span>
 			{tag}
 		</h1>

@@ -1,9 +1,15 @@
 ---
-
+interface Props {
+	textSize?: 'text-xs' | 'text-sm' | 'text-base';
+}
+const { textSize = 'text-sm' } = Astro.props;
 ---
 
 <span
-	class="font-sans inline-flex items-center rounded-sm bg-accent-3 px-2 py-1 text-sm font-base text-accent-11 ring-inset ring-accent-6 dark:ring-1 hover:bg-accent-4"
+	class:list={[
+		'font-sans inline-flex items-center rounded-sm bg-accent-3 px-2 py-1 font-base text-accent-11 ring-inset ring-accent-6 dark:ring-1 hover:bg-accent-4',
+		textSize,
+	]}
 >
 	<slot />
 </span>

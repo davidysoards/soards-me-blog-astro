@@ -7,7 +7,7 @@ const tags = [...new Set(allPosts.flatMap((post) => post.frontmatter.tags || [])
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-	<main class="max-w-screen-md p-4 mx-auto">
+	<main class="max-w-screen-md mx-auto">
 		<ul class="mb-8 md:mb-12 mt-4 flex flex-wrap gap-2">
 			{
 				tags.map((tag) => {

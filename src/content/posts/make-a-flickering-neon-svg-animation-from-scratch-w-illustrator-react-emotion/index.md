@@ -5,10 +5,8 @@ pubDate: 2019-09-03T12:06:05.309Z
 heroImage: always-open-night.png
 tags:
   - react
-  - javascript
-  - css
   - svg
-  - animation
+  - design
 canonicalLink: https://dev.to/ninjasoards/make-a-flickering-neon-svg-animation-from-scratch-w-illustrator-react-emotion-39gm
 ---
 

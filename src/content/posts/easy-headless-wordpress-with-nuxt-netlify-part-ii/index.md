@@ -7,9 +7,8 @@ heroImage: wp-nuxt-netlify.png
 tags:
   - wordpress
   - vue
-  - javascript
   - nuxt
-  - netlify
+  - acf
 canonicalLink: https://dev.to/ninjasoards/easy-headless-wordpress-with-nuxt-netlify-part-ii-4ab
 ---
 

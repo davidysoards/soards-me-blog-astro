@@ -3,9 +3,9 @@ title: Designing a UI for Designers but also Non-Designers
 description: My UX process behind the design of a digital signage content editor.
 pubDate: 2019-02-18T01:34:43.380Z
 tags:
+  - ux
   - design
   - digital-signage
-  - ux
 canonicalLink: https://blog.prototypr.io/designing-a-ui-for-designers-and-non-designers-f23d277d2cc9
 heroImage: codigo.png
 ---

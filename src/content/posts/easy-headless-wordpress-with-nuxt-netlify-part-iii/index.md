@@ -6,7 +6,6 @@ pubDate: 2020-09-16T21:50:30.483Z
 heroImage: wp-nuxt-netlify.png
 tags:
   - wordpress
-  - vue
   - nuxt
   - netlify
 canonicalLink: https://dev.to/ninjasoards/easy-headless-wordpress-with-nuxt-netlify-part-iii-341j

@@ -7,10 +7,6 @@ heroImage: django-aws.png
 tags:
   - django
   - python
-  - pillow
-  - resize
-  - aws
-  - amazon
   - s3
 ---
 
