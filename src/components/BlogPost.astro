@@ -1,6 +1,14 @@
 ---
 import Badge from './Badge.astro';
 import FormattedDate from './FormattedDate.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+type Post = (typeof posts)[number];
+
+interface Props {
+	post: Post;
+}
 
 const { post } = Astro.props;
 ---
@@ -11,8 +19,9 @@ const { post } = Astro.props;
 			<img
 				src={`/img/${post.data.heroImage}`}
 				alt=""
-				class="rounded-lg md:h-28 md:w-40 object-contain"
+				class="rounded-lg md:h-28 md:w-40 object-contain bg-gray-3"
 			/>
+			<span class="sr-only">{post.data.title}</span>
 		</a>
 		<div>
 			<h2 class="mt-4 md:m-0 group-hover:opacity-80 text-xl">

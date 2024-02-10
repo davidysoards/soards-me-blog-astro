@@ -5,7 +5,6 @@ pubDate: 2019-02-18T01:34:43.380Z
 tags:
   - ux
   - design
-  - digital-signage
 canonicalLink: https://blog.prototypr.io/designing-a-ui-for-designers-and-non-designers-f23d277d2cc9
 heroImage: codigo.png
 ---
