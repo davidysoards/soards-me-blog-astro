@@ -5,9 +5,9 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				cond: '"HelveticaNeue-CondensedBold", "Helvetica Neue", Helvetica, ui-sans-serif, system-ui, sans-serif',
-				sans: '"Helvetica Neue", Helvetica, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-				serif: 'Charter, ui-serif, Georgia, Cambria, serif',
+				cond: '"HelveticaNeue-CondensedBold", "Arial Narrow", "Helvetica Neue", Helvetica, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif',
+				sans: '"Helvetica Neue", Helvetica, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+				serif: 'Charter, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;',
 			},
 			colors: {
 				accent: generateScale('red'),
