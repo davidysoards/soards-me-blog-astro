@@ -1,13 +1,20 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	darkMode: 'class',
 	theme: {
 		extend: {
 			fontFamily: {
-				cond: '"HelveticaNeue-CondensedBold", "Arial Narrow", "Helvetica Neue", Helvetica, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif',
-				sans: '"Helvetica Neue", Helvetica, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-				serif: 'Charter, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;',
+				cond: [
+					'HelveticaNeue-CondensedBold',
+					'Helvetica Neue',
+					'Helvetica',
+					'Arial Narrow',
+					...defaultTheme.fontFamily.sans,
+				],
+				sans: ['Helvetica Neue', 'Helvetica', ...defaultTheme.fontFamily.sans],
+				serif: ['Charter', ...defaultTheme.fontFamily.serif],
 			},
 			colors: {
 				accent: generateScale('red'),
