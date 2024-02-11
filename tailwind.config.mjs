@@ -6,14 +6,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				cond: [
-					'HelveticaNeue-CondensedBold',
-					'Helvetica Neue',
-					'Helvetica',
-					'Arial Narrow',
-					...defaultTheme.fontFamily.sans,
-				],
-				sans: ['Helvetica Neue', 'Helvetica', ...defaultTheme.fontFamily.sans],
+				cond: ['HelveticaNeue-CondensedBold', 'Helvetica Neue', ...defaultTheme.fontFamily.sans],
+				sans: ['Helvetica Neue', ...defaultTheme.fontFamily.sans],
 				serif: ['Charter', ...defaultTheme.fontFamily.serif],
 			},
 			colors: {
