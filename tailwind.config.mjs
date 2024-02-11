@@ -6,8 +6,8 @@ export default {
 		extend: {
 			fontFamily: {
 				cond: '"HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial Narrow", "Arial", sans-serif',
-				sans: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-				serif: 'Charter, Georgia, serif',
+				sans: '"Helvetica Neue", Helvetica, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+				serif: 'Charter, ui-serif, Georgia, Cambria, serif',
 			},
 			colors: {
 				accent: generateScale('red'),
