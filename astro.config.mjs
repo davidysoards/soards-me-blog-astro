@@ -7,13 +7,7 @@ import Icons from 'unplugin-icons/vite';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://example.com',
-	integrations: [
-		mdx(),
-		sitemap(),
-		tailwind({
-			applyBaseStyles: false,
-		}),
-	],
+	integrations: [mdx(), sitemap(), tailwind({ applyBaseStyles: false })],
 	vite: {
 		plugins: [
 			Icons({
@@ -21,4 +15,9 @@ export default defineConfig({
 			}),
 		],
 	},
+	// markdown: {
+	// 	shikiConfig: {
+	// 		theme: 'material-theme-palenight',
+	// 	},
+	// },
 });
