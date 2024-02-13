@@ -11,25 +11,21 @@ export default {
 				serif: ['Charter', ...defaultTheme.fontFamily.serif],
 			},
 			colors: {
-				accent: generateScale('red'),
-				gray: generateScale('mauve'),
+				accent: getColorScale('red'),
+				gray: getColorScale('mauve'),
 			},
 		},
 	},
 	plugins: [],
 };
 
-function generateScale(name) {
-	let scale = Array.from({ length: 12 }, (_, i) => {
-		let id = i + 1;
-		return [id, `var(--${name}-${id})`];
-	});
-	// to generate alpha and solid values
-	// return [
-	// [id, `var(--${name}-${id})`],
-	// [`a${id}`, `var(--${name}-a${id})`],
-	// ];
-	// }).flat();
+function getColorScale(name) {
+	let scale = {};
+	for (let i = 1; i <= 12; i++) {
+		scale[i] = `var(--${name}-${i})`;
+		// to generate alpha values
+		// scale[`a${i}`] = `var(--${name}-a${i})`;
+	}
 
-	return Object.fromEntries(scale);
+	return scale;
 }
