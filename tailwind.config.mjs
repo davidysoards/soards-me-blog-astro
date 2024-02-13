@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	darkMode: 'class',
 	theme: {
 		extend: {
 			fontFamily: {
-				cond: '"HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial Narrow", "Arial", sans-serif',
-				sans: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-				serif: 'Charter, Georgia, serif',
+				cond: ['HelveticaNeue-CondensedBold', 'Helvetica Neue', ...defaultTheme.fontFamily.sans],
+				sans: ['Helvetica Neue', ...defaultTheme.fontFamily.sans],
+				serif: ['Charter', ...defaultTheme.fontFamily.serif],
 			},
 			colors: {
 				accent: generateScale('red'),
