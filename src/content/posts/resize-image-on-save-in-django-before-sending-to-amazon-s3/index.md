@@ -2,7 +2,7 @@
 title: Resize Image on Save in Django Before Sending to Amazon S3 - No Lambda Function Required
 subtitle: The Simple Way Using Pillow and a Memory Buffer
 description: How to dynamically resize an image on save before uploading it to your AWS S3 bucket. No Lambda function required.
-pubDate: 2020-12-26T02:50:00.000Z
+pubDate: 2020-12-25T05:00:00.000Z
 heroImage: django-aws.png
 tags:
   - django

@@ -51,10 +51,6 @@
 		@apply font-bold text-accent-10 hover:underline;
 	}
 
-	strong {
-		@apply text-gray-12;
-	}
-
 	code {
 		@apply rounded-sm bg-gray-2 p-1 font-mono text-base;
 	}
