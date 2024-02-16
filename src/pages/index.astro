@@ -27,7 +27,7 @@ const sortedPosts = posts.toSorted((a, b) => b.data.pubDate.valueOf() - a.data.p
 		</div>
 		<div>
 			<!-- TODO filter theset to top 10 tags -->
-			<ul class="mb-16 mt-8 flex flex-wrap gap-2">
+			<ul class="mb-12 md:mb-16 mt-8 flex flex-wrap gap-2">
 				{
 					tags.map((tag) => {
 						return (
@@ -42,7 +42,7 @@ const sortedPosts = posts.toSorted((a, b) => b.data.pubDate.valueOf() - a.data.p
 			</ul>
 		</div>
 		<section>
-			<ul class="grid gap-8 md:gap-8">
+			<ul class="grid gap-4">
 				{sortedPosts.map((post) => <BlogPost post={post} />)}
 			</ul>
 		</section>

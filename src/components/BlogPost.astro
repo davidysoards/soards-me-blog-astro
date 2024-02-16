@@ -13,24 +13,18 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<li class="mb-4">
+<li class="mb-4 relative group p-4 rounded-lg -mx-4 transition-colors hover:border border border-transparent hover:border-gray-3 hover:shadow-md">
+  <a href={`/posts/${post.slug}/`} class="absolute inset-0"></a>
 	<div class="md:flex gap-6">
-		<a href={`/posts/${post.slug}/`} class="block hover:no-underline shrink-0">
 			<img
 				src={`/img/${post.data.heroImage}`}
 				alt=""
 				class="rounded-lg md:h-28 md:w-48 object-contain bg-gray-3"
 			/>
 			<span class="sr-only">{post.data.title}</span>
-		</a>
 		<div>
-			<h2 class="mt-4 md:m-0 group-hover:opacity-80 text-xl">
-				<a
-					href={`/posts/${post.slug}/`}
-					class="block hover:no-underline hover:text-accent-11 transition-colors leading-tight"
-				>
+			<h2 class="mt-4 md:m-0 group-hover:text-accent-11 text-xl transition-colors">
 					{post.data.title}
-				</a>
 			</h2>
 			<div class="font-sans text-base font-light">{post.data.subtitle}</div>
 			<p class="m-0 text-gray-11 text-xs">
@@ -40,7 +34,7 @@ const { post } = Astro.props;
 				post.data.tags && (
 					<ul class="flex flex-wrap gap-2 mt-2">
 						{post.data.tags.map((tag) => (
-							<li>
+							<li class="relative">
 								<a href={`/tags/${tag}`}>
 									<Badge textSize="text-xs">{tag}</Badge>
 								</a>
