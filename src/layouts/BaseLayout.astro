@@ -29,9 +29,9 @@ const { pageTitle } = Astro.props;
 			window.localStorage.setItem('theme', theme);
 		</script>
 	</head>
-	<body class="flex flex-col h-full">
+	<body class="flex flex-col h-full px-4 md:px-6">
 		<Header />
-		<div class="flex-grow px-4 md:px-6 py-8">
+		<div class="flex-grow py-8">
 			<slot />
 		</div>
 		<Footer />
