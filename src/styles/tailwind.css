@@ -59,6 +59,10 @@
 		@apply mb-8 mt-4 rounded-lg bg-gray-2 p-6 text-base;
 	}
 
+	strong {
+		@apply font-bold text-gray-12;
+	}
+
 	pre > code {
 		all: unset;
 	}
@@ -88,22 +92,22 @@
 }
 
 @layer components {
-  .animated-link {
-    position: relative
-  }
-  .animated-link:after {
-    left: 0;
-    right: 0;
-    bottom: -3px;
-    content: "";
-    height: 2px;
-    position: absolute;
-    transform: translateZ(0) scaleX(0);
-    transform-origin: left center;
-    transition: transform 150ms ease-in-out;
-    background-image: linear-gradient(to right, var(--red-9), var(--red-9));
-}
-.animated-link:hover:after {
-    transform: translateZ(0) scale(1);
-}
+	.animated-link {
+		position: relative;
+	}
+	.animated-link:after {
+		left: 0;
+		right: 0;
+		bottom: -3px;
+		content: '';
+		height: 2px;
+		position: absolute;
+		transform: translateZ(0) scaleX(0);
+		transform-origin: left center;
+		transition: transform 150ms ease-in-out;
+		background-image: linear-gradient(to right, var(--red-9), var(--red-9));
+	}
+	.animated-link:hover:after {
+		transform: translateZ(0) scale(1);
+	}
 }
