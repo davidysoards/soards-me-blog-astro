@@ -15,11 +15,11 @@ import customPoperties from './images/radix-custom-properties.png';
 
 I've been using **Tailwind CSS** both at work and on side projects for a few years now, and it has become **one of my favorite tools**. The defaults it provides, such as the color palette, and text sizes, are fantastic and more than adequate for most projects, but it's also completely customizable if needed. It's one of the first things I install on any new project I start. I don't even consider not using it at this point.
 
-But there is **one aspect of using Tailwind** that I've always been somewhat **on the fence about**, and that is the `dark` variant. As per the docs, the `dark` variant "lets you style your site differently when dark mode is enabled".
+But there is **one aspect of using Tailwind** that I've always been somewhat **on the fence about**, and that is the **`dark` variant**. As per the docs, the `dark` variant "lets you style your site differently when dark mode is enabled".
 
-A more standard approach to dark mode usually involves having a set of CSS custom properties (background color, text color, border color, etc) and changing the value of those properties based on the currently selected theme. I've described that process in a previous [post](/posts/make-a-custom-night-mode-toggle-w-react-css-variables/).
+A more standard approach to dark mode usually involves having a set of CSS custom properties (background color, text color, border color, etc.) and changing the values of those properties based on the currently selected theme. I've described that process in a previous [post](/posts/make-a-custom-night-mode-toggle-w-react-css-variables/).
 
-Tailwind's `dark` variant **requires you to set light and dark classes for every individual element**. For example setting the background and text colors of an element looks like:
+Tailwind's `dark` variant requires you to **set light and dark classes for every individual element**. For example setting the background and text colors of an element looks like:
 
 ```html
 <div class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50">...</div>
@@ -31,7 +31,7 @@ This approach provides **maximum flexibility**, but it's **pretty verbose** and 
 
 Enter **Radix Colors**. Radix is best known as a wildly popular **library of primitives for React**, but they have also released a **"comprehensive color system for designing beautiful, accessible websites and apps."**
 
-Radix Colors uses a **12 point scale** where each step is designed for specific use cases. For example **1 is "App Background"** and **12 is "High Contrast Text"**. The best part about this system though is that **each color scale has a light and dark version**. By applying a "dark" class to the `<html>` or `<body>` element, **dark mode will "just work!"** And because the system was **designed with accessibility in mind**, you can guarantee that you **won't have any contrast issue** just by following the recommended applications.
+Radix Colors uses a **12 point scale** where each step is designed for specific use cases. For example 1 is "App Background" and 12 is "High Contrast Text". The best part about this system though, is that **each color scale has a light and dark version**. By applying a "dark" class to the `<html>` or `<body>` element, dark mode will "just work!" And because the system was **designed with accessibility in mind**, you can guarantee that you **won't have any contrast issues** just by following the recommended applications.
 
 Here's how to set it up with Tailwind:
 
