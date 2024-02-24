@@ -9,18 +9,18 @@ import IconTwitter from '~icons/fa6-brands/twitter';
 import IconLinkedIn from '~icons/fa6-brands/linkedin-in';
 ---
 
-<header class="max-w-screen-md w-full mx-auto py-4 text-gray-11">
-	<nav class="flex items-center justify-between">
-		<div class="flex gap-4 sm:gap-8 items-center">
-			<a href="/">
-				<DYSLogo class="size-14 shadow rounded text-accent-9" />
-			</a>
+<header class="max-w-screen-md w-full mx-auto pt-4 pb-2 md:pb-4 text-gray-11">
+	<nav class="flex items-center justify-between flex-col gap-6 sm:flex-row">
+		<div class="flex gap-8 items-center">
 			<HeaderLink href="/">blog</HeaderLink>
 			<HeaderLink href="https://design.soards.me/">design</HeaderLink>
 			<ThemeToggle />
 		</div>
+		<a href="/">
+			<DYSLogo class="size-14 shadow rounded text-accent-9" />
+		</a>
 
-		<div class="flex gap-4 sm:gap-8">
+		<div class="flex gap-8">
 			<a href="https://github.com/davidysoards" target="_blank">
 				<span class="sr-only">Go to my GitHub repo</span>
 				<IconGithub aria-hidden="true" class="size-5 sm:size-6 hover:text-gray-12" />

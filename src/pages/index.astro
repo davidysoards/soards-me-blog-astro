@@ -12,22 +12,27 @@ const sortedPosts = posts.toSorted((a, b) => b.data.pubDate.valueOf() - a.data.p
 
 <BaseLayout>
 	<main class="max-w-screen-md mx-auto">
-		<div class="flex flex-col md:flex-row gap-8 items-center">
-			<img
-				src="/img/david-soards.jpg"
-				alt="David Soards"
-				class="self-start md:self-auto rounded-full size-20"
-			/>
-			<div>
-				<h1 class="text-3xl mt-0">{SITE_TITLE}</h1>
-				<p class="text-xl mb-0">
-					A blog by me, David Soards, mostly about Front-End Development and UX/UI Design.
-				</p>
+		<div class="grid gap-4">
+			<div class="flex gap-8 items-center mx-auto">
+				<img
+					src="/img/david-soards.jpg"
+					alt="David Soards"
+					class="self-start md:self-auto rounded-full size-20"
+				/>
+				<div>
+					<h1 class="text-3xl mt-0">{SITE_TITLE}</h1>
+					<p class="text-xl mb-0 hidden md:block">
+						A blog by me, David Soards, mostly about Front-End Development and UX/UI Design.
+					</p>
+				</div>
 			</div>
+			<p class="text-lg mb-0 md:hidden text-center">
+				A blog by me, David Soards, mostly about Front-End Development and UX/UI Design.
+			</p>
 		</div>
 		<div>
 			<!-- TODO filter theset to top 10 tags -->
-			<ul class="mb-12 md:mb-16 mt-8 flex flex-wrap gap-2">
+			<ul class="mb-12 md:mb-16 mt-8 flex flex-wrap gap-2 justify-center md:justify-start">
 				{
 					tags.map((tag) => {
 						return (

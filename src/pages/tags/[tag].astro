@@ -23,8 +23,8 @@ const { posts } = Astro.props;
 
 <BaseLayout pageTitle={tag}>
 	<main class="max-w-screen-md mx-auto">
-		<h1 class="mb-16 mt-0">
-			<span class="text-4xl font-sans font-light">Posts tagged with</span>
+		<h1 class="mb-8 md:mb-16 mt-0 text-center md:text-left">
+			<span class="text-3xl md:text-4xl">Posts tagged with</span>
 			{tag}
 		</h1>
 		<ul class="grid gap-8 md:gap-8">
