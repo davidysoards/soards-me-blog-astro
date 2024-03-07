@@ -37,7 +37,7 @@ async function deleteObject() {
 The simple solution is to **make a non-reactive copy** of the name before opening the dialog. Since the name value is a string, we can just copy it to a `let` and use that in the dialog's text.
 
 ```ts
-let confirmDisplayName = '';
+let confirmObjName = '';
 
 function handleDeleteObject() {
   // make a copy of the preset name before opening the confirm modal
@@ -66,7 +66,7 @@ function handleDeleteObject() {
 If we needed to break reactivity of the entire `selectedObj` we could copy it using Vue's `toRaw` method.
 
 ```ts
-selectedObjCopy = toRaw(selectedObj.value);
+let selectedObjCopy = toRaw(selectedObj.value);
 ```
 
 However, this is not necessary if all we are copying is a primitive value like a string.
