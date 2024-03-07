@@ -55,9 +55,9 @@ pnpm add @radix-ui/colors
 Now, if you **open your project in a browser** and inspect the `<html>` element. You should see the properties listed in the Style tab.
 
 <Image
-	src={customPoperties}
-	alt="radix colors custom properties in browser dev tools"
-	style="max-width:364px;width:100%"
+  src={customPoperties}
+  alt="radix colors custom properties in browser dev tools"
+  style="max-width:364px;width:100%"
 />
 
 ## Create your Tailwind classes
@@ -68,14 +68,14 @@ In your tailwind config file, write a **function to create a tailwind color obje
 // tailwind.config.js
 
 function getColorScale(name) {
-	let scale = {};
-	for (let i = 1; i <= 12; i++) {
-		scale[i] = `var(--${name}-${i})`;
-		// next line only needed if using alpha values
-		scale[`a${i}`] = `var(--${name}-a${i})`;
-	}
+  let scale = {};
+  for (let i = 1; i <= 12; i++) {
+    scale[i] = `var(--${name}-${i})`;
+    // next line only needed if using alpha values
+    scale[`a${i}`] = `var(--${name}-a${i})`;
+  }
 
-	return scale;
+  return scale;
 }
 ```
 
@@ -85,15 +85,15 @@ Now we can use that function to **set the colors in our theme**.
 // tailwind.config.mjs
 
 export default {
-	darkMode: 'class',
-	theme: {
-		extend: {
-			colors: {
-				accent: getColorScale('red'),
-				gray: getColorScale('mauve'),
-			},
-		},
-	},
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        accent: getColorScale('red'),
+        gray: getColorScale('mauve'),
+      },
+    },
+  },
 };
 ```
 
@@ -109,12 +109,12 @@ The Badge component used on this blog is a good **example of using overrides**. 
 
 ```js
 <span
-	class:list={[
-		'font-sans inline-flex items-center rounded-sm bg-accent-3 px-2 py-1 font-base text-accent-10 ring-inset ring-accent-4 dark:ring-1 hover:bg-accent-4 dark:bg-accent-2 dark:hover:bg-accent-3',
-		textSize,
-	]}
+  class:list={[
+    'font-sans inline-flex items-center rounded-sm bg-accent-3 px-2 py-1 font-base text-accent-10 ring-inset ring-accent-4 dark:ring-1 hover:bg-accent-4 dark:bg-accent-2 dark:hover:bg-accent-3',
+    textSize,
+  ]}
 >
-	<slot />
+  <slot />
 </span>
 ```
 

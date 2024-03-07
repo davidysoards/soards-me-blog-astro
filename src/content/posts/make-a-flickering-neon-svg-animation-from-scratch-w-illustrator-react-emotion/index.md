@@ -84,20 +84,20 @@ The new **SVG React component** looks like this:
 import React from 'react';
 
 const SvgAlwaysOpen = (props) => (
-	<svg viewBox="0 0 1280 1080" {...props}>
-		<g id="always-open">
-			<g id="open">
-				<path d="######" />
-				<path d="######" />
-				<path d="######" />
-			</g>
-			<g id="always">
-				<path d="######" />
-				<path d="######" />
-				<path d="######" />
-			</g>
-		</g>
-	</svg>
+  <svg viewBox="0 0 1280 1080" {...props}>
+    <g id="always-open">
+      <g id="open">
+        <path d="######" />
+        <path d="######" />
+        <path d="######" />
+      </g>
+      <g id="always">
+        <path d="######" />
+        <path d="######" />
+        <path d="######" />
+      </g>
+    </g>
+  </svg>
 );
 
 export default SvgAlwaysOpen;
@@ -162,12 +162,12 @@ To control the glow effect, I'm using a function I found in a [CodePen](https://
 
 ```javascript
 function addIntensity(num) {
-	const arr = [];
-	while (num) {
-		arr.push(<feMergeNode in="blurred" key={num} />);
-		num--;
-	}
-	return arr;
+  const arr = [];
+  while (num) {
+    arr.push(<feMergeNode in="blurred" key={num} />);
+    num--;
+  }
+  return arr;
 }
 ```
 
@@ -228,12 +228,12 @@ const flicker = keyframes`
 `;
 
 const AlwaysOpen = styled.g`
-	.flicker1 {
-		animation: ${flicker} 5s linear infinite;
-	}
-	.flicker2 {
-		animation: ${flicker} 6s linear 3s infinite;
-	}
+  .flicker1 {
+    animation: ${flicker} 5s linear infinite;
+  }
+  .flicker2 {
+    animation: ${flicker} 6s linear 3s infinite;
+  }
 `;
 ```
 
@@ -275,19 +275,19 @@ import React, { useState, useEffect, createContext } from 'react';
 export const ModeContext = createContext('light');
 
 export default function Layout({ children }) {
-	const [currentMode, setCurrentMode] = useState('light');
+  const [currentMode, setCurrentMode] = useState('light');
 
-	// ...
+  // ...
 
-	return (
-		<>
-			<ModeContext.Provider value={currentMode}>
-				<Header />
-				<main>{children}</main>
-				<Footer />
-			</ModeContext.Provider>
-		</>
-	);
+  return (
+    <>
+      <ModeContext.Provider value={currentMode}>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </ModeContext.Provider>
+    </>
+  );
 }
 ```
 
@@ -299,9 +299,9 @@ import { ModeContext } from './layout';
 // ...
 
 export default function SvgAlwaysOpen({ width, intensity, blur }) {
-	const mode = useContext(ModeContext);
+  const mode = useContext(ModeContext);
 
-	// ...
+  // ...
 }
 ```
 
@@ -328,12 +328,12 @@ import SvgAlwaysOpen from './SvgAlwaysOpen';
 import { ModeContext } from './layout';
 
 export default function HeroImage() {
-	const mode = useContext(ModeContext);
-	return (
-		<SvgWrapper className={mode === 'dark' ? 'flickering' : ''}>
-			<SvgAlwaysOpen width="100%" intensity={4} blur={20} />
-		</SvgWrapper>
-	);
+  const mode = useContext(ModeContext);
+  return (
+    <SvgWrapper className={mode === 'dark' ? 'flickering' : ''}>
+      <SvgAlwaysOpen width="100%" intensity={4} blur={20} />
+    </SvgWrapper>
+  );
 }
 
 const flicker = keyframes`
@@ -347,16 +347,16 @@ const flicker = keyframes`
 `;
 
 const SvgWrapper = styled.div`
-	max-width: 540px;
-	width: 100%;
-	margin: 20px auto;
-	@media screen and (min-width: 1024px) {
-		margin: 40px auto;
-		flex-shrink: 0;
-	}
-	&.flickering {
-		animation: ${flicker} 10s linear 5s infinite;
-	}
+  max-width: 540px;
+  width: 100%;
+  margin: 20px auto;
+  @media screen and (min-width: 1024px) {
+    margin: 40px auto;
+    flex-shrink: 0;
+  }
+  &.flickering {
+    animation: ${flicker} 10s linear 5s infinite;
+  }
 `;
 ```
 

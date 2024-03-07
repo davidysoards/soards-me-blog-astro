@@ -31,23 +31,23 @@ Because I'm attempting to "partially" support IE11 for this project, I'm using f
 ```css
 /* layout.css */
 :root {
-	--color-bg: #f0f0f0;
-	--color-text: #994cc3;
-	--color-primary: #ef5350;
-	--color-secondary: #0c969b;
-	--color-header-bg: rgba(255, 255, 255, 0.9);
-	--color-neon-fill: #ef5350;
-	--color-neon-glow: none;
+  --color-bg: #f0f0f0;
+  --color-text: #994cc3;
+  --color-primary: #ef5350;
+  --color-secondary: #0c969b;
+  --color-header-bg: rgba(255, 255, 255, 0.9);
+  --color-neon-fill: #ef5350;
+  --color-neon-glow: none;
 }
 
 body {
-	background: #f0f0f0; /* fallback */
-	background: var(--color-bg);
-	color: #994cc3;
-	color: var(--color-text);
-	transition:
-		background 0.8s,
-		color 0.8s;
+  background: #f0f0f0; /* fallback */
+  background: var(--color-bg);
+  color: #994cc3;
+  color: var(--color-text);
+  transition:
+    background 0.8s,
+    color 0.8s;
 }
 
 h1,
@@ -56,13 +56,13 @@ h3,
 h4,
 h5,
 h6 {
-	color: #ef5350; /* fallback */
-	color: var(--color-primary);
+  color: #ef5350; /* fallback */
+  color: var(--color-primary);
 }
 
 a {
-	color: #0c969b; /* fallback */
-	color: var(--color-secondary);
+  color: #0c969b; /* fallback */
+  color: var(--color-secondary);
 }
 ```
 
@@ -75,22 +75,22 @@ With the variables set globally in the CSS, new values can be assigned as needed
 import './layout.css';
 
 const lightTheme = {
-	'--color-text': '#994cc3',
-	'--color-bg': '#f0f0f0',
-	'--color-primary': '#EF5350',
-	'--color-secondary': '#0c969b',
-	'--color-header-bg': 'rgba(255, 255, 255, 0.9)',
-	'--color-neon-fill': '#ef5350',
-	'--color-neon-glow': 'rgba(255, 255, 255, 0)',
+  '--color-text': '#994cc3',
+  '--color-bg': '#f0f0f0',
+  '--color-primary': '#EF5350',
+  '--color-secondary': '#0c969b',
+  '--color-header-bg': 'rgba(255, 255, 255, 0.9)',
+  '--color-neon-fill': '#ef5350',
+  '--color-neon-glow': 'rgba(255, 255, 255, 0)',
 };
 const darkTheme = {
-	'--color-text': '#82AAFF',
-	'--color-bg': '#011627',
-	'--color-primary': '#c792ea',
-	'--color-secondary': '#7fdbca',
-	'--color-header-bg': 'rgba(1, 10, 18, 0.9)',
-	'--color-neon-fill': '#FFFEFC',
-	'--color-neon-glow': '#d99fff',
+  '--color-text': '#82AAFF',
+  '--color-bg': '#011627',
+  '--color-primary': '#c792ea',
+  '--color-secondary': '#7fdbca',
+  '--color-header-bg': 'rgba(1, 10, 18, 0.9)',
+  '--color-neon-fill': '#FFFEFC',
+  '--color-neon-glow': '#d99fff',
 };
 ```
 
@@ -146,10 +146,10 @@ import Header from './header';
 // ...
 
 return (
-	<div className="site">
-		<Header toggleTheme={toggleTheme} isChecked={isChecked} />
-		<main>{children}</main>
-	</div>
+  <div className="site">
+    <Header toggleTheme={toggleTheme} isChecked={isChecked} />
+    <main>{children}</main>
+  </div>
 );
 ```
 
@@ -160,10 +160,10 @@ import ToggleSwitch from './ToggleSwitch';
 // ...
 
 <ToggleSwitch
-	toggleTheme={toggleTheme}
-	isChecked={isChecked}
-	id="mode"
-	ariaLabel="dark mode toggle"
+  toggleTheme={toggleTheme}
+  isChecked={isChecked}
+  id="mode"
+  ariaLabel="dark mode toggle"
 />;
 ```
 
@@ -176,18 +176,18 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 export default function ToggleSwitch({ toggleTheme, isChecked, ariaLabel, id }) {
-	return (
-		<Toggle>
-			<Input
-				type="checkbox"
-				onChange={toggleTheme}
-				checked={isChecked}
-				id={id}
-				aria-label={ariaLabel}
-			/>
-			<Slider />
-		</Toggle>
-	);
+  return (
+    <Toggle>
+      <Input
+        type="checkbox"
+        onChange={toggleTheme}
+        checked={isChecked}
+        id={id}
+        aria-label={ariaLabel}
+      />
+      <Slider />
+    </Toggle>
+  );
 }
 ```
 
@@ -201,62 +201,62 @@ Personally, I love how semantic and simple this makes my JSX markup. No more jam
 
 ```jsx
 const Toggle = styled.div`
-	position: relative;
-	&:after {
-		content: '☀️';
-		font-size: 18px;
-		position: absolute;
-		top: 7px;
-		left: 37px;
-	}
-	&:before {
-		content: '🌙';
-		font-size: 18px;
-		position: absolute;
-		top: 7px;
-		left: 6px;
-		z-index: 1;
-	}
+  position: relative;
+  &:after {
+    content: '☀️';
+    font-size: 18px;
+    position: absolute;
+    top: 7px;
+    left: 37px;
+  }
+  &:before {
+    content: '🌙';
+    font-size: 18px;
+    position: absolute;
+    top: 7px;
+    left: 6px;
+    z-index: 1;
+  }
 `;
 const Input = styled.input`
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 5;
-	opacity: 0;
-	cursor: pointer;
-	&:hover + span:after {
-		box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);
-	}
-	&:checked + span {
-		background: #4a5b90;
-		&:after {
-			transform: translate3d(32px, 0, 0);
-		}
-	}
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+  &:hover + span:after {
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);
+  }
+  &:checked + span {
+    background: #4a5b90;
+    &:after {
+      transform: translate3d(32px, 0, 0);
+    }
+  }
 `;
 const Slider = styled.span`
-	position: relative;
-	display: block;
-	height: 32px;
-	width: 64px;
-	border-radius: 32px;
-	transition: 0.25s ease-in-out;
-	background: #3a9df8;
-	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
-	&:after {
-		content: '';
-		position: absolute;
-		border-radius: 100%;
-		top: 0;
-		left: 0;
-		z-index: 2;
-		background: #fff;
-		box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-		transition: 0.25s ease-in-out;
-		width: 32px;
-		height: 32px;
-	}
+  position: relative;
+  display: block;
+  height: 32px;
+  width: 64px;
+  border-radius: 32px;
+  transition: 0.25s ease-in-out;
+  background: #3a9df8;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+  &:after {
+    content: '';
+    position: absolute;
+    border-radius: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: 0.25s ease-in-out;
+    width: 32px;
+    height: 32px;
+  }
 `;
 ```
 
@@ -267,15 +267,15 @@ The variables can be assigned globally...
 ```css
 /* layout.css */
 body {
-	margin: 0;
-	line-height: 1;
-	background: #f0f0f0;
-	background: var(--color-bg);
-	color: #994cc3;
-	color: var(--color-text);
-	transition:
-		background 0.8s,
-		color 0.8s;
+  margin: 0;
+  line-height: 1;
+  background: #f0f0f0;
+  background: var(--color-bg);
+  color: #994cc3;
+  color: var(--color-text);
+  transition:
+    background 0.8s,
+    color 0.8s;
 }
 ```
 
@@ -284,19 +284,19 @@ and inside components using CSS-in-JS.
 ```jsx
 // header.js
 const MenuButton = styled.button`
-	background: none;
-	border: none;
-	padding: 0;
-	margin: 0;
-	.hamburger {
-		fill: #994cc3;
-		fill: var(--color-text);
-		transition: fill 0.5s;
-		height: 40px;
-	}
-	@media screen and (min-width: ${bpMed}) {
-		display: none;
-	}
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  .hamburger {
+    fill: #994cc3;
+    fill: var(--color-text);
+    transition: fill 0.5s;
+    height: 40px;
+  }
+  @media screen and (min-width: ${bpMed}) {
+    display: none;
+  }
 `;
 ```
 

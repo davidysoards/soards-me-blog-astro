@@ -27,10 +27,10 @@ const selectedObj = ref();
 const isConfirmOpen = ref(false);
 
 async function deleteObject() {
-	if (selectedObj.value?.id === undefined) return;
-	await http.delete(`/api/item/${selectedObj.value.id}`);
-	selectedObj.value = undefined;
-	isConfirmOpen.value = false;
+  if (selectedObj.value?.id === undefined) return;
+  await http.delete(`/api/item/${selectedObj.value.id}`);
+  selectedObj.value = undefined;
+  isConfirmOpen.value = false;
 }
 ```
 
@@ -40,9 +40,9 @@ The simple solution is to **make a non-reactive copy** of the name before openin
 let confirmDisplayName = '';
 
 function handleDeleteObject() {
-	// make a copy of the preset name before opening the confirm modal
-	confirmObjName = selectedObj.value?.name ?? '';
-	isConfirmOpen.value = true;
+  // make a copy of the preset name before opening the confirm modal
+  confirmObjName = selectedObj.value?.name ?? '';
+  isConfirmOpen.value = true;
 }
 ```
 
@@ -56,10 +56,10 @@ function handleDeleteObject() {
 <!-- modal component -->
 
 <DModal v-model:open="isConfirmOpen" @confirm="deleteObject">
-	<p>
-		Are you sure you want to delete
-		<span class="font-semibold">{{ confirmObjName }}</span>? This action cannot be undone.
-	</p>
+  <p>
+    Are you sure you want to delete
+    <span class="font-semibold">{{ confirmObjName }}</span>? This action cannot be undone.
+  </p>
 </DModal>
 ```
 

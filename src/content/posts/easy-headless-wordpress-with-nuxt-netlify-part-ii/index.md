@@ -45,19 +45,19 @@ With this configuration, and if you are using VS Code, I recommend **placing the
 
 ```json
 {
-	"prettier.disableLanguages": ["javascript", "vue"],
-	"[javascript]": {
-		"editor.formatOnSave": false
-	},
-	"[vue]": {
-		"editor.formatOnSave": false
-	},
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
-	},
-	"eslint.validate": ["javascript", "vue"],
-	"vetur.validation.template": false,
-	"css.validate": false
+  "prettier.disableLanguages": ["javascript", "vue"],
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[vue]": {
+    "editor.formatOnSave": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript", "vue"],
+  "vetur.validation.template": false,
+  "css.validate": false
 }
 ```
 
@@ -67,7 +67,7 @@ Nuxt gives you **access to Vuex** (Vue's state management library) **out-of-the-
 
 ```js
 export const state = () => ({
-	events: [],
+  events: [],
 });
 
 export const getters = {};
@@ -122,30 +122,30 @@ Back in your Nuxt repo in the Vuex store **add a mutation** for updating the `ev
 
 ```js
 export const mutations = {
-	SET_EVENTS: (state, events) => {
-		state.events = events;
-	},
+  SET_EVENTS: (state, events) => {
+    state.events = events;
+  },
 };
 
 export const actions = {
-	async getEvents({ state, commit }) {
-		// if events is already set, stop
-		if (state.events.length) return;
-		try {
-			let events = await this.$axios.$get(`/wp-json/wp/v2/events?page=1&per_page=100&_embed=1`);
-			// filter out unnecessary data
-			events = events.map(({ id, slug, title, content, acf }) => ({
-				id,
-				slug,
-				title,
-				content,
-				acf,
-			}));
-			commit('SET_EVENTS', events);
-		} catch (err) {
-			console.error('getEvents', err);
-		}
-	},
+  async getEvents({ state, commit }) {
+    // if events is already set, stop
+    if (state.events.length) return;
+    try {
+      let events = await this.$axios.$get(`/wp-json/wp/v2/events?page=1&per_page=100&_embed=1`);
+      // filter out unnecessary data
+      events = events.map(({ id, slug, title, content, acf }) => ({
+        id,
+        slug,
+        title,
+        content,
+        acf,
+      }));
+      commit('SET_EVENTS', events);
+    } catch (err) {
+      console.error('getEvents', err);
+    }
+  },
 };
 ```
 
@@ -196,7 +196,7 @@ In order to **make sure our fetch request runs on the server** when we are gener
 
 ```js
 export default async ({ store }) => {
-	await store.dispatch('getEvents');
+  await store.dispatch('getEvents');
 };
 ```
 
@@ -260,11 +260,11 @@ But what if we need to **show the events in order by date.** For that we can use
 
 ```js
 export const getters = {
-	sortedEvents: (state) => {
-		return state.events
-			.slice()
-			.sort((a, b) => new Date(a.acf.start_time) - new Date(b.acf.start_time));
-	},
+  sortedEvents: (state) => {
+    return state.events
+      .slice()
+      .sort((a, b) => new Date(a.acf.start_time) - new Date(b.acf.start_time));
+  },
 };
 ```
 
