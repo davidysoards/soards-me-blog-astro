@@ -105,7 +105,7 @@ mkdir ~/.ssh
 
 To that directory, add a new file `authorized_keys`. Open that file with `nano` and paste in your public key.
 
-```
+```bash
 nano ~/.ssh/authorized_keys
 ```
 
@@ -115,7 +115,7 @@ End your session and log back in with your new user to make sure SSH is working 
 ssh <new_user_name>@<server_ip_address>
 ```
 
-Now that you can ssh in with your username, you should dIsable login via the root user.
+Now that you can ssh in with your username, you should disable login via the root user.
 Navigate to the `ssh` directory and edit the `sshd_config` file. You may want to disable login via password entirely as well.
 
 ```bash
@@ -175,7 +175,7 @@ sudo nano jail.local
 
 Make sure the `sshd` jail is enabled. It should be on by default.
 
-```bash
+```
 [sshd]
 enabled = true
 port    = ssh
