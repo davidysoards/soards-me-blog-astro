@@ -15,8 +15,8 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags } = 
 			<div class="hero-image">
 				{heroImage && <img src={`/img/${heroImage}`} alt="" />}
 			</div>
-			<h1 class="mt-6">{title}</h1>
-			{subtitle && <div class="text-2xl font-sans font-light">{subtitle}</div>}
+			<h1 class="mt-8">{title}</h1>
+			{subtitle && <div class="text-2xl font-sans font-light mt-3">{subtitle}</div>}
 			<div class="text-gray-11 mt-4 text-base">
 				<FormattedDate date={pubDate} />
 				{
@@ -40,7 +40,7 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags } = 
 					})
 				}
 			</ul>
-			<hr />
+			<hr class="mb-6" />
 			<slot />
 		</article>
 	</main>

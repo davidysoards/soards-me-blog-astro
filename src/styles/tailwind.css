@@ -20,7 +20,7 @@
 	h4,
 	h5,
 	h6 {
-		@apply my-3 font-cond font-bold text-gray-12;
+		@apply my-2 font-cond font-bold text-gray-12;
 		font-stretch: condensed;
 	}
 	h1 {
@@ -28,10 +28,10 @@
 		text-shadow: 1px 2px 0.5px rgba(0, 0, 0, 0.07);
 	}
 	h2 {
-		@apply mt-12 text-3xl;
+		@apply mb-3 mt-12 text-3xl;
 	}
 	h3 {
-		@apply text-2xl;
+		@apply mt-10 text-2xl;
 	}
 	h4 {
 		@apply text-xl;
@@ -57,6 +57,10 @@
 
 	pre {
 		@apply mb-8 mt-4 rounded-lg bg-gray-2 p-6 text-base;
+	}
+
+	p + pre {
+		@apply -mt-3;
 	}
 
 	strong {
