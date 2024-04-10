@@ -7,7 +7,7 @@ heroImage: hetzner-vps.png
 tags:
   - vps
   - docker
-  - nginx
+  - linux
 ---
 
 For deploying my personal projects and websites I have mostly relied on the hobby tiers of serverless services like Netlify, Github pages, or Cloudflare pages. Prior to that I used simple FTP on shared hosting.
