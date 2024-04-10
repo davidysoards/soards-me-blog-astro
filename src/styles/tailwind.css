@@ -48,7 +48,7 @@
 	}
 
 	p a {
-		@apply font-bold text-accent-10 hover:underline;
+		@apply break-words font-bold text-accent-10 hover:underline;
 	}
 
 	code {

@@ -20,7 +20,7 @@ These are the steps I took to **get up and running with a VPS on Hetzner Cloud:*
 
 ## Hetzner Cloud
 
-Start a Hetzner account at https://accounts.hetzner.com/signUp
+Start a Hetzner account at [accounts.hetzner.com/signUp](https://accounts.hetzner.com/signUp).
 
 Donate the blood of your first born child. I kid, but if you are from the U.S. you will need to verify your identity using your passport and then wait for a manual approval. My approval only took a couple hours.
 
@@ -245,7 +245,7 @@ sudo systemctl restart nginx
 
 ### Docker
 
-If you didn't install Docker when you added your server, install it now by following instructions from the docs. https://docs.docker.com/engine/install/ubuntu/
+If you didn't install Docker when you added your server, install it now by following instructions in the [docs](https://docs.docker.com/engine/install/ubuntu/).
 
 ### unattended-upgrade
 
