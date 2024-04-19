@@ -13,7 +13,7 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags } = 
 	<main class="leading-[1.7] max-w-screen-md mx-auto">
 		<article>
 			<div class="hero-image">
-				{heroImage && <img src={`/img/${heroImage}`} alt="" />}
+				{heroImage && <img src={`/img/${heroImage}`} alt="" class="bg-gray-3" />}
 			</div>
 			<h1 class="mt-8">{title}</h1>
 			{subtitle && <div class="text-2xl font-sans font-light mt-3">{subtitle}</div>}
