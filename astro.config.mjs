@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
+	site: 'https://blog.soards.me',
 	integrations: [mdx(), sitemap(), tailwind({ applyBaseStyles: false })],
 	vite: {
 		plugins: [],
