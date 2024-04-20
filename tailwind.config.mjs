@@ -1,3 +1,5 @@
+import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons';
+
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
@@ -16,7 +18,12 @@ export default {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [
+		iconsPlugin({
+			// Select the icon collections you want to use
+			collections: getIconCollections(['lucide', 'fa6-brands']),
+		}),
+	],
 };
 
 function getColorScale(name) {

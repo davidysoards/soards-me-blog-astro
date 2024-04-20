@@ -1,9 +1,4 @@
 ---
-import IconGithub from '~icons/fa6-brands/github';
-import IconXTwitter from '~icons/fa6-brands/x-twitter';
-import IconTwitter from '~icons/fa6-brands/twitter';
-import IconLinkedIn from '~icons/fa6-brands/linkedin-in';
-
 const today = new Date();
 ---
 
@@ -11,16 +6,20 @@ const today = new Date();
 	<div class="flex justify-center gap-4 mb-2">
 		<a href="https://github.com/davidysoards" target="_blank">
 			<span class="sr-only">Go to my GitHub repo</span>
-			<IconGithub aria-hidden="true" class="size-5 hover:text-gray-12" />
+			<span aria-hidden="true" class="i-fa6-brands-github size-5 hover:text-gray-12"></span>
 		</a>
 		<a href="https://twitter.com/ninjasoards" target="_blank" class="group hover:text-gray-12">
 			<span class="sr-only">Follow me on Twitter</span>
-			<IconXTwitter aria-hidden="true" class="size-5 group-hover:hidden group-focus:hidden" />
-			<IconTwitter aria-hidden="true" class="size-5 hidden group-hover:block group-focus:block" />
+			<span
+				aria-hidden="true"
+				class="i-fa6-brands-x-twitter size-5 group-hover:hidden group-focus:hidden"></span>
+			<span
+				aria-hidden="true"
+				class="i-fa6-brands-twitter size-5 hidden group-hover:block group-focus:block"></span>
 		</a>
 		<a href="https://www.linkedin.com/in/davidysoards/" target="_blank">
 			<span class="sr-only">Follow me on Linked In</span>
-			<IconLinkedIn aria-hidden="true" class="size-5 hover:text-gray-12" />
+			<span aria-hidden="true" class="i-fa6-brands-linkedin-in size-5 hover:text-gray-12"></span>
 		</a>
 	</div>
 	<div>&copy; {today.getFullYear()} David Soards. All Rights Reserved.</div>

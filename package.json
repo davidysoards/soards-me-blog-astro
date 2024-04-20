@@ -26,9 +26,9 @@
 		"typescript": "^5.3.3"
 	},
 	"devDependencies": {
+		"@egoist/tailwindcss-icons": "^1.7.4",
 		"@iconify/json": "^2.2.180",
 		"@radix-ui/colors": "^3.0.0",
-		"prettier-plugin-tailwindcss": "^0.5.11",
-		"unplugin-icons": "^0.18.5"
+		"prettier-plugin-tailwindcss": "^0.5.11"
 	}
 }

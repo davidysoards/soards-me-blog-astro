@@ -2,11 +2,6 @@
 import HeaderLink from './HeaderLink.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import DYSLogo from './DYSLogo.astro';
-
-import IconGithub from '~icons/fa6-brands/github';
-import IconXTwitter from '~icons/fa6-brands/x-twitter';
-import IconTwitter from '~icons/fa6-brands/twitter';
-import IconLinkedIn from '~icons/fa6-brands/linkedin-in';
 ---
 
 <header class="max-w-screen-md w-full mx-auto pt-4 pb-2 md:pb-4 text-gray-11">
@@ -23,22 +18,25 @@ import IconLinkedIn from '~icons/fa6-brands/linkedin-in';
 		<div class="flex gap-8">
 			<a href="https://github.com/davidysoards" target="_blank">
 				<span class="sr-only">Go to my GitHub repo</span>
-				<IconGithub aria-hidden="true" class="size-5 sm:size-6 hover:text-gray-12" />
+				<span aria-hidden="true" class="i-fa6-brands-github size-5 sm:size-6 hover:text-gray-12"
+				></span>
 			</a>
 			<a href="https://twitter.com/ninjasoards" target="_blank" class="group hover:text-gray-12">
 				<span class="sr-only">Follow me on Twitter</span>
-				<IconXTwitter
+				<span
 					aria-hidden="true"
-					class="size-5 sm:size-6 group-hover:hidden group-focus:hidden"
-				/>
-				<IconTwitter
+					class="i-fa6-brands-x-twitter size-5 sm:size-6 group-hover:hidden group-focus:hidden"
+				></span>
+				<span
 					aria-hidden="true"
-					class="size-5 sm:size-6 hidden group-hover:block group-focus:block"
-				/>
+					class="i-fa6-brands-twitter size-5 sm:size-6 hidden group-hover:block group-focus:block"
+				></span>
 			</a>
 			<a href="https://www.linkedin.com/in/davidysoards/" target="_blank">
 				<span class="sr-only">Follow me on Linked In</span>
-				<IconLinkedIn aria-hidden="true" class="size-5 sm:size-6 hover:text-gray-12" />
+				<span
+					aria-hidden="true"
+					class="i-fa6-brands-linkedin-in size-5 sm:size-6 hover:text-gray-12"></span>
 			</a>
 		</div>
 	</nav>
