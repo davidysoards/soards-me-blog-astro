@@ -181,8 +181,8 @@ Navigate to **Websites** in the sidebar > choose the site.
 Then choose **SSL/TLS** in the sidebar > click Configure.
 Under **Custom SSL/TLS** > select **Full (Strict)**.
 
-![Status Bar](./images/cloudflare-ssl-1.png)
-![Status Bar](./images/cloudflare-ssl-2.png)
+![Cloudflare Dashboard SSL Config](./images/cloudflare-ssl-1.png)
+![SSL/TLS Encryption Settings](./images/cloudflare-ssl-2.png)
 
 ## Remove NGINX
 
