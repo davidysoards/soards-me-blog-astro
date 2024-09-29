@@ -32,7 +32,7 @@ sudo service caddy status
 
 If NGINX is installed, you'll probably see an error that port 80 is already in use at first.
 
-I replaced all the individual files in `conf.d` with a single **Caddyfile**. It's also possible to use the `sites-available` / `sites-enabled` pattern, but I don't see the benefit.
+I replaced all the individual files in `conf.d` with a single **Caddyfile**. It's also possible to use the `sites-available` / `sites-enabled` pattern, but I don't see the benefit. I actually really like having all the config in one file. It's very easy to work with.
 
 ## Before
 
