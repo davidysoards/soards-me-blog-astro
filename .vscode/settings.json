@@ -1,8 +1,16 @@
 {
 	"workbench.colorCustomizations": {
-		"activityBar.background": "#020B9D",
-		"titleBar.activeBackground": "#030FDB",
-		"titleBar.activeForeground": "#F9FAFF"
-	},
+    "activityBar.background": "#020B9D",
+    "titleBar.activeBackground": "#030FDB",
+    "titleBar.activeForeground": "#F9FAFF",
+    "titleBar.inactiveBackground": "#020B9D",
+    "titleBar.inactiveForeground": "#F9FAFF",
+    "statusBar.background": "#020B9D",
+    "statusBar.foreground": "#F9FAFF",
+    "statusBar.debuggingBackground": "#020B9D",
+    "statusBar.debuggingForeground": "#F9FAFF",
+    "statusBar.noFolderBackground": "#020B9D",
+    "statusBar.noFolderForeground": "#F9FAFF"
+  },
 	"typescript.tsdk": "node_modules/typescript/lib"
 }
