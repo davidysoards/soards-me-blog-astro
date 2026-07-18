@@ -40,7 +40,9 @@ It's true, and consistency is one of the strongest arguments for using web fonts
 
 ```css
 /* font-sans */
-font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+font-family:
+  ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  'Noto Color Emoji';
 ```
 
 With a web font, I typically **limit myself to 2 or 3 weights** at most, in order to **reduce the amount of data** that needs to be downloaded to the browser, but another advantage to using the `system-ui` font is that I have access to **all of the available weights** Thin to Black.

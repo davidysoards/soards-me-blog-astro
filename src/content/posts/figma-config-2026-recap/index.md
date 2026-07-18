@@ -39,7 +39,7 @@ I want more AI stories like this one about genuine improvements in people's live
 
 She emphasized that we have this amazing new technology at our fingertips but seem to be stuck building the same basic interfaces. She prompted Codex: "make the best todo app ever. amazing. revolutionary," and the result was less than revolutionary: purple gradients, glowing charts, standard layout.
 
-Her point was that prompting alone is not going to produce real innovation. I appreciate that distinction. I'm interested in AI for making work *better*, instead of using it to produce increasing amounts of confident but hollow slop.
+Her point was that prompting alone is not going to produce real innovation. I appreciate that distinction. I'm interested in AI for making work _better_, instead of using it to produce increasing amounts of confident but hollow slop.
 
 **"How structured thinking gives your AI superpowers" by Carola Pescio Canale** inspired me to start recording daily/weekly thoughts, transcribing them, and feeding them to a personal AI in order to learn my voice and build context about my work. I took that advice to heart. I recorded my rambling thoughts on the conference, summarized them, and then molded them into this post.
 
