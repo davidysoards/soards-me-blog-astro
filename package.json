@@ -10,26 +10,26 @@
 		"astro": "astro",
 		"format": "prettier --write src/"
 	},
-	"packageManager": "pnpm@9.4.0",
+	"packageManager": "pnpm@11.13.1",
 	"engines": {
-		"node": ">=20",
-		"pnpm": ">=9"
+		"node": ">=24.18.0",
+		"pnpm": ">=11"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.4",
-		"@astrojs/mdx": "^3.1.9",
-		"@astrojs/rss": "^4.0.9",
-		"@astrojs/sitemap": "^3.2.1",
-		"@astrojs/tailwind": "^5.1.2",
-		"astro": "^4.16.16",
-		"sharp": "^0.33.4",
-		"tailwindcss": "^3.4.4",
-		"typescript": "^5.5.3"
+		"@astrojs/check": "^0.9.9",
+		"@astrojs/mdx": "^7.0.3",
+		"@astrojs/rss": "^4.0.19",
+		"@astrojs/sitemap": "^3.7.3",
+		"@tailwindcss/vite": "^4.3.3",
+		"astro": "^7.1.0",
+		"sharp": "^0.35.3",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^6.0.3"
 	},
 	"devDependencies": {
-		"@egoist/tailwindcss-icons": "^1.8.1",
-		"@iconify/json": "^2.2.227",
+		"@egoist/tailwindcss-icons": "^1.9.2",
+		"@iconify/json": "^2.2.500",
 		"@radix-ui/colors": "^3.0.0",
-		"prettier-plugin-tailwindcss": "^0.6.5"
+		"prettier-plugin-tailwindcss": "^0.8.1"
 	}
 }

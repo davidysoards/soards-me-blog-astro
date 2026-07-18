@@ -5,13 +5,12 @@
 /* @import '@radix-ui/colors/mauve-alpha.css'; */
 /* @import '@radix-ui/colors/mauve-dark-alpha.css'; */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config '../../tailwind.config.mjs';
+@import 'tailwindcss';
 
 @layer base {
 	body {
-		@apply bg-gray-1 text-left font-serif text-lg text-gray-11 transition-colors sm:text-xl;
+		@apply bg-gray-1 text-gray-11 text-left font-serif text-lg transition-colors sm:text-xl;
 	}
 
 	h1,
@@ -20,7 +19,7 @@
 	h4,
 	h5,
 	h6 {
-		@apply my-2 font-cond font-bold text-gray-12;
+		@apply font-cond text-gray-12 my-2 font-bold;
 		font-stretch: condensed;
 	}
 	h1 {
@@ -28,7 +27,7 @@
 		text-shadow: 1px 2px 0.5px rgba(0, 0, 0, 0.07);
 	}
 	h2 {
-		@apply mb-3 mt-12 text-3xl;
+		@apply mt-12 mb-3 text-3xl;
 	}
 	h3 {
 		@apply mt-10 text-2xl;
@@ -44,19 +43,19 @@
 	}
 
 	p {
-		@apply mb-6 mt-2;
+		@apply mt-2 mb-6;
 	}
 
 	p a {
-		@apply break-words font-bold text-accent-10 hover:underline;
+		@apply text-accent-10 font-bold break-words hover:underline;
 	}
 
 	code {
-		@apply rounded-sm bg-gray-2 p-1 font-mono text-base;
+		@apply bg-gray-2 rounded-sm p-1 font-mono text-base;
 	}
 
 	pre {
-		@apply mb-8 mt-4 rounded-lg bg-gray-2 p-6 text-base;
+		@apply bg-gray-2 mt-4 mb-8 rounded-lg p-6 text-base;
 	}
 
 	p + pre {
@@ -64,7 +63,7 @@
 	}
 
 	strong {
-		@apply font-bold text-gray-12;
+		@apply text-gray-12 font-bold;
 	}
 
 	pre > code {
@@ -76,7 +75,7 @@
 	}
 
 	blockquote {
-		@apply mb-8 mt-4 border-l-4 border-gray-3 pl-4 text-2xl leading-relaxed;
+		@apply border-gray-3 mt-4 mb-8 border-l-4 pl-4 text-2xl leading-relaxed;
 	}
 
 	table {

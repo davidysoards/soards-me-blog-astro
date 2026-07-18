@@ -2,9 +2,11 @@
 // this page is unused atm
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Badge from '../../components/Badge.astro';
+import { getCollection } from 'astro:content';
+
 const pageTitle = 'Tags';
-const allPosts = await Astro.glob('../../content/posts/**/*.md');
-const tags = [...new Set(allPosts.flatMap((post) => post.frontmatter.tags || []))];
+const allPosts = await getCollection('posts');
+const tags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
 ---
 
 <BaseLayout pageTitle={pageTitle}>
