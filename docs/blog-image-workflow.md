@@ -1,6 +1,6 @@
 # Blog image workflow (redesign note)
 
-The current post schema makes `heroImage` optional, but the desktop post list expects one. Posts without it render a broken thumbnail. Revisit that requirement during the blog redesign so a text-only post works cleanly.
+The post schema makes `heroImage` optional, and the post list omits the thumbnail when it is absent. During the blog redesign, decide whether hero images still belong in the design.
 
 ## Current asset convention
 
