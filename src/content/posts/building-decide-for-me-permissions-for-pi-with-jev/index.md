@@ -2,6 +2,7 @@
 title: Building “Decide for Me” Permissions for Pi with Jev
 description: Building pi-jev-gate, a small Pi extension that combines local permission rules with Jev judgments.
 pubDate: 2026-09-26T12:00:00.000Z
+heroImage: jev-gate.jpg
 tags:
   - ai
   - pi
