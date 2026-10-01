@@ -15,7 +15,7 @@ I wanted to **stop running development code and scripts on the same machine that
 
 Agents add to the concern, but ordinary development already involves running plenty of other people's code. Supply chain attacks involving JavaScript and Python packages worry me whether I'm installing a dependency myself or letting an agent do it. The recent <a href="https://www.sonatype.com/blog/open-source-malware-index-q4-2025-automation-overwhelms-ecosystems" target="_blank" rel="noopener">surge in malicious open-source packages</a>, particularly on npm, has made that concern harder to ignore.
 
-So I moved development onto a dedicated Mac mini and kept the MacBook as the client. I also wanted to stop maintaining development environments across multiple Macs. Having one place for my repositories and tooling was the second reason for the move.
+So I moved development onto a dedicated Mac mini and kept the MacBook as the client. I also wanted one place for my repositories and tooling, instead of maintaining development environments across multiple Macs.
 
 Containers and VMs are reasonable alternatives, and might be a better fit depending on the isolation you need. I find them a PITA to work in all the time. For me, a dedicated machine is simpler and more pleasant for everyday work, with enough reduction in exposure to make the change worthwhile.
 
@@ -67,7 +67,7 @@ herdr --remote mac-mini
 
 Those are separate ways to connect from the MacBook. Zed and Codex Desktop can use the same SSH target after their remote connections are set up. If I switch away from Tailscale later, I'll need another network path, but I can keep the ordinary SSH setup.
 
-The key that lets my MacBook log into the Mini is also separate from the credentials the Mini uses to access GitHub. Getting into the development machine and authenticating to another service are different relationships.
+The key that lets my MacBook log into the Mini is also separate from the credentials the Mini uses to access GitHub.
 
 ## Sharing only the credentials I need
 
@@ -147,8 +147,8 @@ Another remote editor could fill this role. Zed is the one that has made it comf
 
 The maintenance benefit is straightforward. My repositories, runtimes, and package managers are on one machine. So are the agent tools and their instructions, skills, and hooks. When I change that environment, the next client connection reaches the same setup. **I don't have to repeat the development-tool changes on the laptop.**
 
-Codex Desktop has also become a bigger part of my workflow than I expected. It supports <a href="https://learn.chatgpt.com/docs/remote-connections#connect-to-an-ssh-host" target="_blank" rel="noopener">projects over SSH</a>, using the same `mac-mini` alias. I love having local and remote projects together in the sidebar, with the remote entries identified by the host name and a different folder icon. Working in those remote projects feels almost no different from working locally. I expected to stay mostly with CLI agents, but Desktop has been so easy to work with that I've found myself using it more. It's an optional client for this setup, and I still use the CLIs.
+Codex Desktop has also become a bigger part of my workflow. It supports <a href="https://learn.chatgpt.com/docs/remote-connections#connect-to-an-ssh-host" target="_blank" rel="noopener">projects over SSH</a>, using the same `mac-mini` alias. I love having local and remote projects together in the sidebar, with the remote entries identified by the host name and a different folder icon. Working in those remote projects feels almost no different from working locally. I expected to stay mostly with CLI agents, but Desktop has been so easy to work with that I've found myself using it more. It's an optional client for this setup, and I still use the CLIs.
 
 ![Codex Desktop sidebar showing remote projects on mac-mini](./images/codex-sidebar-ssh.png)
 
-I now do all my development on the Mini, using Zed for file editing, Codex Desktop, and Ghostty with Herdr for Codex and pi CLI agents. I've uninstalled the Codex CLI from my MacBook. I have one development environment to maintain, away from my personal files, and I can reconnect to the work I left running there.
+I now do all my development on the Mini, using Zed for file editing, Codex Desktop, and Ghostty with Herdr for Codex and pi CLI agents. I've uninstalled the Codex CLI from my MacBook.
