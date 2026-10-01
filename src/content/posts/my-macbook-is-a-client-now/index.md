@@ -11,9 +11,9 @@ tags:
   - workflow
 ---
 
-I wanted to **stop running development code and scripts on the same machine that holds my personal information**. My MacBook has my iCloud data, personal files, and browser sessions. Giving coding agents access to that environment was making me increasingly uncomfortable.
+I wanted to **stop running development code and scripts on the same machine that holds my personal information**. My MacBook has my iCloud data, passwords, browser sessions, and other personal files. Running unvetted open-source code and giving coding agents access to that environment was making me increasingly uncomfortable.
 
-Agents add to the concern, but ordinary development already involves running plenty of other people's code. Supply chain attacks involving JavaScript and Python packages worry me whether I'm installing a dependency myself or letting an agent do it. The recent <a href="https://www.sonatype.com/blog/open-source-malware-index-q4-2025-automation-overwhelms-ecosystems" target="_blank" rel="noopener">surge in malicious open-source packages</a>, particularly on npm, has made that concern harder to ignore.
+The recent <a href="https://www.sonatype.com/blog/open-source-malware-index-q4-2025-automation-overwhelms-ecosystems" target="_blank" rel="noopener">surge in malicious open-source packages</a>, particularly in the Node and Python ecosystems, was making that discomfort harder to ignore.
 
 So I moved development onto a dedicated Mac mini and kept the MacBook as the client. I also wanted one place for my repositories and tooling, instead of maintaining development environments across multiple Macs.
 
@@ -40,9 +40,7 @@ The clients run on the MacBook. The development environment lives on the Mini.
 
 ## Tailscale for the network, OpenSSH for access
 
-I use Tailscale to provide a private network path between the two machines. **Tailscale provides the network; standard OpenSSH provides the remote-access layer.**
-
-I deliberately chose normal SSH rather than Tailscale SSH because I already understand and trust the macOS/OpenSSH model. I can use ordinary Unix users and SSH keys, with `authorized_keys` on the server and `~/.ssh/config` on the client. Tailscale documents this <a href="https://tailscale.com/docs/reference/ssh-over-tailscale" target="_blank" rel="noopener">standard SSH arrangement</a> separately from its own SSH authentication feature.
+I use Tailscale to provide a private network path between the two machines.I deliberately chose **normal SSH** rather than Tailscale SSH because I already understand and trust the macOS/OpenSSH model. I can use ordinary Unix users and SSH keys, with `authorized_keys` on the server and `~/.ssh/config` on the client. Tailscale documents this <a href="https://tailscale.com/docs/reference/ssh-over-tailscale" target="_blank" rel="noopener">standard SSH arrangement</a> separately from its own SSH authentication feature.
 
 On the Mini, I enabled macOS Remote Login for the `dev` user and added an Ed25519 public key from the MacBook to that account's `~/.ssh/authorized_keys`. Remote Login lets you <a href="https://support.apple.com/guide/mac-help/allow-a-remote-computer-to-access-your-mac-mchlp1066/mac" target="_blank" rel="noopener">restrict access to selected users only</a>.
 
