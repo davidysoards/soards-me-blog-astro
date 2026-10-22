@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin './icons-plugin.js';
 @import '@radix-ui/colors/red.css';
 @import '@radix-ui/colors/red-dark.css';
 @import '@radix-ui/colors/mauve.css';
@@ -8,19 +9,38 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
-  Literata → Georgia metric overrides so font-display: swap does not move the body.
-  Widths use the same letter sample as Next's fallback math. Georgia is not installed
-  in this environment, so the comparison font is Gelasio at weight 400 (Georgia-metric).
-  Ascent and descent are Literata's own OS/2 typo metrics.
+  Swap fallback: Liberation Serif, then Georgia so Georgia wins when both are installed.
+  Prose-width overrides; Georgia's letter-sample 110.35% wraps early because its space is wider.
+  Italic src is the roman face — Chromium drops local italic names. Ascent/descent are Literata OS/2 typo (1177/-308) over size-adjust.
 */
+@font-face {
+	font-family: 'Literata Fallback';
+	src: local('Liberation Serif'), local('LiberationSerif');
+	font-weight: 400 700;
+	font-style: normal;
+	size-adjust: 116.71%;
+	ascent-override: 100.84%;
+	descent-override: 26.39%;
+	line-gap-override: 0%;
+}
+@font-face {
+	font-family: 'Literata Fallback';
+	src: local('Liberation Serif'), local('LiberationSerif');
+	font-weight: 400;
+	font-style: italic;
+	size-adjust: 110.06%;
+	ascent-override: 106.94%;
+	descent-override: 27.98%;
+	line-gap-override: 0%;
+}
 @font-face {
 	font-family: 'Literata Fallback';
 	src: local('Georgia');
 	font-weight: 400 700;
 	font-style: normal;
-	size-adjust: 108.66%;
-	ascent-override: 108.32%;
-	descent-override: 28.35%;
+	size-adjust: 106.76%;
+	ascent-override: 110.24%;
+	descent-override: 28.85%;
 	line-gap-override: 0%;
 }
 @font-face {
@@ -28,9 +48,9 @@
 	src: local('Georgia');
 	font-weight: 400;
 	font-style: italic;
-	size-adjust: 99.9%;
-	ascent-override: 117.82%;
-	descent-override: 30.83%;
+	size-adjust: 100.7%;
+	ascent-override: 116.88%;
+	descent-override: 30.58%;
 	line-gap-override: 0%;
 }
 
@@ -292,6 +312,37 @@ pre.astro-code {
 }
 
 @layer components {
+	.mono {
+		font-family: var(--font-mono);
+		font-size: var(--text-mono);
+		letter-spacing: var(--tracking-mono);
+		text-transform: uppercase;
+		color: var(--color-mute);
+	}
+	.mono b {
+		color: var(--color-accent);
+		font-weight: 400;
+	}
+	.rule-major {
+		height: calc(var(--rule-major-line) + var(--rule-gap) + var(--rule-bar));
+		border-top: var(--rule-major-line) solid var(--color-frame);
+		background: linear-gradient(var(--color-accent), var(--color-accent)) bottom / 100% var(--rule-bar)
+			no-repeat;
+	}
+	.nameplate {
+		font-family: var(--font-display);
+		letter-spacing: 0;
+		text-transform: var(--masthead-case);
+	}
+	.mast-logo {
+		display: block;
+		width: var(--masthead-logo);
+		height: var(--masthead-logo);
+		color: var(--color-ink);
+	}
+	.dark .mast-logo {
+		color: var(--color-accent);
+	}
 	.animated-link {
 		position: relative;
 	}

@@ -1,6 +1,8 @@
 # PLAN: implement direction C in `davidysoards/soards-me-blog-astro`
 
-Reference mockups: `home-lower.html`, `post-lower.html` (open locally), and `shots/`. Reference CSS: `site.css`, the single source for the tokens below. Package manager: **pnpm only** (never npm). All work lands on one long-lived branch, `redesign`, cut from `main`. Anything merged to `main` publishes, so **nothing merges to `main` until David merges it himself** when the whole redesign is done. These reference files live in the repo at `docs/redesign/` on that branch.
+> **Rule for any agent working from this plan:** do only what the current phase lists as approved. Anything marked *proposed*, or listed under "Open questions", needs David's explicit OK first: stop and ask in chat. Don't add dependencies, remove dependencies, or change behavior outside the phase's scope, even if it looks like an improvement. Suggest it instead.
+
+Reference mockups: `home-lower.html`, `post-lower.html` (open locally), and `shots/`. Reference CSS: `site.css`, the single source for the tokens below. Package manager: **pnpm only** (never npm). All work lands on one long-lived branch, `redesign`, cut from `main`, and from Phase 2 on it's done **locally in Cursor on David's Mac mini**, not by cloud agents. Anything merged to `main` publishes, so **nothing merges to `main` until David merges it himself** when the whole redesign is done. These reference files live in the repo at `docs/redesign/` on that branch.
 
 ## Goal / non-goals
 - **Goal:** reskin the blog as the "90s magazine, kept readable" design.
@@ -27,7 +29,7 @@ Reference mockups: `home-lower.html`, `post-lower.html` (open locally), and `sho
 | Routes | `pages/posts/[...slug].astro`, `pages/tags/[tag].astro`, `pages/rss.xml.js`, `pages/404.astro` | Slug = `post.id` minus `/index`. |
 | Content | `src/content.config.ts` | `posts` glob `**/[^_]*.{md,mdx}`. Schema: `title, subtitle?, description, pubDate, updatedDate?, tags?, canonicalLink?, heroImage?` (filename in `public/img/`). |
 | Images | `public/img/*` (heroes, plain `<img>`), `src/content/posts/*/images/*` (relative, Astro-processed), MDX post uses `astro:assets` `Image` | Skill `.agents/skills/blog-image` produces 12:7 heroes into `public/img/`. |
-| Code | `astro.config.mjs` | Default Shiki (github-dark); `shikiConfig` is commented out. |
+| Code | `astro.config.mjs` | Before the redesign: default Shiki (github-dark); `shikiConfig` commented out. |
 | Misc | `src/unused/*`, `AGENTS.md` (external links in posts: `target="_blank" rel="noopener"`) | |
 
 ## Design tokens → Tailwind 4 `@theme`
@@ -87,15 +89,16 @@ Drop `@config` and `tailwind.config.mjs`, and move to CSS-first config in `src/s
   - `OFL-Anton.txt`, `OFL-Literata.txt`
 
   Take them from `fonts/` in this folder.
-- Add `scripts/trim-fonts.py` (copy from this folder). It documents the fontTools instancer steps: regular `{"wght": (400, 700)}`, italic `{"wght": 400}`, plus the Fontsource latin source URLs. It's a dev-only tool (`pip install fonttools brotli`); no Node dependency. (A rerun with a newer fontTools/brotli gave byte-different but equivalent output: 36,784 / 21,352 B.)
+- *(Landed in Phase 1; David may delete it.)* `scripts/trim-fonts.py` isn't used by the build. It documents the fontTools instancer steps: regular `{"wght": (400, 700)}`, italic `{"wght": 400}`, plus the Fontsource latin source URLs. It's a dev-only tool (`pip install fonttools brotli`); no Node dependency. (A rerun with a newer fontTools/brotli gave byte-different but equivalent output: 36,784 / 21,352 B.)
 - `@font-face` goes in `tailwind.css` with `font-display: swap`, and the regular has `font-weight: 400 700`.
 - In `BaseHead.astro`: `<link rel="preload" href="/fonts/Literata-400-700.woff2" as="font" type="font/woff2" crossorigin>` (Literata only). Anton isn't preloaded; it's small, and the headings fall back to condensed system fonts.
-- To reduce CLS, add a fallback `@font-face` with `size-adjust` for Literata→Georgia, but only if Lighthouse shows any shift.
+- Phase 1 added a "Literata Fallback" `@font-face` (Georgia with `size-adjust`/`ascent-override`/`descent-override`). The numbers were tuned on Linux against Gelasio, a Georgia look-alike, because Linux has no Georgia. **They must be re-checked on macOS against real Georgia** (see Phase 1 follow-up).
+- License files: keep `OFL-*.txt` next to the fonts. The woff2 metadata has the copyright and the license URL but not the license text.
 
 ## Components (new = ★)
 | Piece | Path | Notes |
 |---|---|---|
-| Top strip | `components/Header.astro` (rewrite) | Mono row: `//// Vol · Issue · Mon YYYY` (home) or the ★`DYSMark` + `SOARDS` brand (inner pages). Nav: writing, case studies → design.soards.me, GitHub / X / LinkedIn / RSS as text links, theme toggle. No border on home; a `.rule-major` on inner pages (the only double rule). |
+| Top strip | `components/Header.astro` (rewrite) | Mono row: `//// Vol · Issue · Mon YYYY` (home; label pending, open question 2) or the ★`DYSMark` + `SOARDS` brand (inner pages). Nav: writing, case studies → design.soards.me, GitHub / X / LinkedIn / RSS (the mockups show text links; icons vs text is open question 6), theme toggle. No border on home; a `.rule-major` on inner pages (the only double rule). |
 | Masthead | ★`components/Masthead.astro` (home only) | `SOARDS` in display caps (`--masthead-case`), size `clamp(64px,9vw,124px)`, framed `DYSLogo` box `clamp(54px,8vw,100px)`; no rule below, `--space-mast` to the letter. |
 | Logos | `components/DYSLogo.astro` (keep), ★`components/DYSMark.astro` | Mark = `img/dys-small.svg` inlined, `fill=currentColor`. Used in the top bar, footer and post end mark. |
 | Editor's letter | ★`components/EditorsLetter.astro` | L4 box: 1px `border-frame` outline, label (red + mono sublabel) on the top border with a `bg-paper` knockout; 2-column text with a red Anton drop cap; one column on mobile. Copy lives in `src/consts.ts` (`EDITORS_LETTER`). |
@@ -104,10 +107,10 @@ Drop `@config` and `tailwind.config.mjs`, and move to CSS-first config in `src/s
 | Also in this issue | ★`components/IssueGrid.astro` | The next 6 posts in a 3-column (1 on mobile) card grid. |
 | Topic filter | ★`components/TopicFilter.astro`, ★`src/lib/topics.ts` | Chips All/AI/Design/Front-end/Infra. Each chip is a real link to ★`pages/topics/[topic].astro` (works without JS), with a small inline script that filters the homepage in place. |
 | Back issues | ★`components/BackIssues.astro` | Text-only list (YYYY.MM, title, first tag) under an Anton heading + mono label (no rule above), rows split by 1px gray hairlines, red text on hover (no fill) for the remaining posts. Replaces the `BlogPost` cards on home. |
-| Tags | `pages/tags/[tag].astro` (restyle as a back-issues list), `Badge.astro` → mono `#tag` links | **Remove the tag cloud** from `index.astro`. Delete `tags/_index.astro` (unrouted) if David agrees. |
+| Tags | `pages/tags/[tag].astro` (restyle as a back-issues list), `Badge.astro` → mono `#tag` links | **Remove the tag cloud** from `index.astro`. Deleting `tags/_index.astro` is open question 5. |
 | Post header | `layouts/BlogPostLayout.astro` | 2 columns: kicker, `--text-post-title` title (lowercase CSS, last 2 words red), italic dek (`subtitle` ?? `description`), byline, date and #tags in mono, duotone hero 4:3. Stacks on mobile. |
 | Post body | `.prose-c` in `tailwind.css` (replaces the base-layer h2/blockquote/pre rules) | 38rem, Literata 18/1.7. h2: Anton, 80px top margin, no rule. Images: no border. Borderless italic indented blockquote. `//` list bullets. Links in red-11. Small-caps lead-in: style the first ~3 words, wrapped by a tiny rehype step or an `<span class="sc">` in content; **ask**, and the default is to skip it in v1. |
-| Code | `astro.config.mjs` | `shikiConfig: { themes: { light: 'github-light', dark: 'github-dark' }, defaultColor: false }`, plus CSS that maps `--shiki-light`/`--shiki-dark` under `.dark`. Background is `--color-code`. The label is `pre::before { content: "//// " attr(data-language) }` (Astro's attribute; the mockup used `data-lang`). Code scrolls horizontally; `md`/`text` blocks wrap. |
+| Code | `astro.config.mjs` | *Proposed, landed in Phase 1 without approval (open question 7):* `shikiConfig: { themes: { light: 'github-light', dark: 'github-dark' }, defaultColor: false }`, plus CSS that maps `--shiki-light`/`--shiki-dark` under `.dark`. Background is `--color-code`. The label is `pre::before { content: "//// " attr(data-language) }` (Astro's attribute; the mockup used `data-lang`). Code scrolls horizontally; `md`/`text` blocks wrap. |
 | Pull quote | ★`components/PullQuote.astro` (MDX) + `.pq` class for raw HTML in `.md` | Large italic with a red Anton opening quote mark, no rules. |
 | Prev / next | ★`components/PrevNext.astro` | Computed from the sorted collection in `[...slug].astro`. 2-column box framed by the 1px gray hairline; hover fills red. |
 | Footer | `components/Footer.astro` | No rule (matches home; spacing only), mark + "© YYYY David Soards", `//// blog.soards.me`. |
@@ -122,10 +125,10 @@ Drop `@config` and `tailwind.config.mjs`, and move to CSS-first config in `src/s
 | **Infra** | docker, vps, linux, caddy, nginx, postgres, pgvector, mysql, django, python, s3, php, wordpress, acf, netlify, macos, development |
 | *(none)* | tip (a format, not a topic; still shown as #tip) |
 
-A post can match several topics. Add an optional frontmatter override, `topics: z.array(z.enum(['ai','design','front-end','infra'])).optional()`, used when present.
+A post can match several topics. *Proposed (open question 8):* an optional frontmatter override, `topics: z.array(z.enum(['ai','design','front-end','infra'])).optional()`, used when present.
 
 ## Content changes
-- **Schema** (`content.config.ts`), all optional and backward compatible:
+- **Schema** (`content.config.ts`), *proposed (open question 8)*, all optional and backward compatible:
   - `topics` (override)
   - `cover: boolean` (pin to the cover slot)
   - `heroAlt: string`
@@ -137,18 +140,20 @@ A post can match several topics. Add an optional frontmatter override, `topics: 
 - **Corrected in the mockups after reading the repo:** X = x.com/ninjasoards, LinkedIn = /in/davidysoards, "case studies" → https://design.soards.me/. Post URLs `/posts/<slug>/` and RSS `/rss.xml` are confirmed.
 
 ## Light / dark
-Keep the existing mechanism: the inline head script plus `ThemeToggle` toggling `.dark` on `<html>`, stored in `localStorage.theme`. Semantic color tokens switch under `.dark` (above). The Radix dark files already key off `.dark`. Use `@custom-variant dark` for the rare `dark:` utilities (e.g. the duotone blend mode). Restyle the toggle as a 34px round icon button with inline SVG sun/moon. That lets us **remove `@egoist/tailwindcss-icons` + `@iconify/json`** (the new design uses text social links), a big dev-dependency cut.
+Keep the existing mechanism: the inline head script plus `ThemeToggle` toggling `.dark` on `<html>`, stored in `localStorage.theme`. Semantic color tokens switch under `.dark` (above). The Radix dark files already key off `.dark`. Use `@custom-variant dark` for the rare `dark:` utilities (e.g. the duotone blend mode). Restyle the toggle as a 34px round icon button. Phase 1 replaced the icons with inline SVG and **removed `@egoist/tailwindcss-icons` + `@iconify/json`. David didn't approve that** (open question 6); restore them if he wants.
 
 ## Workflow
-- One branch, `redesign`, off `main`. Each phase is one or more commits pushed directly to `redesign`; no per-phase branches or PRs. Optionally one draft PR `redesign` → `main` for reviewing the whole diff; it is never merged by an agent.
-- A Cursor cloud agent does each phase's heavy lifting and pushes to `redesign`. David then pulls `redesign` locally (Cursor on the Mac mini, `pnpm dev`), checks it and makes small visual tweaks himself, and pushes back to `redesign`.
-- Never both at once: an agent run starts only after David's latest push, and every agent run starts by pulling the tip of `redesign` and keeps David's edits.
+- One branch, `redesign`, off `main`. Commits go directly to `redesign`; no per-phase branches or PRs. Nothing merges to `main` until David does it himself.
+- Phase 1 was done by a Cursor cloud agent. **From Phase 2 on, David works locally in Cursor on the Mac mini** (`pnpm dev`) with Cursor's agent, one phase at a time, reviewing in the browser before each commit.
+- The Blog Redesign bot (Grok Bot) stays the design partner: mockups, design decisions, and a ready-to-paste prompt per phase. It doesn't push to the repo.
 - Phase names below are commit/checkpoint labels, not branch names.
 
 ## Phases (all on `redesign`; no merge or deploy without David)
-1. **Phase 1 (foundation): tokens, fonts, Tailwind 4 CSS-first.**
-   - Scope: replace `@config` with `@theme` tokens, `@font-face` + preload, favicons, `.dark` overrides, remove the icons plugin (swap the existing icons for inline SVG), Shiki dual theme. Existing pages keep their layout but pick up the new fonts and colors.
-   - Files: `src/styles/tailwind.css`, `tailwind.config.mjs` (delete), `astro.config.mjs`, `components/BaseHead.astro`, `Header.astro`/`Footer.astro`/`ThemeToggle.astro` (icons only), `public/fonts/*`, `public/favicon*`, `scripts/trim-fonts.py`, `package.json` + `pnpm-lock.yaml`.
+1. **Phase 1 (foundation): DONE** at `fe44624` (cloud agent). Landed: `@theme` tokens in `tailwind.css` (config file deleted), fonts + preload, Literata fallback face, favicons, `.dark` overrides, Anton headings in title case.
+   - **Landed without David's approval (decide, then keep or revert):** icon packages removed and swapped for inline SVG (open question 6); Shiki dual theme and `--color-code` (open question 7); `rel="noopener"` on social links and `font-mono` on `pre` (minor).
+   - **Follow-up (local, on the Mac):** check the Literata fallback against real Georgia and retune the overrides if lines shift on swap.
+   - Original scope, for reference: replace `@config` with `@theme` tokens, `@font-face` + preload, favicons, `.dark` overrides. Existing pages keep their layout but pick up the new fonts and colors.
+   - Files: `src/styles/tailwind.css`, `tailwind.config.mjs` (deleted), `astro.config.mjs`, `components/BaseHead.astro`, `Header.astro`/`Footer.astro`/`ThemeToggle.astro`, `public/fonts/*`, `public/favicon*`, `scripts/trim-fonts.py`, `package.json` + `pnpm-lock.yaml`.
    - Accept:
      - `pnpm install && pnpm build` (astro check + build) passes.
      - Both themes work, with no flash.
@@ -178,14 +183,22 @@ Keep the existing mechanism: the inline head script plus `ThemeToggle` toggling 
      - Code scrolls horizontally in both themes.
      - Spot-check 3 older posts (an MDX one, one image-heavy, one code-heavy).
 5. **Phase 5 (polish): 404, a11y, performance, cleanup.**
-   - Scope: 404 in the new style, focus states, contrast check (red-11 on paper), `prefers-reduced-motion`, Lighthouse pass, remove dead CSS/components, and `src/unused` and `tags/_index.astro` if approved.
+   - Scope: 404 in the new style, focus states, contrast check (red-11 on paper), `prefers-reduced-motion`, Lighthouse pass, remove dead CSS/components; `src/unused` and `tags/_index.astro` only if approved (open question 5).
+   - Last commit before David merges: distill `docs/redesign/DIRECTION.md` into a short `docs/DESIGN.md` (type, color, spacing and border rules, heading case and line-heights, the 38rem measure), then delete `docs/redesign/` entirely. Git history keeps the mockups.
    - Accept:
+     - `docs/redesign/` is gone and `docs/DESIGN.md` exists.
      - Lighthouse ≥ 95 performance/accessibility on home and a post.
      - No visual diff vs phases 3–4 other than intended fixes.
 
 ## Open questions for David
-1. Masthead nameplate: uppercase **SOARDS** (recommended) or lowercase **soards**?
-2. Editor's letter copy, and keep or drop the "Vol./Issue" label (issue = post count?).
-3. Approve the tag→topic mapping (especially workflow → AI, nuxt → Front-end, wordpress/acf → Infra, tip → no topic).
-4. "Case studies" link: keep pointing to design.soards.me until it's retired?
-5. OK to delete `src/unused/`, `pages/tags/_index.astro`, and the icon dev deps?
+Decided:
+1. Masthead case is switchable via `--masthead-case`. Default uppercase.
+2. Keep both. Vol. is years since the first post (2017 → 2026 = Vol. 10). Issue is the post count. Date is the month of the latest post. Editor's letter uses the placeholder until new copy.
+3. Tag→topic mapping approved as written.
+4. Case studies stays on https://design.soards.me/ until that site is retired.
+5. Delete `src/unused/` and `pages/tags/_index.astro` in Phase 5.
+6. Restore `@egoist/tailwindcss-icons` + `@iconify/json` and the icon classes. Socials are text.
+7. Keep Shiki `github-light` / `github-dark`.
+8. Skip `topics`, `cover`, and `heroAlt` for v1.
+9. Add the small-caps lead-in (Phase 4).
+10. Keep `scripts/trim-fonts.py`.

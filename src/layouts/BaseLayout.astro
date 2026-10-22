@@ -1,10 +1,12 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
+import Masthead from '../components/Masthead.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 const { pageTitle } = Astro.props;
+const isHome = Astro.url.pathname === '/';
 ---
 
 <!doctype html>
@@ -29,11 +31,14 @@ const { pageTitle } = Astro.props;
 			window.localStorage.setItem('theme', theme);
 		</script>
 	</head>
-	<body class="flex flex-col h-full px-4 md:px-6">
-		<Header />
-		<div class="flex-grow py-8">
-			<slot />
+	<body class="flex h-full flex-col">
+		<div class="mx-auto flex w-full max-w-page flex-1 flex-col px-(--gutter)">
+			<Header />
+			{isHome && <Masthead />}
+			<div class="flex-grow py-8">
+				<slot />
+			</div>
+			<Footer />
 		</div>
-		<Footer />
 	</body>
 </html>

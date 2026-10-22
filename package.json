@@ -27,6 +27,8 @@
 		"typescript": "^6.0.3"
 	},
 	"devDependencies": {
+		"@egoist/tailwindcss-icons": "^1.9.2",
+		"@iconify/json": "^2.2.546",
 		"@radix-ui/colors": "^3.0.0",
 		"prettier-plugin-tailwindcss": "^0.8.1"
 	}
