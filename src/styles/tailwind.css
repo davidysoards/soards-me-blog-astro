@@ -1,16 +1,190 @@
+@import 'tailwindcss';
 @import '@radix-ui/colors/red.css';
 @import '@radix-ui/colors/red-dark.css';
 @import '@radix-ui/colors/mauve.css';
 @import '@radix-ui/colors/mauve-dark.css';
-/* @import '@radix-ui/colors/mauve-alpha.css'; */
-/* @import '@radix-ui/colors/mauve-dark-alpha.css'; */
 
-@config '../../tailwind.config.mjs';
-@import 'tailwindcss';
+/* Class strategy, matching the inline theme script on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Literata → Georgia metric overrides so font-display: swap does not move the body.
+  Widths use the same letter sample as Next's fallback math. Georgia is not installed
+  in this environment, so the comparison font is Gelasio at weight 400 (Georgia-metric).
+  Ascent and descent are Literata's own OS/2 typo metrics.
+*/
+@font-face {
+	font-family: 'Literata Fallback';
+	src: local('Georgia');
+	font-weight: 400 700;
+	font-style: normal;
+	size-adjust: 108.66%;
+	ascent-override: 108.32%;
+	descent-override: 28.35%;
+	line-gap-override: 0%;
+}
+@font-face {
+	font-family: 'Literata Fallback';
+	src: local('Georgia');
+	font-weight: 400;
+	font-style: italic;
+	size-adjust: 99.9%;
+	ascent-override: 117.82%;
+	descent-override: 30.83%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: 'Anton';
+	src: url('/fonts/Anton-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Literata';
+	src: url('/fonts/Literata-400-700.woff2') format('woff2');
+	font-weight: 400 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Literata';
+	src: url('/fonts/Literata-Italic-400.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@theme {
+	/* Semantic colors. fg/mute/rule/accent follow the Radix vars, including .dark. */
+	--color-paper: #f4f1ec;
+	--color-ink: #111;
+	--color-fg: var(--mauve-12);
+	--color-mute: var(--mauve-11);
+	--color-rule: var(--mauve-6);
+	--color-accent: var(--red-9);
+	--color-accent-text: var(--red-11);
+	--color-code: #ebe7e1;
+	--color-frame: color-mix(in oklab, var(--color-ink) var(--frame-mix, 22%), transparent);
+
+	/* Previous accent/gray scales, so existing utilities keep working. */
+	--color-accent-1: var(--red-1);
+	--color-accent-2: var(--red-2);
+	--color-accent-3: var(--red-3);
+	--color-accent-4: var(--red-4);
+	--color-accent-5: var(--red-5);
+	--color-accent-6: var(--red-6);
+	--color-accent-7: var(--red-7);
+	--color-accent-8: var(--red-8);
+	--color-accent-9: var(--red-9);
+	--color-accent-10: var(--red-10);
+	--color-accent-11: var(--red-11);
+	--color-accent-12: var(--red-12);
+	--color-gray-1: var(--mauve-1);
+	--color-gray-2: var(--mauve-2);
+	--color-gray-3: var(--mauve-3);
+	--color-gray-4: var(--mauve-4);
+	--color-gray-5: var(--mauve-5);
+	--color-gray-6: var(--mauve-6);
+	--color-gray-7: var(--mauve-7);
+	--color-gray-8: var(--mauve-8);
+	--color-gray-9: var(--mauve-9);
+	--color-gray-10: var(--mauve-10);
+	--color-gray-11: var(--mauve-11);
+	--color-gray-12: var(--mauve-12);
+
+	/* Stacks from site.css. Literata Fallback sits ahead of Georgia. */
+	--font-display:
+		'Anton', 'Helvetica Neue Condensed', 'Arial Narrow', sans-serif-condensed, Impact, sans-serif;
+	--font-serif:
+		'Literata', 'Literata Fallback', Charter, 'Bitstream Charter', 'Sitka Text', Cambria, Georgia,
+		serif;
+	--font-sans: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+	--font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+	--text-masthead: clamp(64px, 9vw, 124px);
+	--text-post-title: clamp(46px, 6.4vw, 84px);
+	--text-cover: clamp(40px, 4.6vw, 58px);
+	--text-section: 44px;
+	--text-h2: 34px;
+	--text-brand: 30px;
+	--text-pn: 30px;
+	--text-card: 28px;
+	--text-dek: 21px;
+	--text-body: 18px;
+	--text-lead: 18px;
+	--text-index: 17px;
+	--text-letter: 15.5px;
+	--text-small: 15px;
+	--text-code: 15px;
+	--text-mono: 12px;
+	--text-label: 11px;
+
+	--leading-masthead: 0.8;
+	--leading-tight: 0.9;
+	--leading-one-line: 1.05;
+	--leading-display: 1.1;
+	--leading-card: 1.14;
+	--leading-h2: 1.15;
+	--leading-body: 1.7;
+	--leading-text: 1.5;
+
+	--tracking-display: 0.004em;
+	--tracking-mono: 0.04em;
+
+	--spacing-mast: 18px;
+	--spacing-block: 48px;
+	--spacing-gutter: 32px;
+
+	--container-page: 1240px;
+	--container-measure: 38rem;
+}
+
+:root {
+	color-scheme: light;
+	--frame-mix: 22%;
+	--rule-thin: 1px;
+	--rule-major-line: 2px;
+	--rule-gap: 3px;
+	--rule-bar: 4px;
+	--space-mast: var(--spacing-mast);
+	--space-block: var(--spacing-block);
+	--gutter: var(--spacing-gutter);
+	--page-max: var(--container-page);
+	--measure: var(--container-measure);
+	--masthead-logo: clamp(54px, 8vw, 100px);
+	--masthead-case: uppercase;
+	--hairline: var(--rule-thin) solid var(--color-rule);
+	--on-red: #fff;
+	--code-fg: #1f1d22;
+}
+
+.dark {
+	color-scheme: dark;
+	--color-paper: #0b0a0b;
+	--color-ink: #eeeef0;
+	--color-code: #18161a;
+	--code-fg: #e4e2e7;
+}
+
+@media (max-width: 860px) {
+	:root {
+		--text-section: 34px;
+		--text-h2: 28px;
+		--text-dek: 18px;
+		--text-body: 17px;
+		--text-index: 16px;
+		--text-code: 13.5px;
+		--spacing-block: 36px;
+		--spacing-gutter: 18px;
+	}
+}
 
 @layer base {
 	body {
-		@apply bg-gray-1 text-gray-11 text-left font-serif text-lg transition-colors sm:text-xl;
+		@apply bg-paper text-fg text-left font-serif text-lg transition-colors sm:text-xl;
+		-webkit-font-smoothing: antialiased;
 	}
 
 	h1,
@@ -19,8 +193,8 @@
 	h4,
 	h5,
 	h6 {
-		@apply font-cond text-gray-12 my-2 font-bold;
-		font-stretch: condensed;
+		/* Anton ships one weight. font-bold would synthesize a heavier face. */
+		@apply font-display text-ink my-2 font-normal;
 	}
 	h1 {
 		@apply text-4xl sm:text-5xl;
@@ -47,15 +221,15 @@
 	}
 
 	p a {
-		@apply text-accent-10 font-bold break-words hover:underline;
+		@apply text-accent-text font-bold break-words hover:underline;
 	}
 
 	code {
-		@apply bg-gray-2 rounded-sm p-1 font-mono text-base;
+		@apply bg-code rounded-sm p-1 font-mono text-base;
 	}
 
 	pre {
-		@apply bg-gray-2 mt-4 mb-8 rounded-lg p-6 text-base;
+		@apply bg-code mt-4 mb-8 rounded-lg p-6 font-mono text-base;
 	}
 
 	p + pre {
@@ -63,7 +237,7 @@
 	}
 
 	strong {
-		@apply text-gray-12 font-bold;
+		@apply text-ink font-bold;
 	}
 
 	pre > code {
@@ -92,6 +266,29 @@
 		margin: revert;
 		padding: revert;
 	}
+}
+
+/* Dual theme. defaultColor: false, so token color comes from --shiki-*. Block fill is --color-code. */
+pre.astro-code,
+pre.astro-code span {
+	color: var(--shiki-light) !important;
+	background-color: transparent !important;
+	font-style: var(--shiki-light-font-style) !important;
+	font-weight: var(--shiki-light-font-weight) !important;
+	text-decoration: var(--shiki-light-text-decoration) !important;
+}
+pre.astro-code {
+	background-color: var(--color-code) !important;
+}
+.dark pre.astro-code,
+.dark pre.astro-code span {
+	color: var(--shiki-dark) !important;
+	font-style: var(--shiki-dark-font-style) !important;
+	font-weight: var(--shiki-dark-font-weight) !important;
+	text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+.dark pre.astro-code {
+	background-color: var(--color-code) !important;
 }
 
 @layer components {
