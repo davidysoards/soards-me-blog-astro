@@ -3,19 +3,74 @@ import ThemeToggle from './ThemeToggle.astro';
 import DYSMark from './DYSMark.astro';
 const home = Astro.url.pathname === '/';
 ---
+
 <header class="mx-auto w-full max-w-7xl px-4.5 md:px-8">
-  <div class="flex items-center justify-between py-2.5 font-mono text-xs tracking-wider uppercase text-mute">
-    {home ? <span><b class="font-normal text-accent-text">////</b> Vol. 09<span class="hidden md:inline"> &nbsp;—&nbsp; Issue 21 &nbsp;—&nbsp; Oct 2026</span></span> : <a class="flex items-center gap-2.5 font-display text-3xl leading-[.9] tracking-normal text-accent uppercase hover:text-accent-text" href="/" aria-label="Soards home"><DYSMark class="size-6.5" />Soards</a>}
-    <nav class="flex items-center gap-4.5" aria-label="Main navigation">
-      <a class="hover:text-accent-text" href="/" aria-current={home ? 'page' : undefined}>Writing</a>
-      <a class="hidden hover:text-accent-text md:inline" href="https://design.soards.me/" target="_blank" rel="noopener">Art</a>
-      <span class="hidden md:inline"><a class="hover:text-accent-text" href="https://github.com/davidysoards" target="_blank" rel="noopener">GitHub</a> / <a class="hover:text-accent-text" href="https://x.com/ninjasoards" target="_blank" rel="noopener">X</a> / <a class="hover:text-accent-text" href="https://www.linkedin.com/in/davidysoards/" target="_blank" rel="noopener">LinkedIn</a> / <a class="hover:text-accent-text" href="/rss.xml">RSS</a></span>
-      <ThemeToggle />
-    </nav>
-  </div>
-  {!home && (
-    <div class="border-t-2 border-frame pt-0.75" aria-hidden="true">
-      <div class="h-1 bg-accent"></div>
-    </div>
-  )}
+	<div class="flex items-center justify-between py-2.5 font-mono text-xs tracking-wider uppercase text-mute">
+		{home ? (
+			<span>
+				<b class="font-normal text-accent-text">////</b> Vol. 09
+				<span class="hidden md:inline"> &nbsp;—&nbsp; Issue 21 &nbsp;—&nbsp; Oct 2026</span>
+			</span>
+		) : (
+			<a
+				class="flex items-center gap-2.5 font-display text-3xl leading-[.9] tracking-normal text-accent uppercase hover:text-accent-text"
+				href="/"
+				aria-label="Soards home"
+			>
+				<DYSMark class="size-6.5" />
+				Soards
+			</a>
+		)}
+		<nav class="flex items-center gap-4.5" aria-label="Main navigation">
+			<a class="hover:text-accent-text" href="/" aria-current={home ? 'page' : undefined}>
+				Writing
+			</a>
+			<a
+				class="hidden hover:text-accent-text md:inline"
+				href="https://design.soards.me/"
+				target="_blank"
+				rel="noopener"
+			>
+				Art
+			</a>
+			<span class="hidden md:inline">
+				<a
+					class="hover:text-accent-text"
+					href="https://github.com/davidysoards"
+					target="_blank"
+					rel="noopener"
+				>
+					GitHub
+				</a>{' '}
+				/{' '}
+				<a
+					class="hover:text-accent-text"
+					href="https://x.com/ninjasoards"
+					target="_blank"
+					rel="noopener"
+				>
+					X
+				</a>{' '}
+				/{' '}
+				<a
+					class="hover:text-accent-text"
+					href="https://www.linkedin.com/in/davidysoards/"
+					target="_blank"
+					rel="noopener"
+				>
+					LinkedIn
+				</a>{' '}
+				/{' '}
+				<a class="hover:text-accent-text" href="/rss.xml">
+					RSS
+				</a>
+			</span>
+			<ThemeToggle />
+		</nav>
+	</div>
+	{!home && (
+		<div class="border-t-2 border-frame pt-0.75" aria-hidden="true">
+			<div class="h-1 bg-accent"></div>
+		</div>
+	)}
 </header>

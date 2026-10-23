@@ -12,9 +12,39 @@ const posts = (await getCollection('posts')).sort(newestFirst);
 const [cover, ...rest] = posts;
 const older = rest.slice(6);
 ---
-<BaseLayout><main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8" data-home>
-  <Masthead /><EditorsLetter />{cover && <CoverStory post={cover} />}
-  <section data-story-section aria-labelledby="issue-heading"><div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5"><h2 id="issue-heading" class="m-0 text-4xl md:text-5xl leading-none">Also in this issue</h2><TopicFilter /></div><IssueGrid posts={rest.slice(0,6)} /><p data-empty hidden class="py-5 text-mute italic">No stories in this section for this topic. Browse the back issues below.</p></section>
-  <section data-story-section aria-labelledby="back-heading"><div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5"><h2 id="back-heading" class="m-0 text-4xl md:text-5xl leading-none">Back issues</h2><span class="font-mono text-xs tracking-wider uppercase text-mute"><b class="font-normal text-accent-text">////</b> <span data-count>{older.length} stories</span></span></div><BackIssues posts={older} /><p data-empty hidden class="py-5 text-mute italic">No back issues for this topic.</p></section>
-  <p class="sr-only" role="status" data-filter-status></p>
-</main></BaseLayout>
+
+<BaseLayout>
+	<main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8" data-home>
+		<Masthead />
+		<EditorsLetter />
+		{cover && <CoverStory post={cover} />}
+		<section data-story-section aria-labelledby="issue-heading">
+			<div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5">
+				<h2 id="issue-heading" class="m-0 text-4xl md:text-5xl leading-none">
+					Also in this issue
+				</h2>
+				<TopicFilter />
+			</div>
+			<IssueGrid posts={rest.slice(0, 6)} />
+			<p data-empty hidden class="py-5 text-mute italic">
+				No stories in this section for this topic. Browse the back issues below.
+			</p>
+		</section>
+		<section data-story-section aria-labelledby="back-heading">
+			<div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5">
+				<h2 id="back-heading" class="m-0 text-4xl md:text-5xl leading-none">
+					Back issues
+				</h2>
+				<span class="font-mono text-xs tracking-wider uppercase text-mute">
+					<b class="font-normal text-accent-text">////</b>{' '}
+					<span data-count>{older.length} stories</span>
+				</span>
+			</div>
+			<BackIssues posts={older} />
+			<p data-empty hidden class="py-5 text-mute italic">
+				No back issues for this topic.
+			</p>
+		</section>
+		<p class="sr-only" role="status" data-filter-status></p>
+	</main>
+</BaseLayout>

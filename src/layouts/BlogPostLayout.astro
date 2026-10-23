@@ -7,25 +7,62 @@ import Headline from '../components/Headline.astro';
 import DYSMark from '../components/DYSMark.astro';
 import PrevNext from '../components/PrevNext.astro';
 type Props = Post['data'] & { previous?: Post; next?: Post };
-const { title, subtitle, description, pubDate, updatedDate, heroImage, tags, previous, next } = Astro.props;
+const { title, subtitle, description, pubDate, updatedDate, heroImage, tags, previous, next } =
+	Astro.props;
 ---
-<BaseLayout description={description} pageTitle={title} image={heroImage ? `/img/${heroImage}` : undefined}>
-  <main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8">
-    <article>
-      <header class:list={['grid items-end gap-5 pt-6 pb-8 md:gap-10 md:pt-10', heroImage ? 'md:grid-cols-[1.05fr_1fr]' : 'max-w-225']}>
-        <div><div class="font-mono text-xs tracking-wider uppercase text-mute"><b class="font-normal text-accent-text">////</b> Feature {tags?.[0] && <> &nbsp;/&nbsp; {tags[0]}</>}</div>
-          <h1 class="mt-3 mb-4.5 text-post-title leading-[1.1] text-ink"><Headline title={title} /></h1>
-          <p class="mt-0 mb-4.5 max-w-[32em] text-lg md:text-2xl leading-[1.45] text-mute italic">{subtitle ?? description}</p>
-          <div class="font-mono text-xs tracking-wider uppercase text-mute">By David Soards &nbsp;/&nbsp; <FormattedDate date={pubDate} />
-            {tags?.map(tag => <> &nbsp;<a href={`/tags/${tag}/`}><b class="font-normal text-accent-text">#</b>{tag}</a></>)}
-          </div>
-          {updatedDate && <div class="mt-2 font-mono text-xs tracking-wider uppercase text-mute">Updated <FormattedDate date={updatedDate} /></div>}
-        </div>
-        {heroImage && <Duotone class="order-2 aspect-4/3 md:order-none" image={heroImage} eager />}
-      </header>
-      <div class="prose-c text-mute mx-auto max-w-[65ch] pt-8 pb-6 text-lg md:text-xl leading-relaxed break-words md:pt-12"><slot /></div>
-      <div class="mt-2 mb-6 text-center text-mute" aria-hidden="true"><DYSMark class="size-4.5 align-middle" /></div>
-    </article>
-    <PrevNext previous={previous} next={next} />
-  </main>
+
+<BaseLayout
+	description={description}
+	pageTitle={title}
+	image={heroImage ? `/img/${heroImage}` : undefined}
+>
+	<main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8">
+		<article>
+			<header
+				class:list={[
+					'grid items-end gap-5 pt-6 pb-8 md:gap-10 md:pt-10',
+					heroImage ? 'md:grid-cols-[1.05fr_1fr]' : 'max-w-225',
+				]}
+			>
+				<div>
+					<div class="font-mono text-xs tracking-wider uppercase text-mute">
+						<b class="font-normal text-accent-text">////</b> Feature{' '}
+						{tags?.[0] && <> &nbsp;/&nbsp; {tags[0]}</>}
+					</div>
+					<h1 class="mt-3 mb-4.5 text-post-title leading-[1.1] text-ink">
+						<Headline title={title} />
+					</h1>
+					<p class="mt-0 mb-4.5 max-w-[32em] text-lg md:text-2xl leading-[1.45] text-mute italic">
+						{subtitle ?? description}
+					</p>
+					<div class="font-mono text-xs tracking-wider uppercase text-mute">
+						By David Soards &nbsp;/&nbsp; <FormattedDate date={pubDate} />
+						{tags?.map((tag) => (
+							<>
+								{' '}
+								&nbsp;
+								<a href={`/tags/${tag}/`}>
+									<b class="font-normal text-accent-text">#</b>
+									{tag}
+								</a>
+							</>
+						))}
+					</div>
+					{updatedDate && (
+						<div class="mt-2 font-mono text-xs tracking-wider uppercase text-mute">
+							Updated <FormattedDate date={updatedDate} />
+						</div>
+					)}
+				</div>
+				{heroImage && <Duotone class="order-2 aspect-4/3 md:order-none" image={heroImage} eager />}
+			</header>
+			<div class="prose-c text-mute mx-auto max-w-[65ch] pt-8 pb-6 text-lg md:text-xl leading-relaxed break-words md:pt-12">
+				<slot />
+			</div>
+			<div class="mt-2 mb-6 text-center text-mute" aria-hidden="true">
+				<DYSMark class="size-4.5 align-middle" />
+			</div>
+		</article>
+		<PrevNext previous={previous} next={next} />
+	</main>
 </BaseLayout>

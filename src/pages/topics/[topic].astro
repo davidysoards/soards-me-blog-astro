@@ -5,18 +5,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BackIssues from '../../components/BackIssues.astro';
 import TopicFilter from '../../components/TopicFilter.astro';
 export async function getStaticPaths() {
-  const posts = (await getCollection('posts')).sort(newestFirst);
-  const postsByTopic = new Map(topics.map(topic => [topic.id, [] as Post[]]));
-  for (const post of posts) {
-    for (const topic of postTopics(post)) {
-      postsByTopic.get(topic.id)!.push(post);
-    }
-  }
-  return topics.map(topic => ({
-    params: { topic: topic.id },
-    props: { topic, posts: postsByTopic.get(topic.id)! },
-  }));
+	const posts = (await getCollection('posts')).sort(newestFirst);
+	const postsByTopic = new Map(topics.map((topic) => [topic.id, [] as Post[]]));
+	for (const post of posts) {
+		for (const topic of postTopics(post)) {
+			postsByTopic.get(topic.id)!.push(post);
+		}
+	}
+	return topics.map((topic) => ({
+		params: { topic: topic.id },
+		props: { topic, posts: postsByTopic.get(topic.id)! },
+	}));
 }
 const { topic, posts } = Astro.props;
 ---
-<BaseLayout pageTitle={topic.label}><main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8 pt-6 pb-12"><div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5"><h1 class="m-0 text-4xl md:text-5xl leading-[1.1]">{topic.label} stories</h1><TopicFilter active={topic.id} /></div><BackIssues posts={posts} /></main></BaseLayout>
+
+<BaseLayout pageTitle={topic.label}>
+	<main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8 pt-6 pb-12">
+		<div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5">
+			<h1 class="m-0 text-4xl md:text-5xl leading-[1.1]">{topic.label} stories</h1>
+			<TopicFilter active={topic.id} />
+		</div>
+		<BackIssues posts={posts} />
+	</main>
+</BaseLayout>

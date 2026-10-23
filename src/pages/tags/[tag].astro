@@ -4,10 +4,27 @@ import BackIssues from '../../components/BackIssues.astro';
 import { newestFirst } from '../../lib/topics';
 import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
-  const posts = (await getCollection('posts')).sort(newestFirst);
-  return [...new Set(posts.flatMap(post => post.data.tags || []))].map(tag => ({params: { tag }, props: { posts: posts.filter(post => post.data.tags?.includes(tag)) }}));
+	const posts = (await getCollection('posts')).sort(newestFirst);
+	return [...new Set(posts.flatMap((post) => post.data.tags || []))].map((tag) => ({
+		params: { tag },
+		props: { posts: posts.filter((post) => post.data.tags?.includes(tag)) },
+	}));
 }
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
-<BaseLayout pageTitle={`Posts tagged ${tag}`}><main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8 pt-6 pb-12"><div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5"><h1 class="m-0 text-4xl md:text-5xl leading-[1.1]">Filed under: #{tag}</h1><span class="font-mono text-xs tracking-wider uppercase text-mute">//// {posts.length} stories</span></div><BackIssues posts={posts} /><a class="font-mono text-xs tracking-wider uppercase text-mute text-accent-text" href="/">All stories</a></main></BaseLayout>
+
+<BaseLayout pageTitle={`Posts tagged ${tag}`}>
+	<main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8 pt-6 pb-12">
+		<div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5">
+			<h1 class="m-0 text-4xl md:text-5xl leading-[1.1]">Filed under: #{tag}</h1>
+			<span class="font-mono text-xs tracking-wider uppercase text-mute">
+				//// {posts.length} stories
+			</span>
+		</div>
+		<BackIssues posts={posts} />
+		<a class="font-mono text-xs tracking-wider uppercase text-mute text-accent-text" href="/">
+			All stories
+		</a>
+	</main>
+</BaseLayout>

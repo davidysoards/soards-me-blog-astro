@@ -4,10 +4,25 @@ import { postUrl } from '../lib/topics';
 import Duotone from './Duotone.astro';
 import Headline from './Headline.astro';
 import FormattedDate from './FormattedDate.astro';
-interface Props { post: Post }
+interface Props {
+	post: Post;
+}
 const { post } = Astro.props;
 ---
+
 <a class="grid items-center gap-4 pt-9 md:pt-12 md:grid-cols-2 md:gap-9" href={postUrl(post)}>
-  {post.data.heroImage && <Duotone class="aspect-16/10" image={post.data.heroImage} eager />}
-  <div><div class="font-mono text-xs tracking-wider uppercase text-mute"><b class="font-normal text-accent-text">////</b> Cover story &nbsp;/&nbsp; <FormattedDate date={post.data.pubDate} /></div><h2 class="mt-2.5 mb-3.5 text-cover leading-[1.1] text-ink"><Headline title={post.data.title} /></h2><p class="mt-0 mb-3.5 max-w-[34em] text-lg leading-normal text-mute">{post.data.description}</p><div class="font-mono text-xs tracking-wider uppercase text-mute">Filed under: {post.data.tags?.join(' // ')}</div></div>
+	{post.data.heroImage && <Duotone class="aspect-16/10" image={post.data.heroImage} eager />}
+	<div>
+		<div class="font-mono text-xs tracking-wider uppercase text-mute">
+			<b class="font-normal text-accent-text">////</b> Cover story &nbsp;/&nbsp;{' '}
+			<FormattedDate date={post.data.pubDate} />
+		</div>
+		<h2 class="mt-2.5 mb-3.5 text-cover leading-[1.1] text-ink">
+			<Headline title={post.data.title} />
+		</h2>
+		<p class="mt-0 mb-3.5 max-w-[34em] text-lg leading-normal text-mute">{post.data.description}</p>
+		<div class="font-mono text-xs tracking-wider uppercase text-mute">
+			Filed under: {post.data.tags?.join(' // ')}
+		</div>
+	</div>
 </a>

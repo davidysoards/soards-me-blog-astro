@@ -33,9 +33,7 @@ Getting access to Jev led me through a few providers. I initially landed on Type
 During that work, I discovered that **Pi already manages provider authentication**. In my setup, OpenRouter used Pi's login flow, while Vercel AI Gateway used an API key. The extension could retrieve either credential through the same Pi API:
 
 ```ts
-const providerId = provider === "openrouter"
-  ? "openrouter"
-  : "vercel-ai-gateway";
+const providerId = provider === 'openrouter' ? 'openrouter' : 'vercel-ai-gateway';
 return (await ctx.modelRegistry.getProviderAuth(providerId))?.auth.apiKey;
 ```
 
@@ -55,8 +53,8 @@ The gate handles recognizable routine work locally. `git status` and ordinary pr
 
 ```ts
 const local = classifyToolCall(event, ctx.cwd);
-if (local.action === "allow") return undefined;
-if (local.action === "deny") return { block: true, reason: local.reason };
+if (local.action === 'allow') return undefined;
+if (local.action === 'deny') return { block: true, reason: local.reason };
 ```
 
 Only calls left for judgment continue to Jev.

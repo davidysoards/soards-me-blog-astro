@@ -54,7 +54,7 @@ Here's the full <a href="https://github.com/dys-org/pi-voice/blob/v0.3.1/voices/
 
 ```md
 ---
-description: "Short and direct, leading with results"
+description: 'Short and direct, leading with results'
 ---
 
 Keep your responses short and direct while doing the work just as thoroughly. Lead with the result; no preamble or closing recap.
