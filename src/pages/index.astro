@@ -1,55 +1,20 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Badge from '../components/Badge.astro';
-import { SITE_TITLE } from '../consts';
-import BlogPost from '../components/BlogPost.astro';
-
-const posts = await getCollection('posts');
-const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
-const sortedPosts = posts.toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+import Masthead from '../components/Masthead.astro';
+import EditorsLetter from '../components/EditorsLetter.astro';
+import CoverStory from '../components/CoverStory.astro';
+import IssueGrid from '../components/IssueGrid.astro';
+import TopicFilter from '../components/TopicFilter.astro';
+import BackIssues from '../components/BackIssues.astro';
+import { newestFirst } from '../lib/topics';
+const posts = (await getCollection('posts')).sort(newestFirst);
+const [cover, ...rest] = posts;
+const older = rest.slice(6);
 ---
-
-<BaseLayout>
-	<main class="max-w-screen-md mx-auto">
-		<div class="grid gap-4">
-			<div class="flex gap-8 items-center mx-auto">
-				<img
-					src="/img/david-soards.jpg"
-					alt="David Soards"
-					class="self-start md:self-auto rounded-full size-20"
-				/>
-				<div>
-					<h1 class="text-3xl mt-0">{SITE_TITLE}</h1>
-					<p class="text-xl mb-0 hidden md:block">
-						A blog by me, David Soards, mostly about Front-End Development and UX/UI Design.
-					</p>
-				</div>
-			</div>
-			<p class="text-lg mb-0 md:hidden text-center">
-				A blog by me, David Soards, mostly about Front-End Development and UX/UI Design.
-			</p>
-		</div>
-		<div>
-			<!-- TODO filter theset to top 10 tags -->
-			<ul class="mb-12 md:mb-16 mt-8 flex flex-wrap gap-2 justify-center md:justify-start">
-				{
-					tags.map((tag) => {
-						return (
-							<li>
-								<a href={`/tags/${tag}`}>
-									<Badge textSize="text-base">{tag}</Badge>
-								</a>
-							</li>
-						);
-					})
-				}
-			</ul>
-		</div>
-		<section>
-			<ul class="grid gap-4">
-				{sortedPosts.map((post) => <BlogPost post={post} />)}
-			</ul>
-		</section>
-	</main>
-</BaseLayout>
+<BaseLayout><main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8" data-home>
+  <Masthead /><EditorsLetter />{cover && <CoverStory post={cover} />}
+  <section data-story-section aria-labelledby="issue-heading"><div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5"><h2 id="issue-heading" class="m-0 text-4xl md:text-5xl leading-none">Also in this issue</h2><TopicFilter /></div><IssueGrid posts={rest.slice(0,6)} /><p data-empty hidden class="py-5 text-mute italic">No stories in this section for this topic. Browse the back issues below.</p></section>
+  <section data-story-section aria-labelledby="back-heading"><div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5"><h2 id="back-heading" class="m-0 text-4xl md:text-5xl leading-none">Back issues</h2><span class="font-mono text-xs tracking-wider uppercase text-mute"><b class="font-normal text-accent-text">////</b> <span data-count>{older.length} stories</span></span></div><BackIssues posts={older} /><p data-empty hidden class="py-5 text-mute italic">No back issues for this topic.</p></section>
+  <p class="sr-only" role="status" data-filter-status></p>
+</main></BaseLayout>

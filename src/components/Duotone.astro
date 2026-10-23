@@ -1,0 +1,5 @@
+---
+interface Props { image: string; eager?: boolean; class?: string }
+const { image, eager = false } = Astro.props;
+---
+<div class:list={["duo", Astro.props.class]}><img src={`/img/${image}`} alt="" width="1200" height="800" loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} /></div>

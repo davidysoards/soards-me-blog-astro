@@ -1,0 +1,24 @@
+---
+import { postTopics, postUrl, type Post } from '../lib/topics';
+import Duotone from './Duotone.astro';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props { posts: Post[] }
+const { posts } = Astro.props;
+---
+
+<div class="grid grid-cols-1 gap-x-7 gap-y-8 md:grid-cols-3">
+  {posts.map(post => {
+    const matchingTopics = postTopics(post);
+    return (
+      <a class="group" href={postUrl(post)} data-topics={matchingTopics.map(topic => topic.id).join(',')}>
+        {post.data.heroImage && <Duotone class="mb-3 aspect-3/2" image={post.data.heroImage} />}
+        <div class="font-mono text-xs tracking-wider uppercase text-mute">
+          <b class="font-normal text-accent-text">////</b> <FormattedDate date={post.data.pubDate} /> / {matchingTopics[0]?.label}
+        </div>
+        <h3 class="mt-1.5 mb-2 text-3xl leading-[1.1] text-ink group-hover:text-accent">{post.data.title}</h3>
+        <p class="m-0 text-base leading-normal text-mute">{post.data.description}</p>
+      </a>
+    );
+  })}
+</div>

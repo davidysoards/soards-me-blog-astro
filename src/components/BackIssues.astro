@@ -1,0 +1,6 @@
+---
+import { postTopics, postUrl, type Post } from '../lib/topics';
+interface Props { posts: Post[] }
+const { posts } = Astro.props;
+---
+<div class="mb-9 md:mb-12">{posts.map(post => <a class="group grid grid-cols-[64px_1fr] items-baseline gap-2.5 border-t border-rule py-2.5 text-base md:text-lg last:border-b hover:text-accent-text md:grid-cols-[90px_1fr_auto] md:gap-4" href={postUrl(post)} data-topics={postTopics(post).map(t => t.id).join(',')}><time class="font-mono text-xs tracking-wider uppercase text-mute group-hover:text-accent-text" datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toISOString().slice(0,7).replace('-', '.')}</time><span>{post.data.title}</span><span class="hidden font-mono text-xs tracking-wider uppercase text-mute group-hover:text-accent-text md:inline">{post.data.tags?.[0]}</span></a>)}</div>
