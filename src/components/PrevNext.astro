@@ -1,0 +1,35 @@
+---
+import { postUrl, type Post } from '../lib/topics';
+
+interface Props {
+	previous?: Post;
+	next?: Post;
+}
+const { previous, next } = Astro.props;
+---
+
+{(previous || next) && (
+	<nav
+		class="my-10 grid grid-cols-1 border border-rule md:grid-cols-2"
+		aria-label="Previous and next stories"
+	>
+		{[
+			{ post: previous, label: 'Previous' },
+			{ post: next, label: 'Next' },
+		].map(({ post, label }) =>
+			post ? (
+				<a
+					class="group px-5.5 py-5 not-first:border-t not-first:border-rule hover:bg-accent hover:text-white md:not-first:border-t-0 md:not-first:border-l md:last:text-right"
+					href={postUrl(post)}
+				>
+					<span class="font-mono text-xs font-medium tracking-wider uppercase text-mute group-hover:text-white">
+						//// {label} story
+					</span>
+					<h2 class="mt-2 text-3xl">{post.data.title}</h2>
+				</a>
+			) : (
+				<div class="hidden border-rule md:block md:not-first:border-l"></div>
+			),
+		)}
+	</nav>
+)}

@@ -1,0 +1,37 @@
+---
+import type { Post } from '../lib/topics';
+import { postUrl } from '../lib/topics';
+import Duotone from './Duotone.astro';
+import Headline from './Headline.astro';
+import FormattedDate from './FormattedDate.astro';
+import EditorsLetter from './EditorsLetter.astro';
+interface Props {
+	post: Post;
+}
+const { post } = Astro.props;
+const url = postUrl(post);
+---
+
+<article class="grid gap-5 pt-7 md:grid-cols-[1.1fr_1fr] md:gap-10 md:pt-9">
+	{post.data.heroImage && (
+		<a class="block" href={url} tabindex="-1" aria-hidden="true">
+			<Duotone class="aspect-4/3 md:aspect-4/5" image={post.data.heroImage} eager />
+		</a>
+	)}
+	<div>
+		<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
+			<span class="text-accent-text">////</span> Cover story &nbsp;/&nbsp;{' '}
+			<FormattedDate date={post.data.pubDate} />
+		</div>
+		<h2 class="mt-3 mb-5 text-cover text-balance">
+			<a class="hover:text-accent-text" href={url}>
+				<Headline title={post.data.title} />
+			</a>
+		</h2>
+		<p class="mb-4 max-w-[34em] text-lg leading-normal md:text-xl">{post.data.description}</p>
+		<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
+			Filed under: {post.data.tags?.join(' // ')}
+		</div>
+		<EditorsLetter />
+	</div>
+</article>

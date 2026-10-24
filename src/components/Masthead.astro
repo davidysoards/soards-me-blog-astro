@@ -1,0 +1,48 @@
+---
+import DYSLogo from './DYSLogo.astro';
+import { postTopics, postUrl, readingMinutes, type Post } from '../lib/topics';
+interface Props {
+	stories: Post[];
+}
+const { stories } = Astro.props;
+---
+
+<header class="pt-3 md:pt-5">
+	<div class="flex items-end justify-between gap-10">
+		<div class="flex items-end gap-[.1em] text-masthead max-md:justify-between w-full">
+			<h1 class="text-[1em] leading-[.9] whitespace-nowrap text-accent uppercase">
+				<span class="mb-[.3em] block font-serif text-[.22em] leading-none font-normal text-ink normal-case italic">
+					david y.
+				</span>
+				Soards
+			</h1>
+			<span class="mb-1 block size-[.85em] text-ink dark:text-accent">
+				<DYSLogo class="size-full" />
+			</span>
+		</div>
+		<nav class="hidden max-w-sm pb-1 text-right md:block" aria-label="Inside this issue">
+			<div class="mb-2 font-mono text-xs font-medium tracking-wider uppercase text-mute">
+				<span class="text-accent-text">////</span> Inside this issue
+			</div>
+			<ul class="space-y-3">
+				{stories.map((post, index) => (
+					<li class:list={[index === 2 && 'hidden lg:block']}>
+						<a class="group block" href={postUrl(post)}>
+							<span class="block font-display text-xl leading-[1.14] text-balance text-ink lowercase group-hover:text-accent-text">
+								{post.data.title}
+							</span>
+							<span class="mt-0.5 block font-mono text-[11px] font-medium leading-none tracking-wider uppercase text-mute">
+								{postTopics(post)[0]?.label} / {readingMinutes(post)} min read
+							</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+	</div>
+	<div class="mt-4 flex items-center justify-between gap-4 bg-accent px-3 py-1.5 font-mono text-xs font-bold tracking-wider uppercase text-white dark:text-black md:mt-5">
+		<span>//// User Experience Engineer</span>
+		<span class="hidden md:inline">Writing on AI, design &amp; the web</span>
+	</div>
+	<div class="mt-0.75 h-[1.5px] bg-accent" aria-hidden="true"></div>
+</header>

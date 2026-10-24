@@ -1,0 +1,11 @@
+---
+interface Props {
+	title: string;
+}
+const words = Astro.props.title.split(' ');
+const accent = words.splice(words.length >= 3 ? -2 : -1).join(' ');
+const prefix = words.join(' ');
+---
+
+{prefix && <>{prefix} </>}
+<span class="text-accent">{accent}</span>

@@ -1,26 +1,14 @@
 ---
-const today = new Date();
+import DYSMark from './DYSMark.astro';
 ---
 
-<footer class="pb-4 pt-16 text-sm w-full text-center font-sans font-light">
-	<div class="flex justify-center gap-4 mb-2">
-		<a href="https://github.com/davidysoards" target="_blank">
-			<span class="sr-only">Go to my GitHub repo</span>
-			<span aria-hidden="true" class="i-fa6-brands-github size-5 hover:text-gray-12"></span>
-		</a>
-		<a href="https://twitter.com/ninjasoards" target="_blank" class="group hover:text-gray-12">
-			<span class="sr-only">Follow me on Twitter</span>
-			<span
-				aria-hidden="true"
-				class="i-fa6-brands-x-twitter size-5 group-hover:hidden group-focus:hidden"></span>
-			<span
-				aria-hidden="true"
-				class="i-fa6-brands-twitter size-5 hidden group-hover:block group-focus:block"></span>
-		</a>
-		<a href="https://www.linkedin.com/in/davidysoards/" target="_blank">
-			<span class="sr-only">Follow me on Linked In</span>
-			<span aria-hidden="true" class="i-fa6-brands-linkedin-in size-5 hover:text-gray-12"></span>
+<footer class="mx-auto w-full max-w-7xl px-4.5 md:px-8 mt-6">
+	<div class="flex items-center justify-between pt-3.5 pb-8 md:pb-10 font-mono text-xs font-medium tracking-wider uppercase text-mute">
+		<span>
+			<DYSMark class="mr-2 size-4 align-[-3px] text-ink" />© {new Date().getFullYear()} David Soards
+		</span>
+		<a class="hover:text-accent-text" href="/">
+			<span class="text-accent-text">////</span> blog.soards.me
 		</a>
 	</div>
-	<div>&copy; {today.getFullYear()} David Soards. All Rights Reserved.</div>
 </footer>

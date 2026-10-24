@@ -1,43 +1,94 @@
 ---
-import HeaderLink from './HeaderLink.astro';
 import ThemeToggle from './ThemeToggle.astro';
-import DYSLogo from './DYSLogo.astro';
+import { getCollection } from 'astro:content';
+import DYSMark from './DYSMark.astro';
+const home = Astro.url.pathname === '/';
+const dates = (await getCollection('posts')).map((post) => post.data.pubDate);
+const latest = new Date(Math.max(...dates.map(Number)));
+const year = latest.getUTCFullYear();
+const volume = year - Math.min(...dates.map((date) => date.getUTCFullYear())) + 1;
+const issue = dates.filter((date) => date.getUTCFullYear() === year).length;
+const month = latest.toLocaleDateString('en-us', {
+	month: 'short',
+	year: 'numeric',
+	timeZone: 'UTC',
+});
+const socials = [
+	{ label: 'GitHub', href: 'https://github.com/davidysoards' },
+	{ label: 'X', href: 'https://x.com/ninjasoards' },
+	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/davidysoards/' },
+];
 ---
 
-<header class="max-w-screen-md w-full mx-auto pt-4 pb-2 md:pb-4 text-gray-11">
-	<nav class="flex items-center justify-between flex-col gap-6 sm:flex-row">
-		<div class="flex gap-8 items-center">
-			<HeaderLink href="/">blog</HeaderLink>
-			<HeaderLink href="https://design.soards.me/">design</HeaderLink>
-			<ThemeToggle />
+<header class="mx-auto w-full max-w-7xl px-4.5 md:px-8">
+	<div
+		class:list={[
+			'flex min-h-14 items-center justify-between gap-1 md:gap-6 py-2.5 font-mono text-xs font-medium tracking-wider uppercase text-mute',
+			home && 'border-b border-frame',
+		]}
+	>
+		{home ? (
+			<span class="shrink-0 whitespace-nowrap">
+				<span class="max-[420px]:hidden text-accent-text">////</span> Vol.{' '}
+				{String(volume).padStart(2, '0')}
+				<span class="hidden md:inline">
+					{' '}
+					&nbsp;—&nbsp; No. {issue} &nbsp;—&nbsp; {month}
+				</span>
+			</span>
+		) : (
+			<a
+				class="flex shrink-0 items-center gap-2.5 font-display text-2xl leading-[.9] tracking-normal text-accent uppercase hover:text-accent-text"
+				href="/"
+				aria-label="David Y. Soards home"
+			>
+				<DYSMark class="size-6 md:size-8" />
+				<span class="hidden md:block">
+					<span class="mb-1 block font-serif text-xs leading-none font-normal text-ink normal-case italic">
+						david y.
+					</span>
+					Soards
+				</span>
+			</a>
+		)}
+		<nav
+			class="ml-auto flex items-center gap-4.5 whitespace-nowrap md:gap-7"
+			aria-label="Main navigation"
+		>
+			<a
+				class="hidden hover:text-accent-text lg:inline"
+				href="/"
+				aria-current={home ? 'page' : undefined}
+			>
+				Writing
+			</a>
+			<a
+				class="hidden hover:text-accent-text lg:inline"
+				href="https://design.soards.me/"
+				target="_blank"
+				rel="noopener"
+			>
+				Art
+			</a>
+			<span>
+				{socials.map(({ label, href }) => (
+					<>
+						<a class="hover:text-accent-text" href={href} target="_blank" rel="noopener">
+							{label}
+						</a>{' '}
+						/{' '}
+					</>
+				))}
+				<a class="hover:text-accent-text" href="/rss.xml">
+					RSS
+				</a>
+			</span>
+		</nav>
+		<ThemeToggle />
+	</div>
+	{!home && (
+		<div class="border-t-[1.5px] border-accent pt-0.75" aria-hidden="true">
+			<div class="h-1 bg-accent"></div>
 		</div>
-		<a href="/">
-			<DYSLogo class="size-14 shadow rounded text-accent-9" />
-		</a>
-
-		<div class="flex gap-8">
-			<a href="https://github.com/davidysoards" target="_blank">
-				<span class="sr-only">Go to my GitHub repo</span>
-				<span aria-hidden="true" class="i-fa6-brands-github size-5 sm:size-6 hover:text-gray-12"
-				></span>
-			</a>
-			<a href="https://twitter.com/ninjasoards" target="_blank" class="group hover:text-gray-12">
-				<span class="sr-only">Follow me on Twitter</span>
-				<span
-					aria-hidden="true"
-					class="i-fa6-brands-x-twitter size-5 sm:size-6 group-hover:hidden group-focus:hidden"
-				></span>
-				<span
-					aria-hidden="true"
-					class="i-fa6-brands-twitter size-5 sm:size-6 hidden group-hover:block group-focus:block"
-				></span>
-			</a>
-			<a href="https://www.linkedin.com/in/davidysoards/" target="_blank">
-				<span class="sr-only">Follow me on Linked In</span>
-				<span
-					aria-hidden="true"
-					class="i-fa6-brands-linkedin-in size-5 sm:size-6 hover:text-gray-12"></span>
-			</a>
-		</div>
-	</nav>
+	)}
 </header>

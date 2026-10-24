@@ -12,17 +12,15 @@ const tags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
 <BaseLayout pageTitle={pageTitle}>
 	<main class="max-w-screen-md mx-auto">
 		<ul class="mb-8 md:mb-12 mt-4 flex flex-wrap gap-2">
-			{
-				tags.map((tag) => {
-					return (
-						<li>
-							<a href={`/tags/${tag}`}>
-								<Badge>{tag}</Badge>
-							</a>
-						</li>
-					);
-				})
-			}
+			{tags.map((tag) => {
+				return (
+					<li>
+						<a href={`/tags/${tag}`}>
+							<Badge>{tag}</Badge>
+						</a>
+					</li>
+				);
+			})}
 		</ul>
 	</main>
 </BaseLayout>
