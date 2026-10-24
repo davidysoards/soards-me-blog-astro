@@ -20,12 +20,10 @@ const { posts } = Astro.props;
 			>
 				{post.data.heroImage && <Duotone class="mb-3 aspect-3/2" image={post.data.heroImage} />}
 				<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
-					<span class="text-accent-text">////</span>{' '}
-					<FormattedDate date={post.data.pubDate} /> / {matchingTopics[0]?.label}
+					<span class="text-accent-text">////</span> <FormattedDate date={post.data.pubDate} /> /{' '}
+					{matchingTopics[0]?.label}
 				</div>
-				<h3 class="mt-1.5 mb-2 text-3xl group-hover:text-accent-text">
-					{post.data.title}
-				</h3>
+				<h3 class="mt-1.5 mb-2 text-3xl group-hover:text-accent-text">{post.data.title}</h3>
 				<p class="text-base leading-normal text-mute">{post.data.description}</p>
 			</a>
 		);

@@ -60,7 +60,9 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags, pre
 						</div>
 					)}
 				</div>
-				{heroImage && <Duotone class="order-2 aspect-4/3 md:order-none md:self-end" image={heroImage} eager />}
+				{heroImage && (
+					<Duotone class="order-2 aspect-4/3 md:order-none md:self-end" image={heroImage} eager />
+				)}
 			</header>
 			<div class="prose-c text-mute mx-auto max-w-[65ch] pt-8 pb-6 text-lg md:text-xl leading-relaxed break-words md:pt-12">
 				<slot />
