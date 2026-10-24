@@ -26,19 +26,19 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags, pre
 			>
 				<div class="@container flex flex-col">
 					<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
-						<b class="font-normal text-accent-text">////</b> Feature{' '}
+						<span class="text-accent-text">////</span> Feature{' '}
 						{tags?.[0] && <> &nbsp;/&nbsp; {tags[0]}</>}
 					</div>
 					<h1
 						class:list={[
-							'mt-3 mb-4.5 text-post-title leading-[1.1] text-balance text-ink md:mt-auto md:pt-6',
+							'mt-3 mb-4.5 text-post-title text-balance md:mt-auto md:pt-6',
 							heroImage && 'md:text-[length:clamp(40px,84cqi/sqrt(var(--len)),96px)]',
 						]}
 						style={`--len: ${title.length}`}
 					>
 						<Headline title={title} />
 					</h1>
-					<p class="mt-0 mb-4.5 max-w-[32em] text-lg md:text-2xl leading-[1.45] text-mute italic">
+					<p class="mb-4.5 max-w-[32em] text-lg md:text-2xl leading-[1.45] text-mute italic">
 						{subtitle ?? description}
 					</p>
 					<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
@@ -47,8 +47,8 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags, pre
 							<>
 								{' '}
 								&nbsp;
-								<a href={`/tags/${tag}/`}>
-									<b class="font-normal text-accent-text">#</b>
+								<a class="hover:text-accent-text" href={`/tags/${tag}/`}>
+									<span class="text-accent-text">#</span>
 									{tag}
 								</a>
 							</>

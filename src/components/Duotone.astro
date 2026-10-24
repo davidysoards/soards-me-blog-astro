@@ -4,10 +4,10 @@ interface Props {
 	eager?: boolean;
 	class?: string;
 }
-const { image, eager = false } = Astro.props;
+const { image, eager = false, class: className } = Astro.props;
 ---
 
-<div class:list={['duo', Astro.props.class]}>
+<div class:list={['duo', className]}>
 	<img
 		src={`/img/${image}`}
 		alt=""

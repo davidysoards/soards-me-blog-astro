@@ -3,6 +3,7 @@
 @import '@radix-ui/colors/red-dark.css';
 @import '@radix-ui/colors/mauve.css';
 @import '@radix-ui/colors/mauve-dark.css';
+@plugin './icons.mjs';
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -133,24 +134,15 @@
 		background: var(--red-9);
 		mix-blend-mode: multiply;
 	}
-	:is(a:hover, .duo:hover) .duo img,
+	:is(a:hover, a:focus-visible) .duo img,
 	.duo:hover img {
 		filter: none;
 		mix-blend-mode: normal;
 	}
-	:is(a:hover, .duo:hover) .duo::after,
-	.duo:hover::after,
-	.dark :is(a:hover) .duo::before,
-	.dark .duo:hover::before {
-		opacity: 0;
-	}
-
-	a:focus-visible .duo img {
-		filter: none;
-		mix-blend-mode: normal;
-	}
-	a:focus-visible .duo::before,
-	a:focus-visible .duo::after {
+	:is(a:hover, a:focus-visible) .duo::before,
+	:is(a:hover, a:focus-visible) .duo::after,
+	.duo:hover::before,
+	.duo:hover::after {
 		opacity: 0;
 	}
 
@@ -159,7 +151,7 @@
 		@apply text-ink;
 	}
 	.prose-c h2 {
-		@apply mx-0 mt-20 mb-4;
+		@apply mt-20 mb-4;
 		font-size: 34px;
 		line-height: 1.15;
 	}
@@ -171,7 +163,7 @@
 		text-decoration-thickness: 1px;
 	}
 	.prose-c blockquote {
-		@apply mx-0 my-6.5;
+		@apply my-6.5;
 		padding-left: 2em;
 		color: var(--mauve-11);
 		font-size: 1.08em;
@@ -182,12 +174,11 @@
 		@apply m-0;
 	}
 	.prose-c ul {
-		@apply pl-0;
 		list-style: none;
 	}
 	.prose-c li {
 		position: relative;
-		@apply mx-0 my-1 pl-5.5;
+		@apply my-1 pl-5.5;
 	}
 	.prose-c li::before {
 		content: '//';
@@ -211,7 +202,7 @@
 	.prose-c pre {
 		position: relative;
 		overflow-x: auto;
-		@apply mx-0 my-7 rounded-md px-5.5 pt-8 pb-5;
+		@apply my-7 rounded-md px-5.5 pt-8 pb-5;
 		background: var(--color-code);
 		color: var(--color-code-fg);
 		font-size: 15px;
@@ -239,7 +230,7 @@
 		color: var(--red-11);
 	}
 	.prose-c figure {
-		@apply mx-0 my-8;
+		@apply my-8;
 	}
 	.prose-c figure img {
 		width: 100%;
@@ -248,27 +239,6 @@
 		@apply mt-2;
 	}
 
-	.pq,
-	.prose-c blockquote.pq {
-		position: relative;
-		@apply mx-0 my-12;
-		padding-left: 2.2em;
-		color: var(--mauve-12);
-		font-size: 1.45em;
-		font-style: italic;
-		line-height: 1.35;
-	}
-	.pq::before {
-		content: '\201C';
-		position: absolute;
-		left: 0;
-		top: -0.08em;
-		color: var(--red-9);
-		font-family: var(--font-anton);
-		font-size: 2.6em;
-		font-style: normal;
-		line-height: 1;
-	}
 	.prose-c p {
 		margin: 0 0 1.4em;
 	}
@@ -308,7 +278,7 @@
 		display: block;
 		overflow-x: auto;
 		border-collapse: collapse;
-		@apply mx-0 my-7;
+		@apply my-7;
 		font-size: 0.9em;
 	}
 	.prose-c th,
@@ -323,7 +293,7 @@
 	.prose-c hr {
 		border: 0;
 		border-top: 1px solid var(--mauve-6);
-		@apply mx-0 my-10;
+		@apply my-10;
 	}
 	@media (width < 48rem) {
 		.prose-c h2 {
@@ -332,11 +302,6 @@
 		.prose-c pre {
 			font-size: 13.5px;
 			@apply -mx-4.5 max-w-[calc(100%+2.25rem)] rounded-none;
-		}
-		.pq,
-		.prose-c blockquote.pq {
-			@apply mx-0 my-9;
-			font-size: 1.3em;
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {

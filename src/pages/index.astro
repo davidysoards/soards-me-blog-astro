@@ -18,7 +18,7 @@ const older = rest.slice(6);
 		{cover && <CoverStory post={cover} />}
 		<section data-story-section aria-labelledby="issue-heading">
 			<div class="mt-9 flex flex-wrap items-baseline justify-between gap-3 border-t-4 border-ink pt-3 pb-5 md:mt-12">
-				<h2 id="issue-heading" class="m-0 text-4xl md:text-5xl leading-none">
+				<h2 id="issue-heading" class="text-4xl leading-none md:text-5xl">
 					Also in this issue
 				</h2>
 				<TopicFilter />
@@ -30,11 +30,11 @@ const older = rest.slice(6);
 		</section>
 		<section data-story-section aria-labelledby="back-heading">
 			<div class="mt-9 flex flex-wrap items-baseline justify-between gap-3 border-t-4 border-ink pt-3 pb-5 md:mt-12">
-				<h2 id="back-heading" class="m-0 text-4xl md:text-5xl leading-none">
+				<h2 id="back-heading" class="text-4xl leading-none md:text-5xl">
 					Back issues
 				</h2>
 				<span class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
-					<b class="font-normal text-accent-text">////</b>{' '}
+					<span class="text-accent-text">////</span>{' '}
 					<span data-count>{older.length} stories</span>
 				</span>
 			</div>

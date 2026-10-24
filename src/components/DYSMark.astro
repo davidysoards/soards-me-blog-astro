@@ -1,5 +1,12 @@
+---
+interface Props {
+	class?: string;
+}
+const { class: className } = Astro.props;
+---
+
 <svg
-	class:list={['inline-block shrink-0', Astro.props.class]}
+	class:list={['inline-block shrink-0', className]}
 	aria-hidden="true"
 	viewBox="0 0 512 512"
 	xmlns="http://www.w3.org/2000/svg"

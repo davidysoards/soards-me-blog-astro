@@ -3,7 +3,8 @@ interface Props {
 	title: string;
 }
 const words = Astro.props.title.split(' ');
-const accent = words.splice(-2).join(' ');
+const accent = words.splice(words.length >= 3 ? -2 : -1).join(' ');
+const prefix = words.join(' ');
 ---
 
-{words.join(' ')} <em class="not-italic text-accent">{accent}</em>
+{prefix && <>{prefix} </>}<span class="text-accent">{accent}</span>

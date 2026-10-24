@@ -10,7 +10,7 @@ const { stories } = Astro.props;
 <header class="pt-3 md:pt-5">
 	<div class="flex items-end justify-between gap-10">
 		<div class="flex items-end gap-[.1em] text-masthead">
-			<h1 class="m-0 text-[1em] leading-[.9] tracking-normal whitespace-nowrap text-accent uppercase">
+			<h1 class="text-[1em] leading-[.9] whitespace-nowrap text-accent uppercase">
 				<span class="mb-[.3em] block font-serif text-[.22em] leading-none font-normal text-ink normal-case italic">
 					david y.
 				</span>
@@ -22,9 +22,9 @@ const { stories } = Astro.props;
 		</div>
 		<nav class="hidden max-w-sm pb-1 text-right lg:block" aria-label="Inside this issue">
 			<div class="mb-2 font-mono text-xs font-medium tracking-wider uppercase text-mute">
-				<b class="font-normal text-accent-text">////</b> Inside this issue
+				<span class="text-accent-text">////</span> Inside this issue
 			</div>
-			<ul class="m-0 list-none space-y-3 p-0">
+			<ul class="space-y-3">
 				{stories.map((post) => (
 					<li>
 						<a class="group block" href={postUrl(post)}>

@@ -1,7 +1,14 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import { getCollection } from 'astro:content';
 import DYSMark from './DYSMark.astro';
 const home = Astro.url.pathname === '/';
+const dates = (await getCollection('posts')).map((post) => post.data.pubDate);
+const latest = new Date(Math.max(...dates.map(Number)));
+const year = latest.getUTCFullYear();
+const volume = year - Math.min(...dates.map((date) => date.getUTCFullYear())) + 1;
+const issue = dates.filter((date) => date.getUTCFullYear() === year).length;
+const month = latest.toLocaleDateString('en-us', { month: 'short', year: 'numeric', timeZone: 'UTC' });
 const socials = [
 	{ label: 'GitHub', href: 'https://github.com/davidysoards' },
 	{ label: 'X', href: 'https://x.com/ninjasoards' },
@@ -18,8 +25,8 @@ const socials = [
 	>
 		{home ? (
 			<span>
-				<b class="font-normal text-accent-text">////</b> Vol. 09
-				<span class="hidden md:inline"> &nbsp;—&nbsp; Issue 21 &nbsp;—&nbsp; Oct 2026</span>
+				<span class="text-accent-text">////</span> Vol. {String(volume).padStart(2, '0')}
+				<span class="hidden md:inline"> &nbsp;—&nbsp; No. {issue} &nbsp;—&nbsp; {month}</span>
 			</span>
 		) : (
 			<a

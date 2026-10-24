@@ -12,15 +12,15 @@ tags:
 
 I've been using Pi lately. I like how minimal and extensible it is, but I wanted a permission option **between full YOLO (the Pi default) and asking me about every command**. Something like auto-mode in Claude Code or auto-review (“Approve for me”) in Codex.
 
-<a href="https://github.com/earendil-works/pi/tree/main/packages/coding-agent#extensions" target="_blank">Pi's extensions</a> can intercept tool calls before they run, which seemed like a useful place to add the permission behavior I was looking for.
+<a href="https://github.com/earendil-works/pi/tree/main/packages/coding-agent#extensions" target="_blank" rel="noopener">Pi's extensions</a> can intercept tool calls before they run, which seemed like a useful place to add the permission behavior I was looking for.
 
-Enter <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" target="_blank">Jev from TypeSafe</a>. You give it context and focused questions, and it returns typed answers. For yes/no questions, those answers are probabilities that your code can use to decide what happens next.
+Enter <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" target="_blank" rel="noopener">Jev from TypeSafe</a>. You give it context and focused questions, and it returns typed answers. For yes/no questions, those answers are probabilities that your code can use to decide what happens next.
 
 That seemed like a good fit. A command such as `git push` might be exactly what I asked the agent to do, or it might publish work I hadn't asked it to publish. Recognizing the command is straightforward. Connecting it to my request takes some judgment.
 
 ## Learning from existing projects
 
-I looked at projects including <a href="https://github.com/leepokai/jev-guard" target="_blank">jev-guard</a> and <a href="https://github.com/iefnaf/pi-jev" target="_blank">pi-jev</a>. <a href="https://github.com/jomatsu/pi-jev-auto-mode" target="_blank">pi-jev-auto-mode</a> became the main inspiration, especially its division between local rules and Jev judgment. I learned a lot from version 0.4.1 while working out what I wanted my own extension to do.
+I looked at projects including <a href="https://github.com/leepokai/jev-guard" target="_blank" rel="noopener">jev-guard</a> and <a href="https://github.com/iefnaf/pi-jev" target="_blank" rel="noopener">pi-jev</a>. <a href="https://github.com/jomatsu/pi-jev-auto-mode" target="_blank" rel="noopener">pi-jev-auto-mode</a> became the main inspiration, especially its division between local rules and Jev judgment. I learned a lot from version 0.4.1 while working out what I wanted my own extension to do.
 
 I did hesitate before installing a new permission package. This code would be deciding which actions an agent could take on my computer, so I wanted to understand it closely. Building my own didn't automatically make it safer. It gave me a reason to work through those decisions and aim for something small enough that I could inspect it myself.
 
@@ -100,4 +100,4 @@ One useful test supplies no credential for the selected provider and verifies th
 
 There are still substantial limits. The shell checks match command text; they don't fully interpret aliases, wrappers, or script internals. Recognized project commands rely on trust in the checked-out code and configured development tools. Jev can make incorrect judgments too. This is **a permission layer, not a sandbox**, and passing tests doesn't establish that every allowed command is safe.
 
-The result is <a href="https://github.com/dys-org/pi-jev-gate" target="_blank">pi-jev-gate</a>, a small Pi extension that combines local permission rules with Jev judgments for calls that need more context.
+The result is <a href="https://github.com/dys-org/pi-jev-gate" target="_blank" rel="noopener">pi-jev-gate</a>, a small Pi extension that combines local permission rules with Jev judgments for calls that need more context.

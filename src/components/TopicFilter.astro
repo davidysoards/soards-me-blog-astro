@@ -1,5 +1,8 @@
 ---
 import { topics } from '../lib/topics';
+interface Props {
+	active?: string;
+}
 const { active = 'all' } = Astro.props;
 ---
 
@@ -19,14 +22,14 @@ const { active = 'all' } = Astro.props;
 	const home = document.querySelector('[data-home]');
 	if (home) {
 		const links = home.querySelectorAll<HTMLAnchorElement>('[data-topic]');
-		const status = home.querySelector('[data-filter-status]')!;
+		const status = home.querySelector('[data-filter-status]');
 		const sections = [...home.querySelectorAll<HTMLElement>('[data-story-section]')].map(
 			(section) => ({
 				stories: [...section.querySelectorAll<HTMLElement>('[data-topics]')].map((element) => ({
 					element,
 					topics: element.dataset.topics?.split(','),
 				})),
-				empty: section.querySelector<HTMLElement>('[data-empty]')!,
+				empty: section.querySelector<HTMLElement>('[data-empty]'),
 				counter: section.querySelector('[data-count]'),
 			}),
 		);
@@ -42,12 +45,12 @@ const { active = 'all' } = Astro.props;
 						story.element.hidden = topic !== 'all' && !story.topics?.includes(topic);
 						if (!story.element.hidden) count++;
 					}
-					section.empty.hidden = count > 0;
+					if (section.empty) section.empty.hidden = count > 0;
 					if (section.counter)
 						section.counter.textContent = `${count} ${count === 1 ? 'story' : 'stories'}`;
 				}
 				links.forEach((item) => item.setAttribute('aria-current', String(item === link)));
-				status.textContent = `Showing ${link.textContent} stories`;
+				if (status) status.textContent = `Showing ${link.textContent} stories`;
 			}),
 		);
 	}

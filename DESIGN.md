@@ -71,7 +71,7 @@ components:
 
 A loud 90s music-magazine frame around calm, readable articles. Anton gives the nameplate and headlines their condensed shout; Literata carries the reading column; small uppercase mono labels and red duotone imagery supply the editorial accents.
 
-Radix colors are the foundation. Mockups in `docs/redesign/` guide composition only; their standalone CSS is not production configuration.
+Radix colors are the foundation.
 
 **Key characteristics:** red nameplate and bars, lowercase Anton headlines, `////` mono kickers, red/ink duotones, flat square-cornered surfaces, ink rules instead of cards.
 
@@ -80,7 +80,7 @@ Radix colors are the foundation. Mockups in `docs/redesign/` guide composition o
 `src/styles/tailwind.css` imports Radix red, red-dark, mauve and mauve-dark. The `.dark` class on `<html>` swaps every scale, including display-P3 values, so there are no hex values or manual dark overrides.
 
 - **Palette API:** `accent-1…12` map to `red-1…12`; `gray-1…12` map to `mauve-1…12`. These are public scales; don't prune unused steps.
-- **Accent (red-9):** fills only: nameplate, bars, rules, headline accents, duotone canvas, drop cap, list `//` marks, pull-quote mark.
+- **Accent (red-9):** fills only: nameplate, bars, rules, headline accents, duotone canvas, drop cap and list `//` marks.
 - **Accent text (red-11):** small red text: links, `////` marks, label accents, hover states, focus outline, selection background (with red-1 text).
 - **Neutrals:** paper, ink and mute for page, headings/strong text and body/labels; rule for hairlines; frame for the faint line under the home strip.
 - **Code:** mauve-2 / mauve-12 for inline code and unhighlighted blocks. Shiki's github-dark owns highlighted blocks; they carry Radix's `dark-theme` class, so their language labels use dark red-11 in both themes.
@@ -91,7 +91,7 @@ Radix colors are the foundation. Mockups in `docs/redesign/` guide composition o
 
 ## Typography
 
-Astro's local Fonts API (`astro.config.mjs`) serves the woff2 files in `src/assets/fonts/` with their licenses. `font-display` and `font-serif` utilities point at Astro's generated variables. Both families use `font-display: block`; `BaseHead.astro` preloads Anton and roman Literata, plus italic Literata on posts. Astro generates the metric-matched fallbacks; don't hand-tune them.
+Astro's local Fonts API (`astro.config.mjs`) serves the woff2 files in `src/assets/fonts/`. `font-display` and `font-serif` utilities point at Astro's generated variables. Both families use `font-display: block`; `BaseHead.astro` preloads Anton and roman Literata, plus italic Literata on posts. Astro generates the metric-matched fallbacks; don't hand-tune them.
 
 - **Masthead:** SOARDS in uppercase red with an italic Literata "david y." above it at .22em.
 - **Cover and post titles:** lowercase via CSS (frontmatter stays normally cased), `text-balance`, 1.1 leading so descenders clear.
@@ -107,7 +107,7 @@ Astro's local Fonts API (`astro.config.mjs`) serves the woff2 files in `src/asse
 - **Container:** `max-w-7xl` (1280px) with `px-4.5 md:px-8` gutters. Below `md` (768px) layouts stack.
 - **Rhythm:** sections use `mt-9 md:mt-12` (36/48px); article h2s get 80px above.
 - **Home, top to bottom:**
-  1. Issue strip (`//// Vol. 09 — Issue 21 — Oct 2026`, nav, theme toggle) over a faint frame line.
+  1. Issue strip (`//// Vol. 10 — No. 4 — Oct 2026`: volume = years publishing since 2017, number = posts that year, month of the latest post; nav, theme toggle) over a faint frame line.
   2. Nameplate: "david y." over SOARDS with the framed DYS logo beside it at .85em of the masthead size (cap height). At `lg`+, right-aligned "Inside this issue" cover lines fill the space: the next three titles, each with topic and reading time (230 wpm).
   3. Red subtitle bar (`//// User Experience Engineer` / `Writing on AI, design & the web`) with a 1.5px red line 3px below.
   4. Cover story: 4:5 duotone (4:3 mobile) at 1.1fr; kicker, headline, dek, "Filed under" tags and the editor's letter at 1fr.
@@ -129,13 +129,13 @@ Square corners for images, frames, bars and filters. Exceptions: inline code (3p
 
 ## Components
 
-Style with Tailwind utilities directly. Prefer standard utilities (numeric spacing, aspect fractions, built-in variants); use arbitrary values only for bespoke measurements. Custom CSS is limited to duotones, pull quotes and Markdown/MDX output (`.prose-c`).
+Style with Tailwind utilities directly. Prefer standard utilities (numeric spacing, aspect fractions, built-in variants); use arbitrary values only for bespoke measurements. Custom CSS is limited to duotones and Markdown/MDX output (`.prose-c`).
 
 - **Duotone:** grayscale image multiplied over red-9 with a 5px halftone dot screen (screen-blended over mauve-1 and tinted red in dark mode). Reveals the original color on hover or keyboard focus.
-- **Kicker:** red-11 `////` followed by a mono label, e.g. `//// Feature / AI`.
+- **Kicker:** red-11 `////` followed by a mono label, e.g. `//// Feature / AI`. The `////` and `#` marks are spans in accent-text.
 - **Topic filter:** All, AI, Design, Front-end, Infra. 1px ink outline; hover inverts to ink; active is red-9 with white bold text. JavaScript filters the homepage; static topic archives work without it.
 - **Editor's letter:** 2px ink frame, red label, Anton drop cap in red-9, two text columns at `lg`.
 - **Previous/next:** 1px rule frame; hover fills red-9 with white text.
-- **Theme toggle:** inline Lucide sun/moon SVGs at stroke 1.5 and 18px, mute, red-11 on hover. Persists to `localStorage`.
-- **Article prose:** red-11 semibold links with a half-opacity underline; `//` red list markers; borderless italic blockquotes; pull quotes (`.pq`) in larger italic ink with a red Anton opening quote; code blocks labeled `//// <language>`.
+- **Theme toggle:** Lucide sun/moon via the icons plugin at strokeWidth 1.5, 18px, mute, red-11 on hover. Persists to `localStorage`.
+- **Article prose:** red-11 semibold links with a half-opacity underline; `//` red list markers; borderless italic blockquotes; code blocks labeled `//// <language>`.
 - **Focus:** links and buttons get a 2px red-11 outline at 5px offset. Transitions switch off under reduced motion.
