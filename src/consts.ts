@@ -6,4 +6,4 @@ export const SITE_DESCRIPTION =
 	'A blog by David Soards about software development and whatever else he feels like writing about.';
 
 export const EDITORS_LETTER =
-	'Front-end engineer and designer, in that order some days and the reverse on others. I sketch the screens, then write the code that ships them, and lately I spend a lot of time teaching agents like Pi and Claude Code to behave. This is where I write it all down: technical notes on building with AI, plus design case studies coming soon.';
+	"Full-stack engineer and designer, in that order some days and the reverse on others. I mockup interfaces, write code, and spend a fair amount of time convincing agents to do what I want. This is where I share what I'm working on and what I figured out along the way, from front-end development to building with AI.";
