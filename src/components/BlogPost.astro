@@ -1,10 +1,7 @@
 ---
 import Badge from './Badge.astro';
 import FormattedDate from './FormattedDate.astro';
-import { getCollection } from 'astro:content';
-
-const posts = await getCollection('posts');
-type Post = (typeof posts)[number];
+import { postUrl, type Post } from '../lib/topics';
 
 interface Props {
 	post: Post;
@@ -14,7 +11,7 @@ const { post } = Astro.props;
 ---
 
 <li class="mb-4 relative group p-4 rounded-lg -mx-4 transition-colors hover:border border border-transparent hover:border-gray-3 hover:shadow-md">
-	<a href={`/posts/${post.id.replace(/\/index$/, '')}/`} class="absolute inset-0"></a>
+	<a href={postUrl(post)} class="absolute inset-0"></a>
 	<div class="md:flex gap-6">
 		{post.data.heroImage && (
 			<img
@@ -25,7 +22,7 @@ const { post } = Astro.props;
 		)}
 		<span class="sr-only">{post.data.title}</span>
 		<div>
-			<h2 class="mt-4 md:m-0 group-hover:text-accent-10 text-xl transition-colors">
+			<h2 class="mt-4 md:m-0 group-hover:text-accent-text text-xl transition-colors">
 				{post.data.title}
 			</h2>
 			<div class="font-sans text-base font-light">{post.data.subtitle}</div>

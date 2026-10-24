@@ -1,20 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
-import { topics, postTopics, newestFirst, type Post } from '../../lib/topics';
+import { topics, postTopics, newestFirst } from '../../lib/topics';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BackIssues from '../../components/BackIssues.astro';
 import TopicFilter from '../../components/TopicFilter.astro';
 export async function getStaticPaths() {
 	const posts = (await getCollection('posts')).sort(newestFirst);
-	const postsByTopic = new Map(topics.map((topic) => [topic.id, [] as Post[]]));
-	for (const post of posts) {
-		for (const topic of postTopics(post)) {
-			postsByTopic.get(topic.id)!.push(post);
-		}
-	}
 	return topics.map((topic) => ({
 		params: { topic: topic.id },
-		props: { topic, posts: postsByTopic.get(topic.id)! },
+		props: { topic, posts: posts.filter((post) => postTopics(post).includes(topic)) },
 	}));
 }
 const { topic, posts } = Astro.props;

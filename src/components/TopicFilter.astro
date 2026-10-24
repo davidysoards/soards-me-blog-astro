@@ -6,7 +6,7 @@ const { active = 'all' } = Astro.props;
 <nav class="flex flex-wrap gap-1" aria-label="Filter stories by topic">
 	{[{ id: 'all', label: 'All' }, ...topics].map((topic) => (
 		<a
-			class="inline-block border border-ink px-2.5 py-1.5 font-mono text-xs uppercase hover:bg-ink hover:text-paper aria-current:font-bold aria-current:border-accent aria-current:bg-accent aria-current:text-white dark:aria-current:text-black"
+			class="inline-block border border-ink px-2.5 py-1.5 font-mono text-xs font-medium uppercase hover:bg-ink hover:text-paper aria-current:font-bold aria-current:border-accent aria-current:bg-accent aria-current:text-white"
 			href={topic.id === 'all' ? '/' : `/topics/${topic.id}/`}
 			data-topic={topic.id}
 			aria-current={active === topic.id ? 'true' : undefined}

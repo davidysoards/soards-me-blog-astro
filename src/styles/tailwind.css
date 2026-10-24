@@ -3,18 +3,15 @@
 @import '@radix-ui/colors/red-dark.css';
 @import '@radix-ui/colors/mauve.css';
 @import '@radix-ui/colors/mauve-dark.css';
-@plugin './icons.mjs';
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
 	--font-sans: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
 	--font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
-	--text-masthead: clamp(64px, 8vw, 124px);
+	--text-masthead: clamp(76px, 13.5vw, 176px);
 	--text-post-title: clamp(46px, 6.4vw, 84px);
-	--text-cover: clamp(40px, 4.6vw, 58px);
-
-	--accent-text: light-dark(var(--red-11), var(--red-10));
+	--text-cover: clamp(52px, 6.6vw, 96px);
 }
 
 @theme inline {
@@ -27,7 +24,7 @@
 	--color-code: var(--mauve-2);
 	--color-code-fg: var(--mauve-12);
 	--color-accent: var(--red-9);
-	--color-accent-text: var(--accent-text);
+	--color-accent-text: var(--red-11);
 	--color-frame: color-mix(in oklab, var(--mauve-12) 22%, transparent);
 
 	--color-accent-1: var(--red-1);
@@ -62,12 +59,6 @@
 .dark {
 	color-scheme: dark;
 }
-
-@media (width < 48rem) {
-	:root {
-	}
-}
-
 @layer base {
 	body {
 		@apply bg-paper font-serif text-ink antialiased transition-colors duration-200;
@@ -174,7 +165,7 @@
 	}
 	.prose-c a {
 		@apply font-semibold decoration-current/50 hover:decoration-current;
-		color: var(--accent-text);
+		color: var(--red-11);
 		text-decoration-line: underline;
 		text-underline-offset: 3px;
 		text-decoration-thickness: 1px;
@@ -242,7 +233,7 @@
 	.prose-c pre::before {
 		content: '//// ' attr(data-language);
 		@apply absolute top-2 left-5.5;
-		font: 11px var(--font-mono);
+		font: 500 11px var(--font-mono);
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--red-11);

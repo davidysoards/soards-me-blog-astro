@@ -40,5 +40,7 @@ export const postTopics = (post: Post) =>
 	topics.filter((topic) => post.data.tags?.some((tag) => topic.tags.includes(tag)));
 export const postSlug = (post: Post) => post.id.replace(/\/index$/, '');
 export const postUrl = (post: Post) => `/posts/${postSlug(post)}/`;
+export const readingMinutes = (post: Post) =>
+	Math.max(1, Math.round((post.body ?? '').split(/\s+/).filter(Boolean).length / 230));
 export const newestFirst = (a: Post, b: Post) =>
 	b.data.pubDate.valueOf() - a.data.pubDate.valueOf();

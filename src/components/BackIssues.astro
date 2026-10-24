@@ -16,13 +16,13 @@ const { posts } = Astro.props;
 				.join(',')}
 		>
 			<time
-				class="font-mono text-xs tracking-wider uppercase text-mute group-hover:text-accent-text"
+				class="font-mono text-xs font-medium tracking-wider uppercase text-mute group-hover:text-accent-text"
 				datetime={post.data.pubDate.toISOString()}
 			>
 				{post.data.pubDate.toISOString().slice(0, 7).replace('-', '.')}
 			</time>
 			<span>{post.data.title}</span>
-			<span class="hidden font-mono text-xs tracking-wider uppercase text-mute group-hover:text-accent-text md:inline">
+			<span class="hidden font-mono text-xs font-medium tracking-wider uppercase text-mute group-hover:text-accent-text md:inline">
 				{post.data.tags?.[0]}
 			</span>
 		</a>

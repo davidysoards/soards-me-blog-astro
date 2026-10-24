@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Masthead from '../components/Masthead.astro';
-import EditorsLetter from '../components/EditorsLetter.astro';
 import CoverStory from '../components/CoverStory.astro';
 import IssueGrid from '../components/IssueGrid.astro';
 import TopicFilter from '../components/TopicFilter.astro';
@@ -15,11 +14,10 @@ const older = rest.slice(6);
 
 <BaseLayout>
 	<main id="main" class="mx-auto w-full max-w-7xl px-4.5 md:px-8" data-home>
-		<Masthead />
-		<EditorsLetter />
+		<Masthead stories={rest.slice(0, 3)} />
 		{cover && <CoverStory post={cover} />}
 		<section data-story-section aria-labelledby="issue-heading">
-			<div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5">
+			<div class="mt-9 flex flex-wrap items-baseline justify-between gap-3 border-t-4 border-ink pt-3 pb-5 md:mt-12">
 				<h2 id="issue-heading" class="m-0 text-4xl md:text-5xl leading-none">
 					Also in this issue
 				</h2>
@@ -31,11 +29,11 @@ const older = rest.slice(6);
 			</p>
 		</section>
 		<section data-story-section aria-labelledby="back-heading">
-			<div class="flex flex-wrap items-baseline justify-between gap-3 pt-9 md:pt-12 pb-5">
+			<div class="mt-9 flex flex-wrap items-baseline justify-between gap-3 border-t-4 border-ink pt-3 pb-5 md:mt-12">
 				<h2 id="back-heading" class="m-0 text-4xl md:text-5xl leading-none">
 					Back issues
 				</h2>
-				<span class="font-mono text-xs tracking-wider uppercase text-mute">
+				<span class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
 					<b class="font-normal text-accent-text">////</b>{' '}
 					<span data-count>{older.length} stories</span>
 				</span>
