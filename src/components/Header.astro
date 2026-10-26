@@ -23,13 +23,13 @@ const socials = [
 <header class="mx-auto w-full max-w-7xl px-4.5 md:px-8">
 	<div
 		class:list={[
-			'flex min-h-14 items-center justify-between gap-1 md:gap-6 py-2.5 font-mono text-xs font-medium tracking-wider uppercase text-mute',
+			'flex min-h-14 items-center justify-between gap-1 py-2.5 font-mono text-xs font-medium tracking-wider text-mute uppercase md:gap-6',
 			home && 'border-b border-frame',
 		]}
 	>
 		{home ? (
 			<span class="shrink-0 whitespace-nowrap">
-				<span class="max-[420px]:hidden text-accent-text">////</span> Vol.{' '}
+				<span class="text-accent-text max-[420px]:hidden">////</span> Vol.{' '}
 				{String(volume).padStart(2, '0')}
 				<span class="hidden md:inline">
 					{' '}

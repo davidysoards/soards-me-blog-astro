@@ -19,7 +19,7 @@ const { posts } = Astro.props;
 				data-topics={matchingTopics.map((topic) => topic.id).join(',')}
 			>
 				{post.data.heroImage && <Duotone class="mb-3 aspect-3/2" image={post.data.heroImage} />}
-				<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
+				<div class="font-mono text-xs font-medium tracking-wider text-mute uppercase">
 					<span class="text-accent-text">////</span> <FormattedDate date={post.data.pubDate} /> /{' '}
 					{matchingTopics[0]?.label}
 				</div>

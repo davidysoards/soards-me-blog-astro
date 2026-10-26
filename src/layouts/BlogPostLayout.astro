@@ -25,7 +25,7 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags, pre
 				]}
 			>
 				<div class="@container flex flex-col">
-					<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
+					<div class="font-mono text-xs font-medium tracking-wider text-mute uppercase">
 						<span class="text-accent-text">////</span> Feature{' '}
 						{tags?.[0] && <> &nbsp;/&nbsp; {tags[0]}</>}
 					</div>
@@ -38,10 +38,10 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags, pre
 					>
 						<Headline title={title} />
 					</h1>
-					<p class="mb-4.5 max-w-[32em] text-lg md:text-2xl leading-[1.45] text-mute italic">
+					<p class="mb-4.5 max-w-[32em] text-lg leading-[1.45] text-mute italic md:text-2xl">
 						{subtitle ?? description}
 					</p>
-					<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
+					<div class="font-mono text-xs font-medium tracking-wider text-mute uppercase">
 						By David Soards &nbsp;/&nbsp; <FormattedDate date={pubDate} />
 						{tags?.map((tag) => (
 							<>
@@ -55,7 +55,7 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags, pre
 						))}
 					</div>
 					{updatedDate && (
-						<div class="mt-2 font-mono text-xs font-medium tracking-wider uppercase text-mute">
+						<div class="mt-2 font-mono text-xs font-medium tracking-wider text-mute uppercase">
 							Updated <FormattedDate date={updatedDate} />
 						</div>
 					)}
@@ -64,7 +64,7 @@ const { title, subtitle, description, pubDate, updatedDate, heroImage, tags, pre
 					<Duotone class="order-2 aspect-4/3 md:order-none md:self-end" image={heroImage} eager />
 				)}
 			</header>
-			<div class="prose-c text-mute mx-auto max-w-[65ch] pt-8 pb-6 text-lg md:text-xl leading-relaxed break-words md:pt-12">
+			<div class="prose-c mx-auto max-w-[65ch] pt-8 pb-6 text-lg leading-relaxed break-words text-mute md:pt-12 md:text-xl">
 				<slot />
 			</div>
 			<div class="mt-2 mb-6 text-center text-mute" aria-hidden="true">

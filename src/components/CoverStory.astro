@@ -19,7 +19,7 @@ const url = postUrl(post);
 		</a>
 	)}
 	<div>
-		<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
+		<div class="font-mono text-xs font-medium tracking-wider text-mute uppercase">
 			<span class="text-accent-text">////</span> Cover story &nbsp;/&nbsp;{' '}
 			<FormattedDate date={post.data.pubDate} />
 		</div>
@@ -29,7 +29,7 @@ const url = postUrl(post);
 			</a>
 		</h2>
 		<p class="mb-4 max-w-[34em] text-lg leading-normal md:text-xl">{post.data.description}</p>
-		<div class="font-mono text-xs font-medium tracking-wider uppercase text-mute">
+		<div class="font-mono text-xs font-medium tracking-wider text-mute uppercase">
 			Filed under: {post.data.tags?.join(' // ')}
 		</div>
 		<EditorsLetter />

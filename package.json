@@ -33,6 +33,6 @@
 		"@radix-ui/colors": "^3.0.0",
 		"prettier": "^3.9.10",
 		"prettier-plugin-astro": "^1.1.1",
-		"prettier-plugin-tailwindcss": "^0.8.1"
+		"prettier-plugin-tailwindcss": "0.0.0-insiders.5b27f94"
 	}
 }

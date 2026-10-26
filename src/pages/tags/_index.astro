@@ -10,8 +10,8 @@ const tags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-	<main class="max-w-screen-md mx-auto">
-		<ul class="mb-8 md:mb-12 mt-4 flex flex-wrap gap-2">
+	<main class="mx-auto max-w-screen-md">
+		<ul class="mt-4 mb-8 flex flex-wrap gap-2 md:mb-12">
 			{tags.map((tag) => {
 				return (
 					<li>
