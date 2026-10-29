@@ -10,16 +10,8 @@ interface Props {
 	image?: string;
 	pubDate?: Date;
 	updatedDate?: Date;
-	articleTitle?: string;
 }
-const {
-	pageTitle,
-	description = SITE_DESCRIPTION,
-	image,
-	pubDate,
-	updatedDate,
-	articleTitle,
-} = Astro.props;
+const { pageTitle, description = SITE_DESCRIPTION, image, pubDate, updatedDate } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,7 +23,7 @@ const {
 			image={image}
 			pubDate={pubDate}
 			updatedDate={updatedDate}
-			articleTitle={articleTitle}
+			articleTitle={pageTitle}
 		/>
 		<script is:inline>
 			const theme = (() => {
