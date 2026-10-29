@@ -2,23 +2,28 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_NAME, SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 interface Props {
 	pageTitle?: string;
 	description?: string;
 	image?: string;
+	pubDate?: Date;
+	updatedDate?: Date;
 }
-const { pageTitle, description = SITE_DESCRIPTION, image } = Astro.props;
+const { pageTitle, description = SITE_DESCRIPTION, image, pubDate, updatedDate } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en" class="h-full">
 	<head>
 		<BaseHead
-			title={pageTitle ? `${SITE_TITLE} | ${pageTitle}` : SITE_TITLE}
+			title={pageTitle ? `${pageTitle} | ${SITE_NAME}` : SITE_TITLE}
 			description={description}
 			image={image}
+			pubDate={pubDate}
+			updatedDate={updatedDate}
+			articleTitle={pageTitle}
 		/>
 		<script is:inline>
 			const theme = (() => {
