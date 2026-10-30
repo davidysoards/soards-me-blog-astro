@@ -151,7 +151,7 @@
 		@apply text-ink;
 	}
 	.prose-c h2 {
-		@apply mt-20 mb-4;
+		@apply mt-15 mb-4;
 		font-size: 34px;
 		line-height: 1.15;
 	}

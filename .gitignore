@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # Local design tooling
 /.impeccable/
+
+/src/content/posts/blog-redesign/images/previews/
+/src/content/posts/blog-redesign/_images.json

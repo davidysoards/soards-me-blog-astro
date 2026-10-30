@@ -2,6 +2,7 @@
 import ThemeToggle from './ThemeToggle.astro';
 import { getCollection } from 'astro:content';
 import DYSMark from './DYSMark.astro';
+import { SOCIAL_LINKS } from '../consts';
 const home = Astro.url.pathname === '/';
 const dates = (await getCollection('posts')).map((post) => post.data.pubDate);
 const latest = new Date(Math.max(...dates.map(Number)));
@@ -13,11 +14,6 @@ const month = latest.toLocaleDateString('en-us', {
 	year: 'numeric',
 	timeZone: 'UTC',
 });
-const socials = [
-	{ label: 'GitHub', href: 'https://github.com/davidysoards' },
-	{ label: 'X', href: 'https://x.com/ninjasoards' },
-	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/davidysoards/' },
-];
 ---
 
 <header class="mx-auto w-full max-w-7xl px-4.5 md:px-8">
@@ -71,7 +67,7 @@ const socials = [
 				Art
 			</a>
 			<span>
-				{socials.map(({ label, href }) => (
+				{SOCIAL_LINKS.map(({ label, href }) => (
 					<>
 						<a class="hover:text-accent-text" href={href} target="_blank" rel="noopener">
 							{label}
