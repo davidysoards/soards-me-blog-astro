@@ -1,0 +1,170 @@
+<div data-article-gallery>
+	<slot />
+	<script is:inline>
+		// Match the saved theme before these lazy images are laid out.
+		{
+			const gallery = document.currentScript.parentElement;
+			const dark = document.documentElement.classList.contains('dark');
+			gallery.querySelectorAll('picture source').forEach((source) => {
+				source.media = dark ? 'all' : 'not all';
+			});
+		}
+	</script>
+	<dialog
+		aria-label="Image gallery"
+		class="gallery-dialog fixed m-auto h-dvh max-h-none w-screen max-w-none border-0 bg-paper p-4.5 text-ink md:p-8"
+	>
+		<div class="flex h-full min-h-0 flex-col gap-4">
+			<div class="flex items-center justify-between gap-4 border-b border-rule pb-3 font-mono text-xs">
+				<span data-counter aria-live="polite" aria-atomic="true"></span>
+				<div class="flex items-center gap-5">
+					<a
+						data-original
+						target="_blank"
+						rel="noopener"
+						aria-label="Open full size in a new tab"
+						class="text-accent-text underline underline-offset-4"
+					>
+						Open full size
+					</a>
+					<button
+						data-close
+						type="button"
+						autofocus
+						class="grid size-11 cursor-pointer place-items-center hover:text-accent-text"
+						aria-label="Close gallery"
+					>
+						<span aria-hidden="true" class="i-lucide-x size-6"></span>
+					</button>
+				</div>
+			</div>
+			<div class="gallery-view flex min-h-0 flex-1 items-center justify-center overflow-auto">
+				<img data-full-image alt="" />
+			</div>
+			<div class="flex items-center gap-3 border-t border-rule pt-3">
+				<button
+					data-previous
+					type="button"
+					class="grid size-11 shrink-0 cursor-pointer place-items-center hover:text-accent-text"
+					aria-label="Previous image"
+				>
+					<span aria-hidden="true" class="i-lucide-chevron-left size-6"></span>
+				</button>
+				<p data-caption class="gallery-caption flex-1 text-center text-sm leading-snug"></p>
+				<button
+					data-next
+					type="button"
+					class="grid size-11 shrink-0 cursor-pointer place-items-center hover:text-accent-text"
+					aria-label="Next image"
+				>
+					<span aria-hidden="true" class="i-lucide-chevron-right size-6"></span>
+				</button>
+			</div>
+		</div>
+	</dialog>
+</div>
+
+<style>
+	:global([data-article-gallery] .image-trigger) {
+		display: block;
+		width: 100%;
+		cursor: zoom-in;
+	}
+	:global([data-article-gallery] > .image-trigger) {
+		margin-block: 1.75rem;
+	}
+	:global([data-article-gallery] td .image-trigger) {
+		margin-block: 1rem;
+	}
+	:global([data-article-gallery] .image-trigger:hover img) {
+		outline: 1px solid var(--red-11);
+		outline-offset: 3px;
+	}
+	.gallery-dialog::backdrop {
+		background: var(--mauve-12);
+	}
+	.gallery-dialog .gallery-view img {
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		max-height: 100%;
+		margin: 0;
+		object-fit: contain;
+	}
+	.gallery-dialog .gallery-caption {
+		margin: 0;
+	}
+</style>
+
+<script>
+	for (const gallery of document.querySelectorAll<HTMLElement>('[data-article-gallery]')) {
+		const dialog = gallery.querySelector('dialog')!;
+		const fullImage = dialog.querySelector<HTMLImageElement>('[data-full-image]')!;
+		const caption = dialog.querySelector<HTMLElement>('[data-caption]')!;
+		const counter = dialog.querySelector<HTMLElement>('[data-counter]')!;
+		const original = dialog.querySelector<HTMLAnchorElement>('[data-original]')!;
+		const images = [...gallery.querySelectorAll<HTMLAnchorElement>('[data-gallery-image]')].map(
+			(link) => ({
+				link,
+				image: link.querySelector('img')!,
+				source: link.querySelector('source'),
+				light: link.href,
+				dark: link.dataset.fullDark,
+			}),
+		);
+		let index = 0;
+		let opener: HTMLAnchorElement;
+		let previousOverflow = '';
+
+		function show(next: number) {
+			index = (next + images.length) % images.length;
+			const { link, image } = images[index];
+			fullImage.src = link.href;
+			fullImage.alt = image.alt;
+			caption.textContent = image.alt;
+			counter.textContent = `${index + 1} / ${images.length}`;
+			original.href = link.href;
+		}
+
+		function syncTheme() {
+			const dark = document.documentElement.classList.contains('dark');
+			for (const entry of images) {
+				if (entry.source) entry.source.media = dark ? 'all' : 'not all';
+				entry.link.href = (dark && entry.dark) || entry.light;
+			}
+			if (dialog.open) show(index);
+		}
+
+		images.forEach(({ link }, i) => {
+			link.setAttribute('aria-haspopup', 'dialog');
+			link.addEventListener('click', (event) => {
+				if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+				event.preventDefault();
+				opener = link;
+				show(i);
+				dialog.showModal();
+				previousOverflow = document.documentElement.style.overflow;
+				document.documentElement.style.overflow = 'hidden';
+			});
+		});
+		dialog.querySelector('[data-close]')!.addEventListener('click', () => dialog.close());
+		dialog.querySelector('[data-previous]')!.addEventListener('click', () => show(index - 1));
+		dialog.querySelector('[data-next]')!.addEventListener('click', () => show(index + 1));
+		dialog.addEventListener('keydown', (event) => {
+			if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+				event.preventDefault();
+				show(index + (event.key === 'ArrowRight' ? 1 : -1));
+			}
+		});
+		dialog.addEventListener('close', () => {
+			document.documentElement.style.overflow = previousOverflow;
+			opener?.focus({ preventScroll: true });
+		});
+
+		syncTheme();
+		new MutationObserver(syncTheme).observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['class'],
+		});
+	}
+</script>

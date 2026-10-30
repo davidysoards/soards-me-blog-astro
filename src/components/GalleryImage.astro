@@ -1,0 +1,67 @@
+---
+interface ImageSource {
+	full: string;
+	srcset: string;
+	width: number;
+	height: number;
+}
+interface Props {
+	image: { light: ImageSource; dark?: ImageSource };
+	alt: string;
+	sizes: string;
+	crop?: boolean;
+}
+const {
+	image: { light, dark },
+	alt,
+	sizes,
+	crop = false,
+} = Astro.props;
+---
+
+<a
+	href={light.full}
+	class="image-trigger"
+	data-gallery-image
+	data-full-dark={dark?.full}
+	aria-label={`Enlarge image: ${alt}`}
+>
+	<picture class:list={['gallery-picture', crop && 'gallery-crop']}>
+		{dark && (
+			<source
+				media="(prefers-color-scheme: dark)"
+				srcset={dark.srcset}
+				sizes={sizes}
+				width={dark.width}
+				height={dark.height}
+			/>
+		)}
+		<img
+			src={light.full}
+			srcset={light.srcset}
+			sizes={sizes}
+			width={light.width}
+			height={light.height}
+			alt={alt}
+			loading="lazy"
+			decoding="async"
+		/>
+	</picture>
+</a>
+
+<style>
+	.gallery-picture {
+		display: block;
+	}
+	.gallery-picture img {
+		display: block;
+		width: 100%;
+		height: auto;
+		margin: 0;
+	}
+	.gallery-crop img {
+		max-height: 28rem;
+		object-fit: cover;
+		object-position: top;
+	}
+</style>

@@ -1,0 +1,154 @@
+---
+title: Better references, better AI design
+subtitle: Bringing my own references and design decisions to an AI-assisted blog redesign.
+description: How magazine pages and a book cover shaped my blog redesign, from three AI mockups to the details across real posts.
+pubDate: 2026-10-30T14:31:55.716Z
+heroImage: blog-redesign-print-collage.jpg
+tags:
+  - design
+  - ai
+---
+
+import ArticleGallery from '../../../components/ArticleGallery.astro';
+import GalleryImage from '../../../components/GalleryImage.astro';
+import { imageSet } from './_images';
+
+<ArticleGallery>
+
+My blog used to be minimal on purpose. It used system fonts, a tag cloud that had gotten a bit busy, and a header with my photo that was supposed to look kind of like a social profile. I never quite liked how the header turned out. With the blog becoming more developer-focused, I wanted to rethink the design.
+
+AI is part of how I work now, but a lot of people are cranking out boring, generic slop with it. I wanted this redesign to **draw from classic print design and have more character**. Before I asked for a mockup, I gave the agent photos of magazine pages and a book cover, as well as links to several sites and blogs that I liked.
+
+## The references
+
+<div className="my-7 grid grid-cols-3 items-center gap-4 [&_p]:m-0">
+
+<GalleryImage
+  image={imageSet('rolling-stone-u2')}
+  alt="Rolling Stone cover with a black-and-white portrait of Bono and large red cover lines"
+  sizes="(max-width: 767px) calc((100vw - 68px) / 3), 240px"
+/>
+
+<GalleryImage
+  image={imageSet('from-russia-with-blood')}
+  alt="From Russia with Blood book cover with a red-and-black halftone portrait and condensed white type"
+  sizes="(max-width: 767px) calc((100vw - 68px) / 3), 240px"
+/>
+
+<GalleryImage
+  image={imageSet('rolling-stone-geeks')}
+  alt="Rolling Stone geeks feature with oversized lowercase lettering and monospaced captions"
+  sizes="(max-width: 767px) calc((100vw - 68px) / 3), 240px"
+/>
+
+<GalleryImage
+  image={imageSet('rage-against-the-machine')}
+  alt="Rage Against the Machine feature with large red stencil lettering"
+  sizes="(max-width: 767px) calc((100vw - 68px) / 3), 240px"
+/>
+
+<GalleryImage
+  image={imageSet('rolling-stone-correspondence')}
+  alt="Rolling Stone correspondence page with a large serif heading and narrow text columns"
+  sizes="(max-width: 767px) calc((100vw - 68px) / 3), 240px"
+/>
+
+<GalleryImage
+  image={imageSet('rolling-stone-reviews')}
+  alt="Rolling Stone review section with oversized lowercase lettering"
+  sizes="(max-width: 767px) calc((100vw - 68px) / 3), 240px"
+/>
+
+</div>
+
+I’ve had those magazines since I was a teenager. The book is, of all things, about _Putin_. I spotted it in a bookstore and liked the cover design.
+
+I often snap pictures of books, posters, billboards, album covers, movie titles, or anything else I like that I can draw inspiration from later.
+
+I wanted to emulate **the typography and funky layouts from the late ’90s music magazines**: big condensed headlines, halftone photos, small type packed in around big type. And I decided to keep my red-and-black color scheme.
+
+## Three directions
+
+I used Grok Bot for much of the initial design work. I hadn't used it for design before. It was surprisingly good and pretty fast too. After I gave it the references and answered a series of questions, it built three homepage mockups using my real posts.
+
+| Quiet                                                                                                                                                                              | Editorial                                                                                                                                                                                        | Loud                                                                                                                                                                                                   |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <GalleryImage image={imageSet("direction-a-quiet")} alt="Quiet mockup with a narrow column and year-grouped archive" sizes="(max-width: 767px) calc((100vw - 68px) / 3), 240px" /> | <GalleryImage image={imageSet("direction-b-editorial")} alt="Editorial mockup with a prominent nameplate and a row of story cards" sizes="(max-width: 767px) calc((100vw - 68px) / 3), 240px" /> | <GalleryImage image={imageSet("direction-c-loud")} alt="Loud mockup with an oversized red SOARDS masthead and tall halftone cover image" sizes="(max-width: 767px) calc((100vw - 68px) / 3), 240px" /> |
+
+- **Quiet:** a narrow column, one featured post, and an archive grouped by year.
+- **Editorial:** a black nameplate, a large featured post with three cards under it, and mostly full-color images.
+- **Loud:** a huge red SOARDS nameplate, a tall red-and-black halftone cover image, an all-caps cover story, and a grid of red thumbnails.
+
+All three were pretty good. Minimal was another style I was considering, and the editorial version was a nice middle ground. The loud version was fully inspired by music magazines, and it was my favorite. **I wasn't trying to play it safe on a personal site.**
+
+Two details came directly from the reference photos. The red-and-black halftone on the post thumbnails came from the Putin book cover. The monospaced captions, with their runs of forward slashes (`//` and `////`), came from the geeks article.
+
+## Losing the impact, then getting it back
+
+At first I thought the masthead and cover headline of the loud version took up too much space above the fold, so I changed the layout to be more like the editorial version and moved the editor's letter above the cover story. I switched the headings to lowercase Anton and picked Literata for the body text instead of system fonts. After a few rounds, the mockup looked like this:
+
+<GalleryImage
+  image={imageSet('reduced-masthead-mockup')}
+  alt="A later Grok Bot mockup with a smaller nameplate and the letter above the feature"
+  sizes="(max-width: 767px) calc(100vw - 36px), 752px"
+  crop
+/>
+
+I attempted to have Grok Bot kick off a cloud agent in Cursor to implement the code, but that didn't work out too well. It overcomplicated everything and kept stopping on every turn. Eventually I started over in Codex with GPT-6.1-Sol and a fresh prompt.
+
+Once the initial implementation was finished, I returned to Cursor in order to use Opus 5.5 for revisions. It was at this point I decided that **we had lost some impact compared to the original loud layout**. I brought back the large nameplate, with a small italic first name above it.
+
+The top right corner was mostly empty, and that's prime screen real estate, so I added an "Inside this issue" section with a list of recent post titles.
+
+<GalleryImage
+  image={imageSet('restored-homepage')}
+  alt="The homepage after restoring the larger nameplate and tall cover image"
+  sizes="(max-width: 767px) calc(100vw - 36px), 752px"
+  crop
+/>
+
+<p class="text-base italic md:text-lg">The homepage at this stage of the redesign.</p>
+
+This version was a lot closer to the original loud mockup than the one I'd shrunk it down to. The nameplate looked more like a logo, and **the latest post got the full cover story treatment** with a large image and headline.
+
+I decided to use all lowercase headlines instead of all caps like most of the references. And I liked the warm paper background in the original mockups, but ultimately went with pure white to take full advantage of <a href="https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale" target="_blank" rel="noopener">Radix Colors</a>. Its text and background colors are designed to work together for accessible contrast.
+
+## Before and after
+
+The old site and the redesign use the same posts, but the new layout gives them a different presence. The latest post gets a cover story, more stories appear in the cover lines and image grid, and the older posts stay in a compact archive.
+
+<div className="my-7 grid grid-cols-2 items-start gap-4 [&_p]:m-0">
+
+<div>
+
+**Before**
+
+<GalleryImage
+  image={imageSet('old-homepage')}
+  alt="The old homepage with system fonts, a tag cloud, and a list of posts"
+  sizes="(max-width: 767px) calc((100vw - 52px) / 2), 368px"
+/>
+
+</div>
+
+<div>
+
+**After**
+
+<GalleryImage
+  image={imageSet('redesigned-homepage-full')}
+  alt="The redesigned homepage, from the large red SOARDS nameplate through the cover story, story grid, and back issues"
+  sizes="(max-width: 767px) calc((100vw - 52px) / 2), 368px"
+/>
+
+</div>
+
+</div>
+
+## Gather your own references
+
+Collect inspiration from wherever you find it, in print or on the web. **Pick out what you like from different sources and combine those ideas into something new.** The magazines and book cover were my starting point for this site. Yours could look completely different.
+
+Thanks for reading!
+
+</ArticleGallery>
