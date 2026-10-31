@@ -6,6 +6,10 @@ External links in posts must use HTML `<a>` tags with `target="_blank"` and `rel
 
 Before writing or revising post prose, read ai-writing's `../ai-writing/10 Voice/Voice Guide.md`, relevant entries in `../ai-writing/10 Voice/Evidence Log.md`, and `../ai-writing/10 Voice/Avoid.md`. Apply `../ai-writing/.agents/skills/prose-cleanup/SKILL.md` before presenting changes. The author's latest instructions take precedence over earlier drafting briefs. Preserve edited prose outside the requested changes.
 
+## Post URLs
+
+For new posts, use the full title word for word as the URL slug, lowercased with hyphens between words. Do not shorten it to a working title or topic label. Leave published URLs unchanged unless the author requests a migration.
+
 ## Local preview on the Mac mini
 
 - Run the Astro dev server **outside the Codex sandbox** (`sandbox_permissions: "require_escalated"`). Sandboxed servers have repeatedly served stale markup because macOS file-change events did not reach the watcher.
