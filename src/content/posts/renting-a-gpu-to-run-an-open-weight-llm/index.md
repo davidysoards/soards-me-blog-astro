@@ -21,7 +21,7 @@ I used RunPod so I could rent an NVIDIA GPU by the hour without managing a physi
 
 ![RunPod GPU selection grid showing the RTX A6000 at $0.59/hr alongside RTX 3090 and RTX A5000 options](./images/gpu-selection.png)
 
-I had already installed RunPod's official skills for <a href="https://pi.dev" target="_blank" rel="noopener">Pi</a>, my coding agent, yet I deliberately did the first deployment by hand. Letting an agent set up infrastructure I did not understand would have defeated the purpose.
+I had already installed RunPod's official skills for <a href="https://pi.dev" target="_blank" rel="noopener">Pi</a>, my coding agent, yet **I deliberately did the first deployment by hand**. Letting an agent set up infrastructure I did not understand would have defeated the purpose.
 
 I picked RunPod's `vLLM Latest` template (`vllm/vllm-openai:latest`, which ran vLLM 0.31.0 at the time) and deployed `Qwen/Qwen3-8B` with a 5 GB container disk and a separate volume mounted at `/workspace` for the model cache. If you try this now, pin a specific vLLM version tag rather than `latest`, which changes over time.
 
@@ -39,7 +39,7 @@ vllm serve Qwen/Qwen3-8B \
   --max-model-len 8128
 ```
 
-Right after the model loaded, `nvidia-smi` showed about 46 GB of the 48 GB VRAM allocated while GPU compute utilization sat at 0%. That is `--gpu-memory-utilization 0.95` at work: vLLM reserves VRAM upfront for model weights and the KV cache. Allocated GPU memory does not mean the card is actively running inference.
+Right after the model loaded, `nvidia-smi` showed about 46 GB of the 48 GB VRAM allocated while GPU compute utilization sat at 0%. That is `--gpu-memory-utilization 0.95` at work: vLLM reserves VRAM upfront for model weights and the KV cache. **Allocated GPU memory does not mean the card is actively running inference.**
 
 Exposing port 8000 as an HTTP port gives you a <a href="https://docs.runpod.io/pods/configuration/expose-ports" target="_blank" rel="noopener">RunPod proxy URL</a> (`https://<pod-id>-8000.proxy.runpod.net`), with vLLM's OpenAI-compatible API under `/v1`. Passing `--api-key` (or setting `VLLM_API_KEY`) gates `/v1` requests. One caveat from the <a href="https://docs.vllm.ai/en/stable/usage/security/" target="_blank" rel="noopener">vLLM security docs</a>: `--api-key` does not authenticate every route on the server, so do not rely on it alone for a public deployment.
 
@@ -68,7 +68,7 @@ JSON
 
 `stream_options.include_usage` tells vLLM to include actual token counts at the end of the stream, and `enable_thinking: false` disables Qwen3's reasoning mode. My first manual non-streaming request returned 224 tokens in about 7.1 seconds; with streaming on, the first byte arrived in about 0.89 seconds.
 
-When you finish, stopping a RunPod pod halts the hourly GPU charge, but storage billing continues until you terminate the pod. If you attached a separate network or global volume at `/workspace`, delete that volume too, since terminating a pod only detaches it.
+When you finish, stopping a RunPod pod halts the hourly GPU charge, but **storage billing continues until you terminate the pod**. If you attached a separate network or global volume at `/workspace`, delete that volume too, since terminating a pod only detaches it.
 
 ![RunPod Pods list showing the stopped RTX A6000 pod at $0.00/hr with Terminate Pod open in the actions menu](./images/terminate-pod.png)
 
@@ -141,13 +141,13 @@ On a single request with a short prompt, `Qwen3-8B` decoded at roughly 41 to 42 
 <figcaption class="text-sm leading-normal text-mute italic">Measured from my client over RunPod's proxy (5 batches per setting, 39 prompt / 128 output tokens). Total output is combined throughput, not single-request speed.</figcaption>
 </figure>
 
-At four concurrent requests, combined output jumped from 36.1 to 122.1 tokens/s (3.38x). Individual requests slowed down by about 20% in exchange: median latency went from 3.54 to 4.24 seconds, and per-request decoding dropped from 41.6 to 33.2 tokens/s. Four was simply the highest level I tested, not a proven limit. For a single developer sending one prompt at a time, you are paying for far more throughput than you use.
+At four concurrent requests, combined output jumped from 36.1 to 122.1 tokens/s (3.38x). Individual requests slowed down by about 20% in exchange: median latency went from 3.54 to 4.24 seconds, and per-request decoding dropped from 41.6 to 33.2 tokens/s. Four was simply the highest level I tested, not a proven limit. **For a single developer sending one prompt at a time, you are paying for far more throughput than you use.**
 
 ## What it actually costs
 
 At the historical $0.59/hour rate, sustaining that concurrency-4 rate nonstop projects to about $1.34 per million output tokens.
 
-That number only holds if requests keep the GPU busy 100% of the time. With a rented card, you pay for time, not tokens: the meter runs at $0.59/hour ($14.16/day, or $424.80 for a full month) whether the model is generating output or sitting idle.
+That number only holds if requests keep the GPU busy 100% of the time. With a rented card, **you pay for time, not tokens**: the meter runs at $0.59/hour ($14.16/day, or $424.80 for a full month) whether the model is generating output or sitting idle.
 
 <figure>
 <svg class="llm-viz" viewBox="0 0 440 290" role="img" aria-label="Line chart: projected GPU cost per million output tokens at four requests at once falls from $13.42 at 10% busy time to $1.34 at 100%." style="width:100%;max-width:520px;height:auto;display:block;margin:0 auto">
@@ -187,6 +187,6 @@ In my own session, the 167-second benchmark window accounted for about $0.027 of
 
 As a way to learn without dropping thousands of dollars on a Mac Studio, yes. Getting an open-weight model running on RunPod takes minutes, and for about a dollar you get a real feel for how the stack behaves and what hourly GPU billing looks like.
 
-What I did not test is the bigger question for day-to-day work: is using open-weight models actually a good experience, and can they compete with frontier models from the big labs? The next step would be wiring Pi up to the Qwen3-8B endpoint for some real coding tasks, but that seemed like a separate, more involved project. This experiment answered the infrastructure side and satisfied my curiosity for now.
+What I did not test is the bigger question for day-to-day work: **is using open-weight models actually a good experience, and can they compete with frontier models from the big labs?** The next step would be wiring Pi up to the Qwen3-8B endpoint for some real coding tasks, but that seemed like a separate, more involved project. This experiment answered the infrastructure side and satisfied my curiosity for now.
 
 If you have been tempted to buy local hardware just to experiment with open-weight models, I suggest renting a GPU for an hour or two first. It is a cheap way to see what running a model actually involves before spending thousands.
