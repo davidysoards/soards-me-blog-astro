@@ -1,7 +1,7 @@
 ---
 title: Renting a GPU to Run an Open-Weight LLM
-subtitle: Testing Qwen3-8B on RunPod with vLLM before buying local hardware.
-description: Deploying Qwen3-8B on RunPod with vLLM to see what self-hosting costs and whether it's worth the effort.
+subtitle: Comparing raw GPU inference on RunPod with commercial AI APIs.
+description: Deploying Qwen3-8B on RunPod with vLLM to compare raw GPU inference and costs against commercial APIs.
 pubDate: 2026-11-24T12:00:00.000Z
 heroImage: renting-a-gpu-to-run-an-open-weight-llm.webp
 tags:
