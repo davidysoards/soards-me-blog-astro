@@ -13,7 +13,7 @@ tags:
 
 Until recently, I had only used language models through commercial APIs. When I got curious about running an open-weight model myself, my first thought was to buy a maxed out Mac Studio, but spending several thousand dollars just to satisfy my curiosity didn't make much sense, so I rented a cloud GPU instead.
 
-I wanted to answer three practical questions: how to run an open-weight model without buying local hardware, what it costs, and whether it's worth the effort.
+I wanted to see how running inference on a raw GPU compares to using an API, what it costs, and whether it's worth the effort.
 
 ## Getting a model running without buying hardware
 
